@@ -16,7 +16,6 @@ source /home/${USER}/.bashrc
 conda activate curebench
 
 export HF_HOME="/data/projects/punim0478/bansaab"
-export HF_TOKEN="REDACTED"
 export PYTHONPATH="$PYTHONPATH:$(pwd)"
 export PYTHONPATH=/data/gpfs/projects/punim0478/bansaab/TxAgent_tool_tracking:$PYTHONPATH
 
