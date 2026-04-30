@@ -1,0 +1,10 @@
+question,model_A,model_B,mean_MI_medreasonagent,mean_MI_llama,higher_MI,U_stat,p_value,significant,n_A,n_B,mean_MI_clinician
+manage,medreasonagent,llama,0.272081,0.421904,llama,1.0,0.2,False,3,3,
+manage,medreasonagent,clinician,0.272081,,medreasonagent,1.0,0.2,False,3,3,0.196099
+manage,llama,clinician,,0.421904,llama,0.0,0.1,False,3,3,0.196099
+visit,medreasonagent,llama,0.268626,0.366474,llama,0.0,0.1,False,3,3,
+visit,medreasonagent,clinician,0.268626,,medreasonagent,3.0,0.7,False,3,3,0.231774
+visit,llama,clinician,,0.366474,llama,0.0,0.1,False,3,3,0.231774
+resource,medreasonagent,llama,0.27438,0.405418,llama,0.0,0.1,False,3,3,
+resource,medreasonagent,clinician,0.27438,,medreasonagent,1.0,0.2,False,3,3,0.20932
+resource,llama,clinician,,0.405418,llama,0.0,0.1,False,3,3,0.20932

@@ -1,0 +1,5 @@
+question,kappa_baseline,mean_kappa_perturbed,mean_d,Wilcoxon_W,p_value,significant,n_perturbations,note
+manage,-0.2579,,,,,False,3,
+visit,0.478,,,,,False,3,
+resource,0.4673,,,,,False,3,
+ALL,,,,,,False,9,Combined over all 9 (pert×question) pairs

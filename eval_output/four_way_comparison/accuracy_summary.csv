@@ -1,0 +1,13 @@
+model,question,mean_accuracy
+clinician,manage,0.8675
+clinician,resource,0.9
+clinician,visit,0.93
+llama,manage,0.853
+llama,resource,0.8326
+llama,visit,0.8423
+medreasonagent,manage,0.2642
+medreasonagent,resource,0.8066
+medreasonagent,visit,0.7855
+tooluni_agent,manage,0.2801
+tooluni_agent,resource,0.7065
+tooluni_agent,visit,0.8372

@@ -1,0 +1,7 @@
+perturbation,question,consensus_ratio_tooluni_agent,consensus_ratio_medpathagent_llama70b3_3,n
+baseline,manage,0.23,0.2,100
+baseline,visit,0.87,0.75,100
+baseline,resource,0.81,0.78,100
+summary,manage,0.28,0.38,50
+summary,visit,0.84,0.88,50
+summary,resource,0.8,0.8,50

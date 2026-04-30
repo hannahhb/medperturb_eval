@@ -1,0 +1,7 @@
+model,question,mean_MI,mean_kappa_vs_clin,mean_consensus_ratio,mean_ATR,mean_accuracy
+tooluni_agent,manage,0.1131,-0.0898,0.255,0.7784,0.2801
+tooluni_agent,visit,0.3037,0.482,0.855,0.8041,0.8372
+tooluni_agent,resource,0.1153,0.1396,0.805,0.8946,0.7065
+medpathagent_llama70b3_3,manage,0.2721,-0.0233,0.29,0.8166,0.2642
+medpathagent_llama70b3_3,visit,0.2686,0.3362,0.815,0.7842,0.7855
+medpathagent_llama70b3_3,resource,0.2744,0.3326,0.79,0.7854,0.8067

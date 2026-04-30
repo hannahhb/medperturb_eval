@@ -1,0 +1,7 @@
+perturbation,question,consensus_ratio_tooluni_agent,consensus_ratio_medpathagent_llama70b3_3,mcnemar_b,mcnemar_c,chi2_stat,p_value,significant,n
+baseline,manage,0.23,0.2,5,8,0.3077,0.5791,False,100
+baseline,visit,0.87,0.75,3,15,6.7222,0.009522,True,100
+baseline,resource,0.81,0.78,4,7,0.3636,0.546494,False,100
+summary,manage,0.28,0.38,6,1,2.2857,0.13057,False,50
+summary,visit,0.84,0.88,5,3,0.125,0.723674,False,50
+summary,resource,0.8,0.8,6,6,0.0833,0.77283,False,50

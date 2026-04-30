@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional
 
 from .base import BaseAdvancedModel, ReasoningResult
 
-from medperturb_eval.models.txagent import TxAgent
+from txagent import TxAgent
 
 
 class TxAgentModel(BaseAdvancedModel):

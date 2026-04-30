@@ -1,0 +1,13 @@
+perturbation,question,fleiss_kappa_3rater,n_3rater,fleiss_kappa_4rater,n_4rater,raters_3,raters_4
+baseline,manage,-0.2579,225,-0.1739,100,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+baseline,visit,0.478,225,0.3765,100,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+baseline,resource,0.4673,225,0.2526,100,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+gender_swap,manage,-0.1688,6,,1,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+gender_swap,visit,0.3571,6,,1,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+gender_swap,resource,0.6786,6,,1,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+summary,manage,-0.1438,166,-0.0823,50,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+summary,visit,0.6179,166,0.5668,50,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+summary,resource,0.4247,166,0.4152,50,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+uncertain_tone,manage,,0,,0,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+uncertain_tone,visit,,0,,0,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"
+uncertain_tone,resource,,0,,0,"tooluni_agent, medreasonagent, llama","tooluni_agent, medreasonagent, llama, clinician"

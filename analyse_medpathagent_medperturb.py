@@ -29,7 +29,11 @@ QUESTIONS = ["manage", "visit", "resource"]
 
 # Models in the orig dataset (adjust if your column names differ)
 ORIG_MODELS = {
+    "gpt-4o":    {"manage": "gpt-4o_manage",    "visit": "gpt-4o_visit",    "resource": "gpt-4o_resource"},
     "llama":     {"manage": "llama_manage",      "visit": "llama_visit",     "resource": "llama_resource"},
+    "deepseek":  {"manage": "deepseek_manage",   "visit": "deepseek_visit",  "resource": "deepseek_resource"},
+    "qwen":      {"manage": "qwen_manage",       "visit": "qwen_visit",      "resource": "qwen_resource"},
+    "medgemma":  {"manage": "medgemma_manage",    "visit": "medgemma_visit",  "resource": "medgemma_resource"},
 }
 
 # KG model columns from results.csv
@@ -516,11 +520,162 @@ def build_summary(atr_df, mi_df, pc_df, focus_models=None):
 # MAIN
 # ─────────────────────────────────────────────────────────────────────
 
+def plot_fleiss_vs_clinician(fleiss_df: pd.DataFrame, output_dir: str):
+    """
+    Grouped bar chart: Fleiss' Kappa vs clinician for each model,
+    grouped by (perturbation, question).
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import matplotlib.ticker as mticker
+
+    # Filter to just the models we want to compare
+    plot_models = ["medpathagent", "llama"]
+    model_labels = {"medpathagent": "MedPathAgent (KG)", "llama": "Llama-70B"}
+    model_colors = {"medpathagent": "#2D6A4F", "llama": "#E76F51"}
+
+    plot_df = fleiss_df[fleiss_df["model"].isin(plot_models)].copy()
+    if plot_df.empty:
+        print("WARNING: No data for plotting. Check model names.")
+        return
+
+    # Create group labels
+    plot_df["group"] = plot_df["perturbation"] + "\n" + plot_df["question"].str.upper()
+
+    groups = sorted(plot_df["group"].unique())
+    n_groups = len(groups)
+    n_models = len(plot_models)
+
+    bar_width = 0.35
+    x = np.arange(n_groups)
+
+    fig, ax = plt.subplots(figsize=(max(10, n_groups * 1.2), 6))
+
+    for i, model in enumerate(plot_models):
+        model_data = plot_df[plot_df["model"] == model]
+        vals = []
+        for g in groups:
+            row = model_data[model_data["group"] == g]
+            vals.append(row["fleiss_kappa_vs_clinician"].values[0] if len(row) > 0 else 0)
+
+        offset = (i - (n_models - 1) / 2) * bar_width
+        bars = ax.bar(
+            x + offset, vals,
+            width=bar_width,
+            label=model_labels.get(model, model),
+            color=model_colors.get(model, f"C{i}"),
+            edgecolor="white",
+            linewidth=0.5,
+            alpha=0.9,
+        )
+
+        # Value labels on bars
+        for bar, v in zip(bars, vals):
+            y_pos = bar.get_height()
+            va = "bottom" if y_pos >= 0 else "top"
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                y_pos + (0.01 if y_pos >= 0 else -0.01),
+                f"{v:.2f}",
+                ha="center", va=va,
+                fontsize=8, fontweight="600",
+                color="#333",
+            )
+
+    # Reference lines
+    ax.axhline(y=0, color="#999", linewidth=0.8, linestyle="-")
+    ax.axhline(y=0.2, color="#ccc", linewidth=0.6, linestyle="--", alpha=0.7)
+    ax.axhline(y=0.4, color="#ccc", linewidth=0.6, linestyle="--", alpha=0.7)
+    ax.axhline(y=0.6, color="#ccc", linewidth=0.6, linestyle="--", alpha=0.7)
+
+    # Kappa interpretation bands (subtle background)
+    ax.axhspan(-1, 0, alpha=0.03, color="red")
+    ax.axhspan(0, 0.2, alpha=0.03, color="orange")
+    ax.axhspan(0.2, 0.4, alpha=0.03, color="yellow")
+    ax.axhspan(0.4, 0.6, alpha=0.03, color="lightgreen")
+    ax.axhspan(0.6, 1.0, alpha=0.03, color="green")
+
+    # Interpretation labels on right side
+    ax2 = ax.twinx()
+    ax2.set_ylim(ax.get_ylim())
+    interp_positions = {0.1: "Slight", 0.3: "Fair", 0.5: "Moderate", 0.7: "Substantial"}
+    for pos, label in interp_positions.items():
+        if ax.get_ylim()[0] <= pos <= ax.get_ylim()[1]:
+            ax2.annotate(
+                label, xy=(1.02, pos), xycoords=("axes fraction", "data"),
+                fontsize=7, color="#888", va="center",
+            )
+    ax2.set_yticks([])
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(groups, fontsize=9)
+    ax.set_ylabel("Fleiss' κ (vs Clinician)", fontsize=11, fontweight="600")
+    ax.set_title(
+        "Agreement with Clinician: MedPathAgent (KG) vs Llama-70B",
+        fontsize=13, fontweight="700", pad=15,
+    )
+    ax.legend(loc="upper left", framealpha=0.9, fontsize=10)
+    ax.yaxis.set_major_formatter(mticker.FormatStrFormatter("%.2f"))
+
+    # Style
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax2.spines["top"].set_visible(False)
+    ax.tick_params(axis="both", which="both", length=0)
+    fig.tight_layout()
+
+    plot_path = os.path.join(output_dir, "fleiss_vs_clinician_plot.png")
+    fig.savefig(plot_path, dpi=200, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"\nPlot saved: {plot_path}")
+
+
+def compute_model_vs_clinician_fleiss(df: pd.DataFrame, model_dict: dict, clinician_dict: dict) -> pd.DataFrame:
+    """
+    Compute Fleiss' Kappa between a single model and clinician,
+    per perturbation and question. This gives a 2-rater Fleiss (equivalent to Cohen's).
+    """
+    rows = []
+    for model_name, cols in model_dict.items():
+        paired = {model_name: cols}
+        paired.update(clinician_dict)
+
+        for pert in sorted(df["perturbation"].unique()):
+            subset = df[df["perturbation"] == pert]
+            for q in QUESTIONS:
+                model_col = cols[q]
+                clin_col = list(clinician_dict.values())[0][q]
+
+                if model_col not in subset.columns or clin_col not in subset.columns:
+                    continue
+
+                valid = subset[[model_col, clin_col]].dropna()
+                if len(valid) < 5:
+                    continue
+
+                ratings = np.column_stack([
+                    valid[model_col].astype(int).values,
+                    valid[clin_col].astype(int).values,
+                ])
+                kappa = _fleiss_kappa(ratings, n_categories=2)
+
+                rows.append({
+                    "perturbation": pert,
+                    "model": model_name,
+                    "question": q,
+                    "fleiss_kappa_vs_clinician": round(kappa, 4),
+                    "n": len(valid),
+                })
+
+    return pd.DataFrame(rows)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Robustness evaluation pipeline")
-    parser.add_argument("--kg_results", default= "/Users/hannah_mac/Documents/rmit/rmit_hons_y4/medperturb_eval/output/medpathagent_llama70b3_3/oncqa_askdocs/run_0/results.csv", help="Path to KG model results.csv")
-    parser.add_argument("--orig_dataset", default="/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/medperturb_data.csv", help="Path to original dataset CSV")
-    parser.add_argument("--output_dir", default="output", help="Output directory")
+    parser.add_argument("--kg_results", required=True, help="Path to KG model results.csv")
+    parser.add_argument("--orig_dataset", required=True, help="Path to original dataset CSV")
+    parser.add_argument("--output_dir", default="eval_output", help="Output directory")
     parser.add_argument("--baseline_label", default="baseline",
                         help="Perturbation label for baseline (e.g. 'baseline' or 'vignette')")
     args = parser.parse_args()
@@ -543,8 +698,8 @@ def main():
     all_with_clinician.update(all_models)
     all_with_clinician.update(CLINICIAN)
 
-    # ── Focus comparison: llama vs medpathagent vs human consensus ──
-    focus = ["medpathagent", "llama"]
+    # ── Focus comparison models ──
+    focus = ["medpathagent", "llama", "gpt-4o"]
 
     # ── ATR ──
     print("\n" + "=" * 60)
@@ -566,33 +721,16 @@ def main():
         focus_mi = mi_df[mi_df["model"].isin(focus + ["clinician"])]
         print(focus_mi.to_string(index=False))
 
-        # MI comparison: medpathagent vs llama, and each vs human consensus
-        mi_comp = compare_mi_significance(mi_df, "medpathagent", "llama")
-        if not mi_comp.empty:
-            print("\nMI comparison: medpathagent vs llama")
-            print(mi_comp.to_string(index=False))
-            mi_comp.to_csv(
-                os.path.join(args.output_dir, "mi_comparison_medpathagent_vs_llama.csv"),
-                index=False,
-            )
-
-        mi_comp_clinician_mp = compare_mi_significance(mi_df, "medpathagent", "clinician")
-        if not mi_comp_clinician_mp.empty:
-            print("\nMI comparison: medpathagent vs human consensus")
-            print(mi_comp_clinician_mp.to_string(index=False))
-            mi_comp_clinician_mp.to_csv(
-                os.path.join(args.output_dir, "mi_comparison_medpathagent_vs_clinician.csv"),
-                index=False,
-            )
-
-        mi_comp_clinician_ll = compare_mi_significance(mi_df, "llama", "clinician")
-        if not mi_comp_clinician_ll.empty:
-            print("\nMI comparison: llama vs human consensus")
-            print(mi_comp_clinician_ll.to_string(index=False))
-            mi_comp_clinician_ll.to_csv(
-                os.path.join(args.output_dir, "mi_comparison_llama_vs_clinician.csv"),
-                index=False,
-            )
+        # MI comparison: KG vs Llama, KG vs GPT
+        for comparison_model in ["llama", "gpt-4o"]:
+            mi_comp = compare_mi_significance(mi_df, "medpathagent", comparison_model)
+            if not mi_comp.empty:
+                print(f"\nMI comparison: medpathagent vs {comparison_model}")
+                print(mi_comp.to_string(index=False))
+                mi_comp.to_csv(
+                    os.path.join(args.output_dir, f"mi_comparison_kg_vs_{comparison_model}.csv"),
+                    index=False,
+                )
 
     # ── PC ──
     print("\n" + "=" * 60)
@@ -604,53 +742,67 @@ def main():
         focus_pc = pc_df[pc_df["model"].isin(focus + ["clinician"])]
         print(focus_pc.to_string(index=False))
 
-    focus_models_dict = {k: v for k, v in all_with_clinician.items() if k in focus + ["clinician"]}
-
-    # ── Alignment with human consensus (pairwise kappa: each model vs clinician) ──
+    # ── Fleiss' Kappa: all models vs clinicians ──
     print("\n" + "=" * 60)
-    print("ALIGNMENT WITH HUMAN CONSENSUS (Cohen's Kappa vs clinician)")
+    print("COMPUTING FLEISS' KAPPA (all models + clinician)")
     print("=" * 60)
-    pairwise = compute_pairwise_kappa(df, focus_models_dict)
+    fleiss_all = compute_fleiss_kappa(df, all_with_clinician)
+    if not fleiss_all.empty:
+        fleiss_all.to_csv(os.path.join(args.output_dir, "fleiss_kappa_all.csv"), index=False)
+        print(fleiss_all.to_string(index=False))
+
+    # Fleiss' Kappa: just focus models + clinician
+    focus_models_dict = {k: v for k, v in all_with_clinician.items() if k in focus + ["clinician"]}
+    fleiss_focus = compute_fleiss_kappa(df, focus_models_dict)
+    if not fleiss_focus.empty:
+        fleiss_focus.to_csv(os.path.join(args.output_dir, "fleiss_kappa_focus.csv"), index=False)
+        print("\nFocus models + clinician:")
+        print(fleiss_focus.to_string(index=False))
+
+    # ── Pairwise Cohen's Kappa ──
+    print("\n" + "=" * 60)
+    print("COMPUTING PAIRWISE COHEN'S KAPPA")
+    print("=" * 60)
+    pairwise = compute_pairwise_kappa(df, all_with_clinician)
     if not pairwise.empty:
         pairwise.to_csv(os.path.join(args.output_dir, "pairwise_kappa.csv"), index=False)
-
-        vs_clinician = pairwise[
-            (pairwise["model_1"] == "clinician") | (pairwise["model_2"] == "clinician")
-        ].copy()
-        vs_clinician["model"] = vs_clinician.apply(
-            lambda r: r["model_1"] if r["model_2"] == "clinician" else r["model_2"], axis=1
-        )
-
-        if not vs_clinician.empty:
-            comparison = vs_clinician.pivot_table(
-                index=["perturbation", "question"],
-                columns="model",
-                values="cohens_kappa",
-            )
-            comparison.columns = [f"kappa_vs_human_{c}" for c in comparison.columns]
-            comparison.to_csv(os.path.join(args.output_dir, "kappa_vs_human_consensus.csv"))
-            print(comparison.to_string())
-
-        # Also print the raw pairwise for reference
-        print("\nAll pairwise kappas:")
-        print(pairwise.to_string(index=False))
+        focus_pairs = pairwise[
+            (pairwise["model_1"].isin(focus + ["clinician"])) &
+            (pairwise["model_2"].isin(focus + ["clinician"]))
+        ]
+        print(focus_pairs.to_string(index=False))
 
     # ── Summary table ──
     print("\n" + "=" * 60)
-    print("SUMMARY: medpathagent vs llama vs human consensus")
+    print("SUMMARY: medpathagent vs llama vs gpt-4o")
     print("=" * 60)
-    summary = build_summary(atr_df, mi_df, pc_df, focus_models=focus + ["clinician"])
+    summary = build_summary(atr_df, mi_df, pc_df, focus_models=focus)
     if not summary.empty:
         summary.to_csv(os.path.join(args.output_dir, "summary_comparison.csv"))
         print(summary.to_string())
 
+    # ── Model vs Clinician Fleiss' Kappa + Plot ──
+    print("\n" + "=" * 60)
+    print("COMPUTING MODEL vs CLINICIAN FLEISS' KAPPA")
+    print("=" * 60)
+
+    # Compute for focus models only
+    focus_model_dict = {k: v for k, v in all_models.items() if k in focus}
+    fleiss_vs_clin = compute_model_vs_clinician_fleiss(df, focus_model_dict, CLINICIAN)
+
+    if not fleiss_vs_clin.empty:
+        fleiss_vs_clin.to_csv(
+            os.path.join(args.output_dir, "fleiss_vs_clinician.csv"), index=False
+        )
+        print(fleiss_vs_clin.to_string(index=False))
+
+        # ── Generate comparison plot ──
+        plot_fleiss_vs_clinician(fleiss_vs_clin, args.output_dir)
+
     print(f"\nAll results saved to: {args.output_dir}/")
-    print("Files: atr_all.csv, mi_all.csv, pc_all.csv,")
-    print("       mi_comparison_medpathagent_vs_llama.csv,")
-    print("       mi_comparison_medpathagent_vs_clinician.csv,")
-    print("       mi_comparison_llama_vs_clinician.csv,")
-    print("       kappa_vs_human_consensus.csv, pairwise_kappa.csv,")
-    print("       pairwise_kappa.csv, summary_comparison.csv")
+    print("Files: atr_all.csv, mi_all.csv, pc_all.csv, fleiss_kappa_all.csv,")
+    print("       fleiss_kappa_focus.csv, pairwise_kappa.csv, summary_comparison.csv,")
+    print("       fleiss_vs_clinician.csv, fleiss_vs_clinician_plot.png")
 
 
 if __name__ == "__main__":

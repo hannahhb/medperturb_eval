@@ -1,0 +1,647 @@
+2026-04-24 11:26:15,017 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=TXAGENT)
+2026-04-24 11:26:20,941 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=TXAGENT)
+2026-04-24 11:26:26,254 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=TXAGENT)
+2026-04-24 11:26:35,270 - ToolRegistry - INFO - Built lazy registry: 66 from configs, 21 from patterns (no modules imported)
+2026-04-24 11:26:36,566 - faiss.loader - INFO - Loading faiss.
+2026-04-24 11:26:36,770 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 11:26:37,788 - httpx - INFO - HTTP Request: POST https://data.rcsb.org/graphql "HTTP/1.1 200 OK"
+2026-04-24 11:26:38,674 - httpx - INFO - HTTP Request: POST https://data.rcsb.org/graphql "HTTP/1.1 200 OK"
+2026-04-24 11:26:44,962 - TxAgentModel.txagent - INFO - Initializing TxAgent | backend=huggingface LLM=mims-harvard/TxAgent-T1-Llama-3.1-8B RAG=mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
+2026-04-24 11:27:11,446 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=TXAGENT)
+2026-04-24 11:27:18,890 - ToolRegistry - INFO - Built lazy registry: 66 from configs, 21 from patterns (no modules imported)
+2026-04-24 11:27:19,656 - faiss.loader - INFO - Loading faiss.
+2026-04-24 11:27:19,701 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 11:27:20,579 - httpx - INFO - HTTP Request: POST https://data.rcsb.org/graphql "HTTP/1.1 200 OK"
+2026-04-24 11:27:21,310 - httpx - INFO - HTTP Request: POST https://data.rcsb.org/graphql "HTTP/1.1 200 OK"
+2026-04-24 11:27:23,933 - TxAgentModel.txagent - INFO - Initializing TxAgent | backend=huggingface LLM=mims-harvard/TxAgent-T1-Llama-3.1-8B RAG=mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
+2026-04-24 11:29:15,169 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=TXAGENT)
+2026-04-24 11:29:22,440 - ToolRegistry - INFO - Built lazy registry: 66 from configs, 21 from patterns (no modules imported)
+2026-04-24 11:29:23,203 - faiss.loader - INFO - Loading faiss.
+2026-04-24 11:29:23,243 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 11:29:23,882 - httpx - INFO - HTTP Request: POST https://data.rcsb.org/graphql "HTTP/1.1 200 OK"
+2026-04-24 11:29:24,860 - httpx - INFO - HTTP Request: POST https://data.rcsb.org/graphql "HTTP/1.1 200 OK"
+2026-04-24 11:29:28,999 - nmslib - INFO - Registering at the factory, space: dummy distance type: INT
+2026-04-24 11:29:28,999 - nmslib - INFO - Registering at the factory, space: dummy distance type: FLOAT
+2026-04-24 11:29:28,999 - nmslib - INFO - Registering at the factory, space: bit_hamming distance type: INT
+2026-04-24 11:29:28,999 - nmslib - INFO - Registering at the factory, space: bit_jaccard distance type: FLOAT
+2026-04-24 11:29:28,999 - nmslib - INFO - Registering at the factory, space: leven distance type: INT
+2026-04-24 11:29:28,999 - nmslib - INFO - Registering at the factory, space: normleven distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: kldivfast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: kldivfastrq distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: kldivgenfast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: kldivgenslow distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: kldivgenfastrq distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: itakurasaitofast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jsdivslow distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jsdivfast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jsdivfastapprox distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jsmetrslow distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jsmetrfast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jsmetrfastapprox distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: word_embed distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: lp distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: linf distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: l1 distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: l2 distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: cosinesimil distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: angulardist distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: negdotprod distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: lp_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: linf_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: l1_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: l2_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: cosinesimil_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: angulardist_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: negdotprod_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: cosinesimil_sparse_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: cosinesimil_sparse_bin_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: angulardist_sparse_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: negdotprod_sparse_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: negdotprod_sparse_bin_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: querynorm_negdotprod_sparse_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: jaccard_sparse distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: abdiv_slow distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: abdiv_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: renyidiv_slow distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: renyidiv_fast distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: l2sqr_sift distance type: INT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, space: sparse_dense_fusion distance type: FLOAT
+2026-04-24 11:29:29,000 - nmslib - INFO - Registering at the factory, method: dummy distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: dummy distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: pivot_neighb_invindx distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: pivot_neighb_invindx distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: napp distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: napp distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: brute_force distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: brute_force distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: seq_search distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: seq_search distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: sw-graph distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: sw-graph distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: small_world_rand distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: small_world_rand distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: hnsw distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: hnsw distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: vptree distance type: INT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: vptree distance type: FLOAT
+2026-04-24 11:29:29,001 - nmslib - INFO - Registering at the factory, method: simple_invindx distance type: FLOAT
+2026-04-24 11:29:29,689 - TxAgentModel.txagent - INFO - Initializing TxAgent | backend=huggingface LLM=mims-harvard/TxAgent-T1-Llama-3.1-8B RAG=mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
+2026-04-24 11:29:29,690 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
+2026-04-24 12:06:08,036 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-24 12:06:08,144 - faiss.loader - INFO - Loading faiss.
+2026-04-24 12:06:08,174 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 12:06:12,256 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-24 12:06:34,933 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-24 12:06:34,934 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-24 12:06:36,588 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-24 12:06:36,961 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-24 12:06:50,081 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-24 12:06:59,138 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-24 12:06:59,179 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-24 12:06:59,279 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-24 12:06:59,280 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-24 12:06:59,280 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-24 12:07:01,316 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-24 12:07:01,317 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-24 12:07:01,318 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-24 12:14:44,878 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-24 12:14:44,979 - faiss.loader - INFO - Loading faiss.
+2026-04-24 12:14:45,007 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 12:14:48,654 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-24 12:15:11,534 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-24 12:15:11,534 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-24 12:15:13,139 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-24 12:15:13,500 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-24 12:15:23,646 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-24 12:15:31,196 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-24 12:15:31,205 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-24 12:15:31,295 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-24 12:15:31,295 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-24 12:15:31,296 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-24 12:15:32,396 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-24 12:15:32,397 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-24 12:15:32,419 - MedPerturbProcessor - INFO - Resume: 137 cached rows found
+2026-04-24 12:17:39,624 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-24 12:17:39,714 - faiss.loader - INFO - Loading faiss.
+2026-04-24 12:17:39,729 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 12:17:43,306 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-24 12:18:04,502 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-24 12:18:04,503 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-24 12:18:05,789 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-24 12:18:06,122 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-24 12:18:16,145 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-24 12:18:24,444 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-24 12:18:24,455 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-24 12:18:24,568 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-24 12:18:24,569 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-24 12:18:24,569 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-24 12:18:25,794 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-24 12:18:25,795 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-24 12:18:25,823 - MedPerturbProcessor - INFO - Resume: 168 cached rows found
+2026-04-24 12:48:45,060 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-24 12:48:45,279 - faiss.loader - INFO - Loading faiss.
+2026-04-24 12:48:45,310 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 12:48:49,751 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-24 12:49:14,136 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-24 12:49:14,138 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-24 12:49:15,589 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-24 12:49:15,982 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-24 12:49:27,485 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-24 12:49:36,612 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-24 12:49:36,645 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-24 12:49:36,790 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-24 12:49:36,790 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-24 12:49:36,791 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-24 12:49:38,249 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-24 12:49:38,249 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-24 12:49:38,387 - MedPerturbProcessor - INFO - Resume: 677 cached rows found
+2026-04-24 12:49:41,146 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:42,390 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:44,631 - MedPerturbProcessor - ERROR - Failed on askdocs_72__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:48,475 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:49,716 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:51,958 - MedPerturbProcessor - ERROR - Failed on askdocs_73__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:53,942 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:55,260 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:57,587 - MedPerturbProcessor - ERROR - Failed on askdocs_74__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:49:58,928 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:00,209 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:02,447 - MedPerturbProcessor - ERROR - Failed on askdocs_75__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:03,475 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:04,712 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:07,047 - MedPerturbProcessor - ERROR - Failed on askdocs_76__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:08,475 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:09,714 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:12,037 - MedPerturbProcessor - ERROR - Failed on askdocs_77__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:12,887 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:14,132 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:16,461 - MedPerturbProcessor - ERROR - Failed on askdocs_78__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:17,331 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:18,569 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:20,800 - MedPerturbProcessor - ERROR - Failed on askdocs_82__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:22,353 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:23,594 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:25,897 - MedPerturbProcessor - ERROR - Failed on askdocs_83__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:27,521 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:28,813 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:31,139 - MedPerturbProcessor - ERROR - Failed on askdocs_84__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:32,484 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:33,762 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:35,997 - MedPerturbProcessor - ERROR - Failed on askdocs_85__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:37,727 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:39,000 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:41,242 - MedPerturbProcessor - ERROR - Failed on askdocs_86__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:42,844 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:44,086 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:46,344 - MedPerturbProcessor - ERROR - Failed on askdocs_87__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:48,038 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:49,270 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:51,581 - MedPerturbProcessor - ERROR - Failed on askdocs_88__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:53,270 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:54,514 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:56,830 - MedPerturbProcessor - ERROR - Failed on askdocs_89__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:58,038 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:50:59,279 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:01,551 - MedPerturbProcessor - ERROR - Failed on askdocs_91__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:03,255 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:04,493 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:06,788 - MedPerturbProcessor - ERROR - Failed on askdocs_92__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:07,874 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:09,182 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:11,511 - MedPerturbProcessor - ERROR - Failed on askdocs_93__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:12,638 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:13,903 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:16,153 - MedPerturbProcessor - ERROR - Failed on askdocs_94__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:17,890 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:19,146 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:21,467 - MedPerturbProcessor - ERROR - Failed on askdocs_95__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:23,571 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:24,810 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:27,050 - MedPerturbProcessor - ERROR - Failed on askdocs_96__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:28,702 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:29,942 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:32,252 - MedPerturbProcessor - ERROR - Failed on askdocs_97__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:34,060 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:35,296 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:51:37,534 - MedPerturbProcessor - ERROR - Failed on askdocs_98__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-24 12:52:02,382 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-24 12:52:02,479 - faiss.loader - INFO - Loading faiss.
+2026-04-24 12:52:02,494 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-24 12:52:06,220 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-24 12:52:30,902 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-24 12:52:30,902 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-24 12:52:32,523 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-24 12:52:32,877 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-24 12:52:43,661 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-24 12:52:51,689 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-24 12:52:51,700 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-24 12:52:51,816 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-24 12:52:51,816 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-24 12:52:51,816 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-24 12:52:53,096 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-24 12:52:53,098 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-24 12:52:53,229 - MedPerturbProcessor - INFO - Resume: 677 cached rows found
+2026-04-24 13:02:33,434 - MedPerturbProcessor - INFO - Saved 841 results to ./output/medpathagent_llama70b3_3/oncqa_askdocs/run_0/results.csv
+2026-04-30 08:17:41,764 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:19:01,142 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:19:01,154 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:19:06,805 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:20:03,074 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:20:47,736 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:20:47,888 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:20:47,892 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:21:16,581 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:21:16,588 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-30 08:21:16,722 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:21:16,723 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:21:21,838 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:21:21,838 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:21:21,839 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 08:21:23,630 - models.agentmd - WARNING - Bedrock call attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 08:21:25,013 - models.agentmd - WARNING - Bedrock call attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 08:21:27,307 - models.agentmd - WARNING - Bedrock call attempt 3 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 08:22:14,874 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:22:14,889 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:22:16,682 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:22:19,435 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:22:20,661 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:22:20,690 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:22:20,693 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:22:48,957 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:22:48,963 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:22:49,120 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:22:49,120 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:22:53,664 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:22:53,664 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:22:53,665 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 08:25:22,317 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:25:22,329 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:25:24,116 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:25:26,788 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:25:28,019 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:25:28,037 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:25:28,041 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:25:55,896 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:25:55,902 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:25:56,039 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:25:56,039 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:26:00,792 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:26:00,792 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:26:00,797 - MedPerturbProcessor - INFO - Resume: 17 cached rows found
+2026-04-30 08:32:10,245 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:32:10,260 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:32:12,038 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:32:14,644 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:32:15,989 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:32:16,007 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:32:16,010 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:32:44,159 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:32:44,166 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:32:44,303 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:32:44,303 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:32:48,966 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:32:48,967 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:32:48,980 - MedPerturbProcessor - INFO - Resume: 55 cached rows found
+2026-04-30 08:37:02,709 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:37:02,721 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:37:04,592 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:37:07,259 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:37:08,464 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:37:08,502 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:37:08,506 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:37:37,163 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:37:37,169 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:37:37,306 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:37:37,306 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:37:42,091 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:37:42,092 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:37:42,103 - MedPerturbProcessor - INFO - Resume: 79 cached rows found
+2026-04-30 08:40:04,452 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:40:04,467 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:40:06,390 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:40:09,157 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:40:10,379 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:40:10,396 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:40:10,400 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:40:38,343 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:40:38,350 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:40:38,488 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:40:38,488 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:40:42,705 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:40:42,705 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:40:42,730 - MedPerturbProcessor - INFO - Resume: 94 cached rows found
+2026-04-30 08:47:05,693 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:47:05,708 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:47:07,522 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:47:10,043 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:47:11,309 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:47:11,326 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:47:11,330 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:47:39,533 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:47:39,540 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:47:39,714 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:47:39,714 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:47:43,680 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:47:43,680 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:47:43,701 - MedPerturbProcessor - INFO - Resume: 108 cached rows found
+2026-04-30 08:49:17,239 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:49:17,251 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:49:18,927 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:49:21,511 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:49:22,910 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:49:22,927 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:49:22,931 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:49:49,944 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:49:49,951 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:49:50,103 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:49:50,103 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:49:54,496 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:49:54,496 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 08:49:54,518 - MedPerturbProcessor - INFO - Resume: 116 cached rows found
+2026-04-30 08:52:19,945 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 08:52:19,957 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 08:52:21,735 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 08:52:24,272 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 08:52:25,676 - faiss.loader - INFO - Loading faiss.
+2026-04-30 08:52:25,693 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 08:52:25,697 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 08:52:52,779 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 08:52:52,784 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 08:52:52,919 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 08:52:52,920 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 08:52:57,675 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 08:52:57,675 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 10:14:56,424 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 10:14:56,440 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 10:14:58,556 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 10:15:01,412 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 10:15:02,725 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:15:02,759 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:15:02,764 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 10:15:34,798 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 10:15:34,813 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 10:15:35,048 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 10:15:35,048 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:15:39,403 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:15:39,405 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-04-30 10:33:35,546 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 10:33:35,546 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 10:33:35,546 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 10:33:35,546 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 10:33:35,546 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=AGENTMD)
+2026-04-30 10:33:35,568 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 10:33:35,570 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 10:33:35,570 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 10:33:35,571 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 10:33:35,571 - models.agentmd - INFO - Loaded 2164 RiskCalcs tools from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/agentmd/riskcalcs.json
+2026-04-30 10:33:38,172 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 10:33:38,173 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 10:33:38,181 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 10:33:38,181 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 10:33:38,181 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Query-Encoder
+2026-04-30 10:33:41,117 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 10:33:41,117 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 10:33:41,117 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 10:33:41,118 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 10:33:41,118 - models.agentmd - INFO - Loading MedCPT encoder: ncbi/MedCPT-Article-Encoder
+2026-04-30 10:33:42,361 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:33:42,361 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:33:42,361 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:33:42,361 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:33:42,361 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:33:42,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:33:42,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:33:42,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:33:42,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:33:42,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:33:42,398 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 10:33:42,399 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 10:33:42,399 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 10:33:42,399 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 10:33:42,399 - models.agentmd - INFO - Encoding 2164 tools for FAISS index …
+2026-04-30 10:35:31,462 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 10:35:31,483 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 10:35:31,701 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 10:35:31,717 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 10:35:31,779 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 10:35:31,780 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:35:31,790 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 10:35:31,822 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 10:35:31,983 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 10:35:31,983 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:35:31,983 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 10:35:31,994 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 10:35:32,002 - models.agentmd - INFO - FAISS index built (2164 vectors, dim=768)
+2026-04-30 10:35:32,011 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-04-30 10:35:32,014 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 10:35:32,014 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:35:32,137 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 10:35:32,137 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:35:32,148 - models.agentmd - INFO - AgentMD LLM backend: Bedrock  model=us.meta.llama3-3-70b-instruct-v1:0
+2026-04-30 10:35:32,148 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:35:36,974 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:35:36,974 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:35:36,974 - MedPerturbProcessor - INFO - Slice 0:168 → 168 rows
+2026-04-30 10:35:36,974 - MedPerturbProcessor - INFO - Slice 336:505 → 169 rows
+2026-04-30 10:35:37,019 - MedPerturbProcessor - INFO - Resume: 407 cached rows found
+2026-04-30 10:35:37,020 - MedPerturbProcessor - INFO - Resume: 407 cached rows found
+2026-04-30 10:35:37,023 - MedPerturbProcessor - INFO - Saved 407 results to ./output/agentmd_llama70b3_3/oncqa_askdocs/run_0/results.csv
+2026-04-30 10:35:37,479 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:35:37,480 - MedPerturbProcessor - INFO - Slice 505:673 → 168 rows
+2026-04-30 10:35:37,498 - MedPerturbProcessor - INFO - Resume: 407 cached rows found
+2026-04-30 10:35:37,618 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:35:37,618 - MedPerturbProcessor - INFO - Slice 168:336 → 168 rows
+2026-04-30 10:35:37,634 - MedPerturbProcessor - INFO - Resume: 407 cached rows found
+2026-04-30 10:35:37,637 - MedPerturbProcessor - INFO - Saved 407 results to ./output/agentmd_llama70b3_3/oncqa_askdocs/run_0/results.csv
+2026-04-30 10:35:38,480 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:35:38,481 - MedPerturbProcessor - INFO - Slice 673:841 → 168 rows
+2026-04-30 10:35:38,498 - MedPerturbProcessor - INFO - Resume: 407 cached rows found
+2026-04-30 10:39:37,300 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-30 10:39:37,304 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-30 10:39:37,309 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-30 10:39:37,309 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-30 10:39:37,321 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDPATHAGENT)
+2026-04-30 10:39:37,381 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:39:37,381 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:39:37,381 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:39:37,381 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:39:37,381 - faiss.loader - INFO - Loading faiss.
+2026-04-30 10:39:37,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:39:37,392 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:39:37,393 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:39:37,393 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:39:37,393 - faiss.loader - INFO - Successfully loaded faiss.
+2026-04-30 10:39:41,488 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-30 10:39:41,488 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-30 10:39:41,488 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-30 10:39:41,488 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-30 10:39:41,488 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-04-30 10:40:25,771 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-30 10:40:25,771 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-30 10:40:26,249 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-30 10:40:26,250 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-30 10:40:26,323 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-30 10:40:26,324 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-30 10:40:26,418 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-30 10:40:26,432 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-30 10:40:26,421 - MedPathAgent.medpathagent_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-04-30 10:40:26,437 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-04-30 10:40:28,179 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-30 10:40:29,259 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-30 10:40:29,859 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-30 10:40:29,883 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-30 10:40:29,934 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-30 10:40:29,945 - MedPathAgent.medpathagent_llama70b3_3 - INFO - FAISS index ready: 129357 nodes, dim=768
+2026-04-30 10:40:30,940 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-30 10:40:31,487 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-30 10:40:31,505 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-30 10:40:31,603 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-04-30 10:40:42,186 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-30 10:40:44,268 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-30 10:40:44,321 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-30 10:40:44,355 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-30 10:40:44,451 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-04-30 10:40:50,831 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-30 10:40:50,910 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-30 10:40:51,022 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-30 10:40:51,022 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-30 10:40:51,025 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:40:52,897 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-30 10:40:53,064 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-30 10:40:53,070 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-30 10:40:53,073 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-04-30 10:40:53,537 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-30 10:40:53,542 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-30 10:40:53,542 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-30 10:40:53,549 - botocore.credentials - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2026-04-30 10:40:53,627 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-30 10:40:53,628 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-30 10:40:53,637 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-30 10:40:53,637 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-30 10:40:53,642 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:40:53,643 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:40:53,643 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-30 10:40:53,643 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-30 10:40:53,646 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:40:53,661 - MedPathAgent.medpathagent_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-1)
+2026-04-30 10:40:53,661 - MedPathAgent.medpathagent_llama70b3_3 - INFO - MedPathAgentModel ready.
+2026-04-30 10:40:53,664 - MedPerturbProcessor - INFO - Loading MedPerturb from: https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv
+2026-04-30 10:40:55,600 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:40:55,603 - MedPerturbProcessor - INFO - Slice 673:841 → 168 rows
+2026-04-30 10:40:55,605 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 10:40:59,554 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:40:59,560 - MedPerturbProcessor - INFO - Slice 336:505 → 169 rows
+2026-04-30 10:40:59,566 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 10:41:00,208 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:41:00,211 - MedPerturbProcessor - INFO - Slice 505:673 → 168 rows
+2026-04-30 10:41:00,214 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 10:41:00,753 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:41:00,758 - MedPerturbProcessor - INFO - Slice 0:168 → 168 rows
+2026-04-30 10:41:00,759 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 10:41:01,776 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-04-30 10:41:01,779 - MedPerturbProcessor - INFO - Slice 168:336 → 168 rows
+2026-04-30 10:41:01,780 - MedPerturbProcessor - INFO - Resume: 0 cached rows found
+2026-04-30 10:41:12,257 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:13,802 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:16,089 - MedPerturbProcessor - ERROR - Failed on askdocs_65__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:16,318 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:16,321 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:16,855 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:17,222 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:17,602 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:17,603 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:18,137 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:18,528 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:19,013 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:19,971 - MedPerturbProcessor - ERROR - Failed on askdocs_135__gender_swap: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:19,971 - MedPerturbProcessor - ERROR - Failed on askdocs_2__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:20,297 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:20,500 - MedPerturbProcessor - ERROR - Failed on askdocs_0__summary: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:20,836 - MedPerturbProcessor - ERROR - Failed on oncqa_6__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:22,620 - MedPerturbProcessor - ERROR - Failed on askdocs_66__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:24,499 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:24,700 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:25,073 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:25,256 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:25,777 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:25,791 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:25,993 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:26,355 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:26,557 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:27,065 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:28,087 - MedPerturbProcessor - ERROR - Failed on askdocs_1__summary: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:28,359 - MedPerturbProcessor - ERROR - Failed on askdocs_3__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:28,639 - MedPerturbProcessor - ERROR - Failed on oncqa_7__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:28,889 - MedPerturbProcessor - ERROR - Failed on askdocs_136__gender_swap: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:29,414 - MedPerturbProcessor - ERROR - Failed on askdocs_67__uncertain_tone: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:31,001 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:32,366 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:32,943 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:33,154 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:33,646 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:34,230 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:34,452 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:34,455 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:34,664 - MedPerturbProcessor - ERROR - Failed on askdocs_2__summary: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:34,930 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:35,742 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:36,516 - MedPerturbProcessor - ERROR - Failed on oncqa_8__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:36,645 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:37,292 - MedPerturbProcessor - ERROR - Failed on askdocs_4__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:37,932 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:38,045 - MedPerturbProcessor - ERROR - Failed on askdocs_137__gender_swap: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:39,091 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:40,214 - MedPerturbProcessor - ERROR - Failed on askdocs_3__summary: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:40,413 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:40,416 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:41,010 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:41,715 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:42,074 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:42,299 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:42,762 - MedPerturbProcessor - ERROR - Failed on oncqa_9__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:43,993 - MedPerturbProcessor - ERROR - Failed on askdocs_5__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:44,335 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:44,607 - MedPerturbProcessor - ERROR - Failed on askdocs_139__gender_swap: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:45,383 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:45,654 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:45,815 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:46,706 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:47,102 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:48,008 - MedPerturbProcessor - ERROR - Failed on oncqa_10__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:49,052 - MedPerturbProcessor - ERROR - Failed on askdocs_6__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:49,386 - MedPerturbProcessor - ERROR - Failed on askdocs_140__gender_swap: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:49,408 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:50,692 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:50,896 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:52,206 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:52,999 - MedPerturbProcessor - ERROR - Failed on oncqa_11__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:54,569 - MedPerturbProcessor - ERROR - Failed on askdocs_141__gender_swap: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:54,574 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:55,870 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:56,143 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:57,443 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:58,241 - MedPerturbProcessor - ERROR - Failed on oncqa_12__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:41:59,701 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:00,986 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:03,269 - MedPerturbProcessor - ERROR - Failed on oncqa_16__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:05,686 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:06,969 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:09,255 - MedPerturbProcessor - ERROR - Failed on oncqa_17__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:10,917 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:12,209 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:14,493 - MedPerturbProcessor - ERROR - Failed on oncqa_18__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:15,919 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:17,203 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:19,485 - MedPerturbProcessor - ERROR - Failed on oncqa_19__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:21,035 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:22,358 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:24,703 - MedPerturbProcessor - ERROR - Failed on oncqa_21__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:26,550 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:27,853 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:30,218 - MedPerturbProcessor - ERROR - Failed on oncqa_23__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:31,795 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:33,093 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:35,463 - MedPerturbProcessor - ERROR - Failed on oncqa_25__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:36,569 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 1 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:37,857 - MedPathAgent.medpathagent_llama70b3_3 - WARNING - Bedrock attempt 2 failed: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.
+2026-04-30 10:42:40,188 - MedPerturbProcessor - ERROR - Failed on oncqa_27__baseline: An error occurred (UnrecognizedClientException) when calling the Converse operation: The security token included in the request is invalid.

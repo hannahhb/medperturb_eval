@@ -18,14 +18,15 @@ from typing import Dict, List, Optional
 import pandas as pd
 from tqdm import tqdm
 
-from medperturb_eval.config import AdvancedConfig
-from medperturb_eval.factory import ModelFactory
-from medperturb_eval.prompts import build_prompt, SYSTEM_PROMPT
-from medperturb_eval.scripts.logging_setup import (
+from config import AdvancedConfig
+from factory import ModelFactory
+from prompts import build_prompt, SYSTEM_PROMPT
+from scripts.logging_setup import (
     discover_processed_ids,
     load_cached_rows,
     save_detail,
     save_csv,
+    append_row_csv,
 )
 
 
@@ -154,7 +155,7 @@ class MedPerturbProcessor:
                     results.append(result)
                     if self.cfg.save_intermediate:
                         save_detail(self.cfg.log_path, rid, result, self.write_lock)
-                    save_csv(results, self.cfg.output_path, "results.csv")
+                    append_row_csv(result, self.cfg.output_path, "results.csv")
                 except Exception as e:
                     self.logger.error(f"Failed on {rid}: {e}")
                     import traceback
@@ -163,7 +164,6 @@ class MedPerturbProcessor:
             pbar.close()
 
         out_df = pd.DataFrame(results)
-        save_csv(results, self.cfg.output_path, "results.csv")
         self.logger.info(f"Saved {len(results)} results to {self.cfg.output_path}/results.csv")
         return out_df
 
@@ -202,11 +202,30 @@ class MedPerturbProcessor:
         base[f"{self.model_name}_resource_reasoning"] = parsed["resource_reasoning"]
         base["raw_response"] = parsed["raw_response"]
 
-        # TxAgent tool usage metadata
+        # Model-specific metadata
         meta = getattr(result, "metadata", None) or {}
         if meta.get("txagent"):
             base["txagent_tools"] = json.dumps(meta.get("tools"), default=str)
             base["txagent_tool_log"] = meta.get("tool_log_path", "")
+        if meta.get("medpathagent"):
+            base["kg_paths"] = meta.get("kg_paths", "")
+        if "tool_id" in meta:
+            base["agentmd_tool_id"] = meta.get("tool_id", "")
+            base["agentmd_tool_title"] = meta.get("tool_title", "")
+            base["agentmd_calculator_result"] = meta.get("calculator_result", "")
+            # Audit columns: did code actually run, did it error, how many rounds?
+            base["agentmd_n_rounds"] = meta.get("agentmd_n_rounds", "")
+            base["agentmd_code_executed"] = meta.get("agentmd_code_executed", "")
+            base["agentmd_exec_had_error"] = meta.get("agentmd_exec_had_error", "")
+            # All generated code blocks concatenated (one per round, separated by markers)
+            rounds = meta.get("agentmd_rounds", [])
+            code_blocks = [
+                f"# --- round {r['round']} ---\n{r['code']}"
+                for r in rounds if r.get("code")
+            ]
+            base["agentmd_generated_code"] = "\n\n".join(code_blocks)
+            # Full per-round trace (code + exec output) in per-row detail JSON
+            base["agentmd_rounds"] = json.dumps(rounds, default=str)
 
         return base
 

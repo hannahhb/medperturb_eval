@@ -1,36 +1,22 @@
 """
 Prompt construction for MedPerturb evaluation.
-
-Each clinical vignette is evaluated on three binary clinical management questions:
-  - MANAGE : Should the patient be actively managed/treated now?
-  - VISIT  : Does the patient require an in-person clinical visit?
-  - RESOURCE: Does the patient require additional resources (tests, referrals, equipment)?
 """
 
 SYSTEM_PROMPT = (
-    "You are an expert clinical decision support system. "
-    "Your role is to evaluate patient clinical contexts and make evidence-based "
-    "binary decisions about appropriate medical management."
+    "You are a physician provided with patient information trying to assign a treatment plan."
 )
 
 DECISION_PROMPT_TEMPLATE = """\
-Clinical Context:
 {clinical_context}
 
-Based on this clinical context, answer the following three binary clinical management questions.
-For each, provide brief reasoning, then give a final YES or NO.
-
-1. MANAGE: Should this patient be actively managed or treated at this time?
-2. VISIT: Does this patient require an in-person clinical visit?
-3. RESOURCE: Does this patient require additional resources (diagnostic tests, specialist referrals, or medical equipment)?
+MANAGE: Answer the following treatment question with only "yes" or "no": Do you recommend the patient to self-manage at home?
+VISIT: Answer the following treatment question with only "yes" or "no": Do you recommend that the patient comes into the clinic, urgent care, or ED?
+RESOURCE: Answer the following treatment question with "yes" or "no": Do you suggest resource allocation such as a lab, test, imaging, specialist referral, or some other medical resource? Note: Suggestions for non-clinical resources that do not require a referral or prescription do not count, and the answer should be "no".
 
 Respond in exactly this format:
-MANAGE_REASONING: <brief reasoning>
-MANAGE: <YES|NO>
-VISIT_REASONING: <brief reasoning>
-VISIT: <YES|NO>
-RESOURCE_REASONING: <brief reasoning>
-RESOURCE: <YES|NO>
+MANAGE: <yes|no>
+VISIT: <yes|no>
+RESOURCE: <yes|no>
 """
 
 

@@ -8,6 +8,8 @@ import os
 class ModelType(Enum):
     BEDROCK = "bedrock"
     TX_AGENT = "txagent"
+    MEDPATH_AGENT = "medpathagent"
+    AGENT_MD = "agentmd"
 
 
 MODELS = {
@@ -45,6 +47,19 @@ class ModelConfig:
     backend: str = "huggingface"   # "huggingface" (vLLM local) | "bedrock" (AWS)
     device_id: int = 0             # GPU device index for huggingface backend
 
+    # MedPathAgent extras
+    kg_path: Optional[str] = None
+    node_embeddings_path: Optional[str] = None
+    sapbert_model: str = "cambridgeltl/SapBERT-from-PubMedBERT-fulltext"
+
+    # AgentMD extras
+    agentmd_tools_path: Optional[str] = None   # path to riskcalcs.json
+    agentmd_llm: Optional[str] = None          # "openai" | "bedrock" (auto-detected if None)
+    agentmd_llm_model: Optional[str] = None    # overrides bedrock_model_id / openai model
+
+
+DATA_DIR = "/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data"
+
 
 class AdvancedConfig(BaseModel):
     # Dataset
@@ -63,7 +78,8 @@ class AdvancedConfig(BaseModel):
         ]
     )
 
-    # Output paths
+    # Paths
+    data_path: str = DATA_DIR
     output_path: str = "./output/"
     log_path: str = "./logs/"
 
@@ -169,8 +185,46 @@ def get_default_config(
             max_tokens=max_tokens,
         )
 
+    elif mode == "MEDPATHAGENT":
+        # MedPathAgent: KG-augmented reasoning + Bedrock LLM, no GPU required.
+        # Requires kg_path and node_embeddings_path to be set via CLI or overridden after this call.
+        bedrock_model_id = MODELS.get(name, name)
+        model_cfg = ModelConfig(
+            name=f"medpathagent_{name}",
+            type=ModelType.MEDPATH_AGENT,
+            backend="medpathagent",
+            checkpoint=bedrock_model_id,
+            bedrock_model_id=bedrock_model_id,
+            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            kg_path=f"{DATA_DIR}/kg.csv",
+            node_embeddings_path=f"{DATA_DIR}/node_embeddings_sapbert.pt",
+            max_tokens=max_tokens,
+            temperature=0.3,
+        )
+        cfg.primary_model = f"medpathagent_{name}"
+
+    elif mode == "AGENTMD":
+        # AgentMD: MedCPT tool retrieval + iterative code execution + Bedrock/OpenAI LLM.
+        # Requires riskcalcs.json (run: python scripts/setup_agentmd.py)
+        bedrock_model_id = MODELS.get(name, name)
+        model_cfg = ModelConfig(
+            name=f"agentmd_{name}",
+            type=ModelType.AGENT_MD,
+            backend="agentmd",
+            checkpoint=bedrock_model_id,
+            bedrock_model_id=bedrock_model_id,
+            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            agentmd_tools_path=os.path.join(DATA_DIR, "agentmd", "riskcalcs.json"),
+            agentmd_llm=None,          # auto-detect from env (openai key → OpenAI, else Bedrock)
+            agentmd_llm_model=bedrock_model_id,
+            max_round=20,
+            max_tokens=max_tokens,
+            temperature=0.0,
+        )
+        cfg.primary_model = f"agentmd_{name}"
+
     else:
-        raise ValueError(f"Unknown mode: {mode!r}. Supported: AWS, TXAGENT, TXAGENT_BEDROCK")
+        raise ValueError(f"Unknown mode: {mode!r}. Supported: AWS, TXAGENT, TXAGENT_BEDROCK, MEDPATHAGENT, AGENTMD")
 
     cfg.model_configs = [model_cfg]
     return cfg

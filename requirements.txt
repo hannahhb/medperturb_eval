@@ -17,5 +17,9 @@ torch>=2.1.0
 # TxAgent (install from source: https://github.com/mims-harvard/TxAgent)
 # pip install git+https://github.com/mims-harvard/TxAgent.git
 
+# AgentMD (tool retrieval; use faiss-gpu instead if GPU available)
+faiss-cpu>=1.7.4
+openai>=1.0.0  # optional: only needed if using OpenAI/Azure as AgentMD LLM backend
+
 # Logging / misc
 requests>=2.31.0

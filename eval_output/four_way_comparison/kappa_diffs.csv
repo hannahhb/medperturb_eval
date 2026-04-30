@@ -1,0 +1,10 @@
+question,perturbation,kappa_base,kappa_pert,d
+manage,gender_swap,-0.2579,-0.1688,0.0891
+manage,summary,-0.2579,-0.1438,0.1141
+manage,uncertain_tone,-0.2579,,
+visit,gender_swap,0.478,0.3571,-0.1209
+visit,summary,0.478,0.6179,0.1399
+visit,uncertain_tone,0.478,,
+resource,gender_swap,0.4673,0.6786,0.2113
+resource,summary,0.4673,0.4247,-0.0426
+resource,uncertain_tone,0.4673,,

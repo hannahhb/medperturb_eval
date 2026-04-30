@@ -75,3 +75,30 @@ def save_csv(rows: List[Dict], output_path: str, name: str = "results.csv") -> s
     csv_path = os.path.join(output_path, name)
     df.to_csv(csv_path, index=False)
     return csv_path
+
+
+def append_row_csv(row: Dict[str, Any], output_path: str, name: str = "results.csv") -> str:
+    """Append a single row to a shared CSV file, safe for concurrent processes.
+
+    Uses ``fcntl.flock`` (exclusive lock) so multiple parallel jobs can all
+    write to the same file without corrupting it.  The CSV header is written
+    only when the file is new or empty.
+    """
+    import csv
+    import fcntl
+
+    os.makedirs(output_path, exist_ok=True)
+    csv_path = os.path.join(output_path, name)
+
+    with open(csv_path, "a", newline="") as f:
+        fcntl.flock(f, fcntl.LOCK_EX)
+        try:
+            write_header = f.tell() == 0  # file was just created / is empty
+            writer = csv.DictWriter(f, fieldnames=list(row.keys()), extrasaction="ignore")
+            if write_header:
+                writer.writeheader()
+            writer.writerow(row)
+        finally:
+            fcntl.flock(f, fcntl.LOCK_UN)
+
+    return csv_path

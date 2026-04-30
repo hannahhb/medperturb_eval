@@ -14,9 +14,9 @@ Examples:
 """
 import argparse
 
-from medperturb_eval.scripts.logging_setup import setup_logging
-from medperturb_eval.config import get_default_config
-from medperturb_eval.processor import MedPerturbProcessor
+from scripts.logging_setup import setup_logging
+from config import get_default_config
+from processor import MedPerturbProcessor
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -78,6 +78,27 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Disable resume and reprocess all rows.",
     )
+    parser.add_argument(
+        "--mode",
+        default="MEDPATHAGENT",
+        choices=["TXAGENT", "TXAGENT_BEDROCK", "AWS", "MEDPATHAGENT", "AGENTMD"],
+        help="Runner mode (default: MEDPATHAGENT). AGENTMD requires setup_agentmd.py to be run first.",
+    )
+    parser.add_argument(
+        "--name",
+        default=None,
+        help="Model name key from MODELS dict (used by TXAGENT_BEDROCK, AWS, MEDPATHAGENT modes).",
+    )
+    parser.add_argument(
+        "--kg-path",
+        default=None,
+        help="Path to kg.csv (PrimeKG). Required for MEDPATHAGENT mode.",
+    )
+    parser.add_argument(
+        "--emb-path",
+        default=None,
+        help="Path to node_embeddings_sapbert.pt cache. Required for MEDPATHAGENT mode.",
+    )
     return parser
 
 
@@ -85,37 +106,62 @@ def main() -> None:
     args = build_parser().parse_args()
 
     logger = setup_logging()
-    logger.info("Starting MedPerturb TxAgent experiment on oncqa/askdocs")
+    logger.info("Starting MedPerturb experiment (mode=%s)", args.mode)
+
+    default_name = {
+        "TXAGENT": "txagent_hf_oncqa_askdocs",
+        "TXAGENT_BEDROCK": "llama70b3_3",
+        "AWS": "llama70b3_3",
+        "MEDPATHAGENT": "llama70b3_3",
+        "AGENTMD": "llama70b3_3",
+    }[args.mode]
+    name = args.name or default_name
 
     cfg = get_default_config(
         start=args.start,
         end=args.end,
         max_tokens=args.max_tokens,
-        name="txagent_hf_oncqa_askdocs",
-        mode="TXAGENT",
+        name=name,
+        mode=args.mode,
     )
 
     if args.local_csv:
         cfg.hf_dataset_url = args.local_csv
     cfg.datasets = args.datasets
     cfg.perturbations = args.perturbations
-    cfg.model_configs[0].device_id = args.device
+    if args.mode == "TXAGENT":
+        cfg.model_configs[0].device_id = args.device
+    if args.mode == "MEDPATHAGENT":
+        mc = cfg.model_configs[0]
+        if args.kg_path:
+            mc.kg_path = args.kg_path
+        if args.emb_path:
+            mc.node_embeddings_path = args.emb_path
 
     run_name = "_".join(cfg.datasets)
-    cfg.output_path = f"./output/{run_name}/run_0"
-    cfg.log_path = f"./logs/{run_name}/run_0"
+    cfg.output_path = f"./output/{cfg.primary_model}/{run_name}/run_0"
+    cfg.log_path = f"./logs/{cfg.primary_model}/{run_name}/run_0"
 
     if args.debug:
         cfg.debug_mode = True
         cfg.sample_size = args.sample_size
 
+    mc = cfg.model_configs[0]
     print(f"\n{'='*60}")
-    print("  MedPerturb TxAgent Experiment")
-    print(f"  Model        : {cfg.model_configs[0].checkpoint}")
-    print(f"  Backend      : {cfg.model_configs[0].backend}")
+    print(f"  MedPerturb Experiment  [{args.mode}]")
+    print(f"  Model        : {mc.checkpoint or mc.name}")
+    print(f"  Backend      : {mc.backend}")
     print(f"  Datasets     : {', '.join(cfg.datasets)}")
     print(f"  Perturbations: {', '.join(cfg.perturbations)}")
-    print(f"  Device       : cuda:{cfg.model_configs[0].device_id}")
+    if args.mode == "TXAGENT":
+        print(f"  Device       : cuda:{mc.device_id}")
+    if args.mode == "MEDPATHAGENT":
+        print(f"  KG path      : {mc.kg_path}")
+        print(f"  Embeddings   : {mc.node_embeddings_path}")
+    if args.mode == "AGENTMD":
+        print(f"  Tools path   : {mc.agentmd_tools_path}")
+        print(f"  LLM backend  : {mc.agentmd_llm or 'auto (OpenAI if key set, else Bedrock)'}")
+        print(f"  LLM model    : {mc.agentmd_llm_model}")
     print(f"  Slice        : {args.start:.2f} - {args.end:.2f}")
     print(f"  Output       : {cfg.output_path}")
     print(f"{'='*60}\n")

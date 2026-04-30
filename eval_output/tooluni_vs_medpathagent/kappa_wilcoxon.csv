@@ -1,0 +1,4 @@
+question,mean_kappa_tooluni_agent,mean_kappa_medpathagent_llama70b3_3,Wilcoxon_stat,p_value,significant,note
+manage,,,,,False,too few perturbations
+visit,,,,,False,too few perturbations
+resource,,,,,False,too few perturbations

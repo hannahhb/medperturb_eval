@@ -1,0 +1,7 @@
+perturbation,question,fleiss_kappa_all3,cohen_kappa_tooluni_agent_vs_clinician,cohen_kappa_medpathagent_llama70b3_3_vs_clinician,n
+baseline,manage,-0.295,-0.0888,-0.0718,100
+baseline,visit,0.3056,0.5046,0.0473,100
+baseline,resource,0.159,0.0462,0.184,100
+summary,manage,-0.1336,-0.0909,0.0252,50
+summary,visit,0.517,0.4595,0.625,50
+summary,resource,0.2974,0.2331,0.4813,50
