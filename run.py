@@ -29,13 +29,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--datasets",
         nargs="+",
-        default=["oncqa", "askdocs"],
+        default=["usmle_derm", "sct"],
         help="Datasets to include (default: oncqa askdocs).",
     )
     parser.add_argument(
         "--perturbations",
         nargs="+",
-        default=["baseline", "summary", "uncertain_tone", "gender_swap"],
+        default=["gender_swap"], # "baseline", "summary", "uncertain_tone", "colorful_tone"
         help="Perturbations to include.",
     )
     parser.add_argument(
@@ -80,24 +80,29 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--mode",
-        default="MEDPATHAGENT",
-        choices=["TXAGENT", "TXAGENT_BEDROCK", "AWS", "MEDPATHAGENT", "AGENTMD"],
-        help="Runner mode (default: MEDPATHAGENT). AGENTMD requires setup_agentmd.py to be run first.",
+        default="MEDREASON",
+        choices=["TXAGENT", "TXAGENT_BEDROCK", "AWS", "MEDREASON", "MEDPATHAGENT", "AGENTMD"],
+        help=(
+            "Runner mode (default: MEDREASON). "
+            "MEDREASON = KG-augmented reasoning (was MEDPATHAGENT). "
+            "MEDPATHAGENT = NEW combined KG + tool-augmented model. "
+            "AGENTMD requires setup_agentmd.py to be run first."
+        ),
     )
     parser.add_argument(
         "--name",
         default=None,
-        help="Model name key from MODELS dict (used by TXAGENT_BEDROCK, AWS, MEDPATHAGENT modes).",
+        help="Model name key from MODELS dict (used by TXAGENT_BEDROCK, AWS, MEDREASON, MEDPATHAGENT modes).",
     )
     parser.add_argument(
         "--kg-path",
         default=None,
-        help="Path to kg.csv (PrimeKG). Required for MEDPATHAGENT mode.",
+        help="Path to kg.csv (PrimeKG). Required for MEDREASON and MEDPATHAGENT modes.",
     )
     parser.add_argument(
         "--emb-path",
         default=None,
-        help="Path to node_embeddings_sapbert.pt cache. Required for MEDPATHAGENT mode.",
+        help="Path to node_embeddings_sapbert.pt cache. Required for MEDREASON and MEDPATHAGENT modes.",
     )
     return parser
 
@@ -112,6 +117,7 @@ def main() -> None:
         "TXAGENT": "txagent_hf_oncqa_askdocs",
         "TXAGENT_BEDROCK": "llama70b3_3",
         "AWS": "llama70b3_3",
+        "MEDREASON": "llama70b3_3",
         "MEDPATHAGENT": "llama70b3_3",
         "AGENTMD": "llama70b3_3",
     }[args.mode]
@@ -131,7 +137,7 @@ def main() -> None:
     cfg.perturbations = args.perturbations
     if args.mode == "TXAGENT":
         cfg.model_configs[0].device_id = args.device
-    if args.mode == "MEDPATHAGENT":
+    if args.mode in ("MEDREASON", "MEDPATHAGENT"):
         mc = cfg.model_configs[0]
         if args.kg_path:
             mc.kg_path = args.kg_path
@@ -155,7 +161,7 @@ def main() -> None:
     print(f"  Perturbations: {', '.join(cfg.perturbations)}")
     if args.mode == "TXAGENT":
         print(f"  Device       : cuda:{mc.device_id}")
-    if args.mode == "MEDPATHAGENT":
+    if args.mode in ("MEDREASON", "MEDPATHAGENT"):
         print(f"  KG path      : {mc.kg_path}")
         print(f"  Embeddings   : {mc.node_embeddings_path}")
     if args.mode == "AGENTMD":

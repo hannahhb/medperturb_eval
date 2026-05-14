@@ -8,8 +8,10 @@ import os
 class ModelType(Enum):
     BEDROCK = "bedrock"
     TX_AGENT = "txagent"
-    MEDPATH_AGENT = "medpathagent"
+    MEDREASON = "medreason"            # KG-augmented reasoning (was MEDPATH_AGENT)
+    MEDPATH_AGENT = "medpathagent"     # NEW: combined KG + tool-augmented model
     AGENT_MD = "agentmd"
+    TOOLUNI = "tooluni"                # FDA tool retrieval + iterative YES/NO reasoning
 
 
 MODELS = {
@@ -47,6 +49,12 @@ class ModelConfig:
     backend: str = "huggingface"   # "huggingface" (vLLM local) | "bedrock" (AWS)
     device_id: int = 0             # GPU device index for huggingface backend
 
+    # ToolUni / ToolRAG extras
+    use_toolrag: bool = False
+    toolrag_model: str = "mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B"
+    toolrag_device: str = "mps"          # "cpu" | "mps" (Apple Silicon) | "cuda:0"
+    toolrag_cache_dir: Optional[str] = None   # defaults to tooluni_agent package dir
+
     # MedPathAgent extras
     kg_path: Optional[str] = None
     node_embeddings_path: Optional[str] = None
@@ -63,7 +71,7 @@ DATA_DIR = "/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data"
 
 class AdvancedConfig(BaseModel):
     # Dataset
-    hf_dataset_url: str = "https://huggingface.co/datasets/abinitha/MedPerturb/resolve/main/data.csv"
+    hf_dataset_url: str = f"{DATA_DIR}/medperturb_data.csv"
     datasets: List[str] = Field(
         default_factory=lambda: ["oncqa", "askdocs"]
     )
@@ -185,9 +193,31 @@ def get_default_config(
             max_tokens=max_tokens,
         )
 
-    elif mode == "MEDPATHAGENT":
-        # MedPathAgent: KG-augmented reasoning + Bedrock LLM, no GPU required.
+    elif mode == "MEDREASON":
+        # MedReason: KG-augmented reasoning + Bedrock LLM, no GPU required.
         # Requires kg_path and node_embeddings_path to be set via CLI or overridden after this call.
+        # (Previously named "MEDPATHAGENT" — renamed because the new combined model is now MedPathAgent.)
+        bedrock_model_id = MODELS.get(name, name)
+        model_cfg = ModelConfig(
+            name=f"medreason_{name}",
+            type=ModelType.MEDREASON,
+            backend="medreason",
+            checkpoint=bedrock_model_id,
+            bedrock_model_id=bedrock_model_id,
+            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            kg_path=f"{DATA_DIR}/kg.csv",
+            node_embeddings_path=f"{DATA_DIR}/node_embeddings_sapbert.pt",
+            max_tokens=max_tokens,
+            temperature=0.3,
+        )
+        cfg.primary_model = f"medreason_{name}"
+
+    elif mode == "MEDPATHAGENT":
+        # MedPathAgent: NEW combined KG + tool-augmented model.
+        # Uses MedReason's KG infrastructure (PrimeKG, spaCy NER, SapBERT) to extract
+        # entities and KG paths, then uses ToolUni's FDA tools (ToolUniverse) for
+        # factual retrieval. Both signals feed into iterative reason_multistep
+        # decisions for MANAGE/VISIT/RESOURCE.
         bedrock_model_id = MODELS.get(name, name)
         model_cfg = ModelConfig(
             name=f"medpathagent_{name}",
@@ -223,8 +253,32 @@ def get_default_config(
         )
         cfg.primary_model = f"agentmd_{name}"
 
+    elif mode == "TOOLUNI":
+        # ToolUni: FDA tool retrieval (ToolUniverse) + iterative YES/NO reasoning.
+        # For MedPerturb: runs full tool-gathering + reason_multistep pipeline.
+        # For MedXpertQA MCQ: falls back to a direct LLM call (two-turn CoT handled by caller).
+        # Set use_toolrag=True to use dense ToolRAG retrieval instead of keyword matching.
+        bedrock_model_id = MODELS.get(name, name)
+        model_cfg = ModelConfig(
+            name=f"tooluni_{name}",
+            type=ModelType.TOOLUNI,
+            backend="tooluni",
+            bedrock_model_id=bedrock_model_id,
+            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            max_tokens=max_tokens,
+            temperature=0.0,
+            use_toolrag=True,                                           # flip to True to enable
+            toolrag_model="mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B",
+            toolrag_device="mps",                                        # "cpu" if no Apple Silicon
+            toolrag_cache_dir=DATA_DIR,
+        )
+        cfg.primary_model = f"tooluni_{name}"
+
     else:
-        raise ValueError(f"Unknown mode: {mode!r}. Supported: AWS, TXAGENT, TXAGENT_BEDROCK, MEDPATHAGENT, AGENTMD")
+        raise ValueError(
+            f"Unknown mode: {mode!r}. "
+            "Supported: AWS, TXAGENT, TXAGENT_BEDROCK, MEDREASON, MEDPATHAGENT, AGENTMD, TOOLUNI"
+        )
 
     cfg.model_configs = [model_cfg]
     return cfg

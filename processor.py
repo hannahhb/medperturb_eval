@@ -207,8 +207,26 @@ class MedPerturbProcessor:
         if meta.get("txagent"):
             base["txagent_tools"] = json.dumps(meta.get("tools"), default=str)
             base["txagent_tool_log"] = meta.get("tool_log_path", "")
-        if meta.get("medpathagent"):
+        if meta.get("medreason"):
             base["kg_paths"] = meta.get("kg_paths", "")
+        if meta.get("tooluni"):
+            base["tu_tool_context"]   = meta.get("tool_context", "")
+            base["tu_trace_manage"]   = meta.get("trace_manage", "")
+            base["tu_trace_visit"]    = meta.get("trace_visit", "")
+            base["tu_trace_resource"] = meta.get("trace_resource", "")
+            base["tu_rounds"]         = json.dumps(meta.get("tu_rounds", []), default=str)
+        if meta.get("medpathagent"):
+            # NEW combined MedPathAgent: KG entities + paths + FDA tool results
+            base["mpa_entities"]         = json.dumps(meta.get("entities", []), default=str)
+            base["mpa_n_entities"]       = meta.get("n_entities", 0)
+            base["mpa_kg_paths"]         = meta.get("kg_paths", "")
+            base["mpa_n_kg_paths"]       = meta.get("n_kg_paths", 0)
+            base["mpa_tool_plan"]        = json.dumps(meta.get("tool_plan", []), default=str)
+            base["mpa_tool_plan_source"] = meta.get("tool_plan_source", "")
+            base["mpa_tool_context"]     = meta.get("tool_context", "")
+            base["mpa_trace_manage"]     = meta.get("trace_manage", "")
+            base["mpa_trace_visit"]      = meta.get("trace_visit", "")
+            base["mpa_trace_resource"]   = meta.get("trace_resource", "")
         if "tool_id" in meta:
             base["agentmd_tool_id"] = meta.get("tool_id", "")
             base["agentmd_tool_title"] = meta.get("tool_title", "")

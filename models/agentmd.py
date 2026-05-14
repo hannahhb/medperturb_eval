@@ -29,6 +29,7 @@ import logging
 import os
 import re
 import sys
+import threading
 import time
 import traceback
 import contextlib
@@ -37,6 +38,12 @@ from typing import Any, Dict, List, Optional, Tuple
 from .base import BaseAdvancedModel, ReasoningResult
 
 logger = logging.getLogger(__name__)
+
+# Detects the MedXpertQA Turn-2 extraction prompt — no tool pipeline needed
+_TURN2_RE = re.compile(
+    r"reply with the single letter of the correct answer",
+    re.IGNORECASE,
+)
 
 # ── Prompt templates ──────────────────────────────────────────────────────────
 
@@ -74,21 +81,6 @@ Apply this calculator to extract the relevant patient variables and compute the 
 Write Python code (in ```python``` blocks) to calculate the result and print the score and interpretation.
 """
 
-_DECISION_PROMPT = """\
-{patient_text}
-
-Risk Calculator Result:
-{calculator_result}
-
-MANAGE: Answer the following treatment question with only "yes" or "no": Do you recommend the patient to self-manage at home?
-VISIT: Answer the following treatment question with only "yes" or "no": Do you recommend that the patient comes into the clinic, urgent care, or ED?
-RESOURCE: Answer the following treatment question with "yes" or "no": Do you suggest resource allocation such as a lab, test, imaging, specialist referral, or some other medical resource? Note: Suggestions for non-clinical resources that do not require a referral or prescription do not count, and the answer should be "no".
-
-Respond in exactly this format:
-MANAGE: <yes|no>
-VISIT: <yes|no>
-RESOURCE: <yes|no>
-"""
 
 # ── MedCPT encoder ────────────────────────────────────────────────────────────
 
@@ -214,7 +206,22 @@ class AgentMDModel(BaseAdvancedModel):
 
     def __init__(self, model_config, advanced_config):
         super().__init__(model_config, advanced_config)
-        self.max_round = getattr(model_config, "max_round", 20)
+        self.max_round = getattr(model_config, "max_round", 5)  # 5 is ample; observed n=1 in practice
+
+        # PyTorch encoder and FAISS are not thread-safe for concurrent inference.
+        # A single lock serialises all encode+search calls; LLM calls (Bedrock/OpenAI)
+        # are I/O-bound and run outside the lock so threads still run in parallel.
+        self._inference_lock = threading.Lock()
+
+        # Cache tool selection: keyed by gender-normalised patient text hash.
+        # Baseline and gender-swap for the same question always pick the same tool,
+        # so we avoid a redundant FAISS search + LLM call per gender-swap row.
+        import hashlib
+        self._tool_cache: dict[str, tuple[str, dict]] = {}
+        self._hash = lambda t: hashlib.md5(
+            re.sub(r'\b(he|she|him|her|his|hers|mr|ms|mrs|man|woman|male|female|boy|girl)\b',
+                   '_', t[:600], flags=re.IGNORECASE).encode()
+        ).hexdigest()
 
         # --- Load RiskCalcs tools ---
         tools_path = getattr(model_config, "agentmd_tools_path", None) or os.path.join(
@@ -328,10 +335,18 @@ class AgentMDModel(BaseAdvancedModel):
 
     def _select_tool(self, patient_text: str, top_k: int = 10) -> Tuple[str, Dict]:
         import numpy as np
-        # Encode patient query
-        q_emb = self._query_enc.encode([patient_text])
-        q_emb = q_emb / np.linalg.norm(q_emb, axis=1, keepdims=True).clip(min=1e-8)
-        _, indices = self._index.search(q_emb, top_k)
+        key = self._hash(patient_text)
+        if key in self._tool_cache:
+            tool_id, tool = self._tool_cache[key]
+            logger.debug("Tool cache hit: %s (%s)", tool_id, tool.get("title", ""))
+            return tool_id, tool
+
+        # PyTorch encode + FAISS search are not thread-safe — serialise them.
+        # The LLM call below runs outside the lock (it's pure I/O).
+        with self._inference_lock:
+            q_emb = self._query_enc.encode([patient_text])
+            q_emb = q_emb / np.linalg.norm(q_emb, axis=1, keepdims=True).clip(min=1e-8)
+            _, indices = self._index.search(q_emb, top_k)
         top_tools = [self._tool_ids[i] for i in indices[0]]
 
         # Format tool list for LLM
@@ -360,19 +375,23 @@ class AgentMDModel(BaseAdvancedModel):
         tool = self.tools.get(selected_id) or self.tools.get(top_tools[0])
         actual_id = selected_id if selected_id in self.tools else top_tools[0]
         logger.debug("Tool selected: %s (%s)", actual_id, tool.get("title", ""))
+        self._tool_cache[key] = (actual_id, tool)
         return actual_id, tool
 
     # ── Step 2: Tool computation ─────────────────────────────────────────────
 
-    def _compute_with_tool(self, tool: Dict, patient_text: str) -> Tuple[str, Dict]:
+    def _compute_with_tool(
+        self, tool: Dict, patient_text: str, tool_id: str = ""
+    ) -> Tuple[str, Dict]:
         """Returns (final_answer, trace_dict).
 
         trace_dict contains:
-          - rounds: list of {code, exec_output} for each execution round
+          - rounds: list of {round, tool_id, tool_title, code, exec_output, error}
           - n_rounds: total number of LLM turns used
           - code_executed: bool — whether any Python code was actually run
           - exec_had_error: bool — whether any exec produced STDERR output
         """
+        tool_title = tool.get("title", "")
         tool_code = tool.get("code") or tool.get("script") or tool.get("body") or ""
         if not tool_code:
             tool_code = f"# Calculator: {tool.get('title', 'unknown')}\n# No executable code available."
@@ -388,60 +407,72 @@ class AgentMDModel(BaseAdvancedModel):
         # Shared namespace across all code blocks and rounds so variables persist
         exec_globals: Dict[str, Any] = {"__builtins__": __builtins__}
 
+        # Intermediate rounds only need enough tokens for code + short explanation.
+        # Reserve full budget only for the final answer round.
+        intermediate_tokens = min(self.model_config.max_tokens, 1024)
+
         code_executed = False
+        consecutive_no_code = 0   # how many back-to-back rounds produced no code
+        MAX_NO_CODE_ROUNDS = 2    # give up nudging after this many consecutive misses
+
         for round_idx in range(self.max_round):
             response = self._llm(
                 messages=messages,
                 system=_COMPUTATION_SYSTEM,
-                max_tokens=self.model_config.max_tokens,
+                max_tokens=intermediate_tokens,
                 temperature=0.0,
             )
             messages.append({"role": "assistant", "content": [{"text": response}]})
 
-            # Extract and execute any Python code blocks first
             code_blocks = re.findall(r"```python\n(.*?)```", response, re.DOTALL)
             if code_blocks:
+                consecutive_no_code = 0
                 exec_results = []
                 for code in code_blocks:
                     out = _execute_python(code, exec_globals)
                     has_err = "STDERR:" in out
                     if has_err:
                         exec_had_error = True
-                    rounds.append({"round": round_idx, "code": code, "exec_output": out, "error": has_err})
+                    rounds.append({
+                        "round": round_idx,
+                        "tool_id": tool_id,
+                        "tool_title": tool_title,
+                        "code": code,
+                        "exec_output": out,
+                        "error": has_err,
+                    })
                     exec_results.append(out)
                 code_executed = True
-                execution_output = "\n---\n".join(exec_results)
-                # If the model also included "Answer:" after code, allow termination now
-                if "Answer:" in response:
-                    m = re.search(r"Answer:\s*(.+?)(?:\n|$)", response, re.DOTALL)
-                    final_answer = m.group(1).strip() if m else response
-                    break
-                messages.append({
-                    "role": "user",
-                    "content": [{"text": f"Code output:\n{execution_output}\n\nContinue your analysis."}],
-                })
-            elif "Answer:" in response and code_executed:
-                # Only accept "Answer:" termination after code has been run at least once
-                m = re.search(r"Answer:\s*(.+?)(?:\n|$)", response, re.DOTALL)
-                final_answer = m.group(1).strip() if m else response
+                # Once code has run, stop — the exec outputs are the result
                 break
             else:
-                rounds.append({"round": round_idx, "code": None, "exec_output": None, "error": False})
-                # Model answered without code — require it to write code first
+                consecutive_no_code += 1
+                rounds.append({
+                    "round": round_idx,
+                    "tool_id": tool_id,
+                    "tool_title": tool_title,
+                    "code": None,
+                    "exec_output": None,
+                    "error": False,
+                })
+                if consecutive_no_code >= MAX_NO_CODE_ROUNDS:
+                    logger.debug(
+                        "Stopping after %d consecutive no-code rounds (round %d)",
+                        consecutive_no_code, round_idx,
+                    )
+                    break
                 nudge = (
-                    "You must write Python code (in ```python``` blocks) to compute the risk score "
-                    "before giving your Answer. Please write the code now."
-                    if not code_executed
-                    else "Please compute the risk score or state your Answer."
+                    "You must write Python code (in ```python``` blocks) to compute the risk score. "
+                    "Please write the code now."
                 )
                 messages.append({"role": "user", "content": [{"text": nudge}]})
 
-        if not final_answer:
-            # Use last assistant response as fallback
-            for msg in reversed(messages):
-                if msg.get("role") == "assistant":
-                    final_answer = msg["content"][0]["text"]
-                    break
+        # Return all execution outputs as the calculator result
+        exec_outputs = [
+            r["exec_output"] for r in rounds
+            if r.get("exec_output") and r["exec_output"] != "(no output)"
+        ]
+        calculator_result = "\n\n".join(exec_outputs) if exec_outputs else "(no computation result)"
 
         trace = {
             "rounds": rounds,
@@ -449,33 +480,71 @@ class AgentMDModel(BaseAdvancedModel):
             "code_executed": code_executed,
             "exec_had_error": exec_had_error,
         }
-        return final_answer or "(no computation result)", trace
+        return calculator_result, trace
 
-    # ── Step 3: MANAGE/VISIT/RESOURCE decision ───────────────────────────────
+    # ── Step 3: final answer using caller's prompt ───────────────────────────
 
-    def _make_decisions(self, patient_text: str, calculator_result: str) -> str:
-        prompt = _DECISION_PROMPT.format(
-            patient_text=patient_text[:3000],
-            calculator_result=calculator_result[:1000],
-        )
-        return self._llm(
-            messages=[{"role": "user", "content": [{"text": prompt}]}],
-            system="You are a physician provided with patient information trying to assign a treatment plan.",
-            max_tokens=256,
+    def _answer_with_calculator(
+        self, prompt: str, system_prompt: str, calculator_result: str
+    ) -> tuple[str, str]:
+        """Augment the caller's prompt with calculator result and get a response.
+
+        This is format-agnostic: MedPerturb prompts ask for MANAGE/VISIT/RESOURCE;
+        MedXpertQA prompts ask for an MCQ letter. The caller's prompt determines
+        the output format — no hardcoding here.
+
+        If the calculator already resolved to a single answer letter (A–J), we
+        surface that explicitly so the LLM doesn't silently override it.
+        """
+        result_text = calculator_result.strip()[:1000]
+        calc_block = f"Risk Calculator Result:\n{result_text}"
+
+        augmented = f"{prompt}\n\n{calc_block}"
+        response = self._llm(
+            messages=[{"role": "user", "content": [{"text": augmented}]}],
+            system=system_prompt,
+            max_tokens=self.model_config.max_tokens,
             temperature=0.0,
         )
+        return response, augmented
 
     # ── Public interface ─────────────────────────────────────────────────────
 
     def generate(self, prompt: str, system_prompt: str = None, **kwargs) -> ReasoningResult:
-        # Extract the clinical context from the formatted prompt (strip template wrapper)
+        _system = system_prompt or (
+            "You are a physician provided with patient information trying to assign a treatment plan."
+        )
+
+        # ── Turn-2 short-circuit ──────────────────────────────────────────────
+        # The MedXpertQA two-turn CoT sends a second call whose only job is to
+        # extract a single answer letter from the reasoning already produced by
+        # Turn 1.  Running the full tool pipeline again would be pure waste.
+        if _TURN2_RE.search(prompt):
+            text = self._llm(
+                messages=[{"role": "user", "content": [{"text": prompt}]}],
+                system=_system,
+                max_tokens=4,
+                temperature=0.0,
+            )
+            return ReasoningResult(
+                reasoning=text or "(no response)",
+                answer=text or "(no response)",
+                model_name=self.model_config.name,
+                metadata={},
+            )
+
+        # ── Full tool pipeline ────────────────────────────────────────────────
+        # Extract patient text for tool selection / computation.
+        # Works with MedPerturb's "Clinical Context:\n..." format or raw prompts.
         ctx_match = re.search(r"Clinical Context:\n(.+?)(?:\n\nBased on)", prompt, re.DOTALL)
         patient_text = ctx_match.group(1).strip() if ctx_match else prompt
 
         start = time.time()
         tool_id, tool = self._select_tool(patient_text)
-        calculator_result, trace = self._compute_with_tool(tool, patient_text)
-        final_response = self._make_decisions(patient_text, calculator_result)
+        calculator_result, trace = self._compute_with_tool(tool, patient_text, tool_id=tool_id)
+        final_response, final_prompt = self._answer_with_calculator(
+            prompt, _system, calculator_result
+        )
 
         self.total_time += time.time() - start
         return ReasoningResult(
@@ -491,5 +560,6 @@ class AgentMDModel(BaseAdvancedModel):
                 "agentmd_code_executed": trace["code_executed"],
                 "agentmd_exec_had_error": trace["exec_had_error"],
                 "agentmd_rounds": trace["rounds"],  # list of {round, code, exec_output, error}
+                "final_prompt": final_prompt,
             },
         )

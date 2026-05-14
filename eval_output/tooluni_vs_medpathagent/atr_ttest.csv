@@ -1,4 +1,0 @@
-question,mean_ATR_tooluni_agent,mean_ATR_medpathagent_llama70b3_3,ATR_diff (A-B),higher_ATR,t_stat,p_value,significant,n_perturbations
-manage,0.7784,0.8265,-0.0482,medpathagent_llama70b3_3,-0.7891,0.512737,False,3
-visit,0.8041,0.7818,0.0223,tooluni_agent,0.9891,0.426854,False,3
-resource,0.8946,0.7776,0.117,tooluni_agent,1.7515,0.22196,False,3
