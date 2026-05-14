@@ -330,7 +330,7 @@ def _rebuild_options(question_text: str) -> Dict[str, str]:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode",      default="AWS",
-                        choices=["AWS", "TXAGENT_BEDROCK", "MEDREASON", "MEDPATHAGENT", "AGENTMD", "TOOLUNI"])
+                        choices=["AWS", "TXAGENT", "TXAGENT_BEDROCK", "MEDREASON", "MEDPATHAGENT", "AGENTMD", "TOOLUNI"])
     parser.add_argument("--name",      default=None)
     parser.add_argument("--kg-path",   default="/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv")
     parser.add_argument("--emb-path",  default="/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt")
@@ -351,7 +351,8 @@ def main():
 
     # ── resolve model name ────────────────────────────────────────────────────
     default_name = {
-        "AWS": "llama70b3_3", "TXAGENT_BEDROCK": "llama70b3_3",
+        "AWS": "llama70b3_3", "TXAGENT": "txagent_hf",
+        "TXAGENT_BEDROCK": "llama70b3_3",
         "MEDREASON": "llama70b3_3", "MEDPATHAGENT": "llama70b3_3",
         "AGENTMD": "llama70b3_3", "TOOLUNI": "llama70b3_3",
     }[args.mode]
@@ -364,9 +365,9 @@ def main():
     output_csv = output_dir / "results.csv"
     lock = Lock()
 
-    # Tool-log directory (only written for TOOLUNI / AGENTMD)
+    # Tool-log directory (only written for TOOLUNI / AGENTMD / TXAGENT)
     log_dir: Optional[Path] = None
-    if args.mode in ("TOOLUNI", "AGENTMD"):
+    if args.mode in ("TOOLUNI", "AGENTMD", "TXAGENT"):
         log_dir = ROOT / "logs" / "medxpertqa" / model_tag
         log_dir.mkdir(parents=True, exist_ok=True)
         log.info("Tool logs → %s", log_dir)
@@ -385,7 +386,7 @@ def main():
     bedrock_model_id = None
     augment_model    = None
 
-    if args.mode in ("MEDREASON", "MEDPATHAGENT", "AGENTMD", "TOOLUNI"):
+    if args.mode in ("TXAGENT", "MEDREASON", "MEDPATHAGENT", "AGENTMD", "TOOLUNI"):
         log.info("Loading %s model (may take a moment)...", args.mode)
         augment_model = ModelFactory.create_model(mc, cfg)
     else:
