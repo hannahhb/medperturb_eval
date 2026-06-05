@@ -505,20 +505,28 @@ class MedReasonModel(BaseAdvancedModel):
             return
 
         # Step 2: batch SapBERT — one giant forward pass
-        all_names = [e["name"] for _, e in all_entries]
-        all_embs  = []
-        for i in range(0, len(all_names), batch_size):
-            chunk = all_names[i:i + batch_size]
-            embs  = self._embed_batch(chunk)   # (chunk, d) on CPU
-            all_embs.append(embs)
-            self.logger.debug("  Embedded batch %d/%d", i + batch_size, len(all_names))
+        from tqdm import tqdm as _tqdm
+        all_names   = [e["name"] for _, e in all_entries]
+        all_embs    = []
+        n_batches   = (len(all_names) + batch_size - 1) // batch_size
+        with _tqdm(total=len(all_names), desc="SapBERT embedding", unit="ent") as pbar:
+            for i in range(0, len(all_names), batch_size):
+                chunk = all_names[i:i + batch_size]
+                embs  = self._embed_batch(chunk)
+                all_embs.append(embs)
+                pbar.update(len(chunk))
         all_embs = torch.cat(all_embs, dim=0)  # (total_entities, d)
 
         # Step 3: KG node matching — distribute embeddings back to contexts
         ctx_mapped: List[List[str]] = [[] for _ in unique_contexts]
         ctx_seen:   List[set]       = [set() for _ in unique_contexts]
 
-        for emb, (ci, entity) in zip(all_embs, all_entries):
+        for emb, (ci, entity) in _tqdm(
+            zip(all_embs, all_entries),
+            total=len(all_entries),
+            desc="KG node matching",
+            unit="ent",
+        ):
             etype      = entity["type"]
             name       = entity["name"]
             node_names = self._node_name_dict.get(etype, [])
@@ -544,7 +552,12 @@ class MedReasonModel(BaseAdvancedModel):
                 ctx_seen[ci].add(matched.lower())
 
         # Step 4: KG path search per context (CPU, fast)
-        for ci, ctx in enumerate(unique_contexts):
+        for ci, ctx in _tqdm(
+            enumerate(unique_contexts),
+            total=len(unique_contexts),
+            desc="KG path search",
+            unit="ctx",
+        ):
             mapped = ctx_mapped[ci]
             if len(mapped) < 2:
                 self._path_cache[ctx] = ""
