@@ -20700,3 +20700,21 @@ WARNING: Some requested data paths are being autocompleted based on uniqueness i
 2026-06-06 00:59:57,123 - MedPerturbProcessor - INFO - Resume: 164 cached rows found
 2026-06-06 00:59:57,135 - MedReason.medreason_llama70b3_3 - INFO - Precomputing KG paths for 677 unique contexts...
 2026-06-06 01:00:48,553 - MedReason.medreason_llama70b3_3 - INFO -   Total entities to embed: 7729
+2026-06-06 01:19:03,171 - scripts.logging_setup - INFO - Starting MedPerturb experiment (mode=MEDREASON)
+2026-06-06 01:19:06,658 - MedReason.medreason_llama70b3_3 - INFO - Loading PrimeKG from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/kg.csv
+2026-06-06 01:19:20,117 - MedReason.medreason_llama70b3_3 - INFO - KG: 128550 nodes, 4047029 edges
+2026-06-06 01:19:20,118 - MedReason.medreason_llama70b3_3 - INFO - Loading node embeddings from /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/node_embeddings_sapbert.pt
+2026-06-06 01:19:20,236 - MedReason.medreason_llama70b3_3 - INFO - Node embeddings loaded: 10 types, 129357 total nodes
+2026-06-06 01:19:20,472 - MedReason.medreason_llama70b3_3 - INFO - Loading SapBERT (cambridgeltl/SapBERT-from-PubMedBERT-fulltext) on mps
+2026-06-06 01:19:22,654 - MedReason.medreason_llama70b3_3 - INFO - Pre-normalised node embeddings for 10 types
+2026-06-06 01:19:27,425 - MedReason.medreason_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bc5cdr_md
+2026-06-06 01:19:31,560 - MedReason.medreason_llama70b3_3 - INFO - Loaded spaCy model: en_ner_bionlp13cg_md
+2026-06-06 01:19:31,573 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-06-06 01:19:31,641 - MedReason.medreason_llama70b3_3 - INFO - Bedrock client ready (model=us.meta.llama3-3-70b-instruct-v1:0, region=us-east-2)
+2026-06-06 01:19:31,641 - MedReason.medreason_llama70b3_3 - INFO - MedReasonModel ready.
+2026-06-06 01:19:31,641 - MedPerturbProcessor - INFO - Loading MedPerturb from: /Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/medperturb_data.csv
+2026-06-06 01:19:31,709 - MedPerturbProcessor - INFO - Loaded 841 rows covering datasets: ['askdocs', 'oncqa'] | perturbations: ['summary', 'baseline', 'gender_swap', 'uncertain_tone']
+2026-06-06 01:19:31,710 - MedPerturbProcessor - INFO - Slice 0:841 → 841 rows
+2026-06-06 01:19:31,736 - MedPerturbProcessor - INFO - Resume: 164 cached rows found
+2026-06-06 01:19:31,747 - MedReason.medreason_llama70b3_3 - INFO - Precomputing KG paths for 677 unique contexts...
+2026-06-06 01:20:22,143 - MedReason.medreason_llama70b3_3 - INFO -   Total entities to embed: 7729
