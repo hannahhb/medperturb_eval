@@ -460,6 +460,127 @@ class MedReasonModel(BaseAdvancedModel):
 
         return node_names[idxs[0].item()]
 
+    def precompute_kg_paths(
+        self,
+        contexts: List[str],
+        batch_size: int = 256,
+    ) -> None:
+        """
+        Pre-compute KG paths for a list of clinical contexts in one GPU pass.
+
+        All entity names across all contexts are embedded together in large
+        batches → maximum GPU utilisation. Results are stored in
+        self._path_cache keyed by clinical context string.
+
+        Call this once before parallel Bedrock inference so that generate()
+        hits the cache and never calls SapBERT per-row.
+        """
+        if not hasattr(self, "_path_cache"):
+            self._path_cache: Dict[str, str] = {}
+
+        # Deduplicate contexts
+        unique_contexts = list(dict.fromkeys(c for c in contexts if c and c not in self._path_cache))
+        if not unique_contexts:
+            return
+
+        self.logger.info("Precomputing KG paths for %d unique contexts...", len(unique_contexts))
+
+        # Step 1: extract all entities from all contexts
+        # Store as (context_idx, entity_dict) pairs
+        all_entries: List[tuple] = []   # (ctx_idx, entity)
+        ctx_entities: List[List] = []  # per-context entity list
+
+        for ci, ctx in enumerate(unique_contexts):
+            ents = self._extract_entities(ctx)
+            ctx_entities.append(ents)
+            for e in ents:
+                if e.get("name") and e.get("type") in self._nodeemb_norm:
+                    all_entries.append((ci, e))
+
+        self.logger.info("  Total entities to embed: %d", len(all_entries))
+
+        if not all_entries:
+            for ctx in unique_contexts:
+                self._path_cache[ctx] = ""
+            return
+
+        # Step 2: batch SapBERT — one giant forward pass
+        all_names = [e["name"] for _, e in all_entries]
+        all_embs  = []
+        for i in range(0, len(all_names), batch_size):
+            chunk = all_names[i:i + batch_size]
+            embs  = self._embed_batch(chunk)   # (chunk, d) on CPU
+            all_embs.append(embs)
+            self.logger.debug("  Embedded batch %d/%d", i + batch_size, len(all_names))
+        all_embs = torch.cat(all_embs, dim=0)  # (total_entities, d)
+
+        # Step 3: KG node matching — distribute embeddings back to contexts
+        ctx_mapped: List[List[str]] = [[] for _ in unique_contexts]
+        ctx_seen:   List[set]       = [set() for _ in unique_contexts]
+
+        for emb, (ci, entity) in zip(all_embs, all_entries):
+            etype      = entity["type"]
+            name       = entity["name"]
+            node_names = self._node_name_dict.get(etype, [])
+            if not node_names:
+                continue
+
+            emb_norm = F.normalize(emb.unsqueeze(0), p=2, dim=-1).to(self._emb_device)
+            node_embs_norm = self._nodeemb_norm[etype]
+            sims = (emb_norm @ node_embs_norm.T).squeeze(0).cpu()
+            vals, idxs = torch.topk(sims, min(200, sims.size(0)))
+            top1_sim = float(vals[0].item()) if vals.numel() > 0 else 0.0
+
+            matched = None
+            for idx in idxs.tolist():
+                if node_names[idx].lower() == name.lower():
+                    matched = node_names[idx]
+                    break
+            if matched is None and top1_sim >= 0.2:
+                matched = node_names[idxs[0].item()]
+
+            if matched and matched.lower() not in ctx_seen[ci]:
+                ctx_mapped[ci].append(matched)
+                ctx_seen[ci].add(matched.lower())
+
+        # Step 4: KG path search per context (CPU, fast)
+        for ci, ctx in enumerate(unique_contexts):
+            mapped = ctx_mapped[ci]
+            if len(mapped) < 2:
+                self._path_cache[ctx] = ""
+                continue
+
+            seed_nodes = [n.lower() for n in mapped]
+            subG = _ppr_subgraph(self._G, seed_nodes, top_k=500, alpha=0.85, bfs_hops=3)
+
+            pairs = [
+                (mapped[i], mapped[j])
+                for i in range(len(mapped))
+                for j in range(i + 1, len(mapped))
+            ]
+            all_paths = []
+            for src, dst in pairs[:20]:
+                if len(all_paths) >= 3:
+                    break
+                try:
+                    path = nx.shortest_path(subG, src.lower(), dst.lower())
+                    if len(path) - 1 <= 6:
+                        rels = [
+                            self._G.get_edge_data(u, v, {}).get("relation")
+                            for u, v in zip(path[:-1], path[1:])
+                        ]
+                        all_paths.append((path, rels))
+                except Exception:
+                    pass
+
+            self._path_cache[ctx] = _serialize_paths(all_paths, max_paths=3)
+
+        self.logger.info(
+            "  Precompute done. %d/%d contexts have KG paths.",
+            sum(1 for v in self._path_cache.values() if v),
+            len(unique_contexts),
+        )
+
     def _get_kg_paths(
         self,
         clinical_context: str,
@@ -476,6 +597,10 @@ class MedReasonModel(BaseAdvancedModel):
         top-k PPR-scored nodes form one focused working subgraph for the
         entire question — much cleaner than the union of per-pair KNN balls.
         """
+        # Check precomputed cache first
+        if hasattr(self, "_path_cache") and clinical_context in self._path_cache:
+            return self._path_cache[clinical_context]
+
         entities = self._extract_entities(clinical_context)
         if not entities:
             return ""

@@ -293,6 +293,18 @@ class MedPerturbProcessor:
 
         if remaining:
             n_workers = getattr(self.cfg, "max_workers", 1)
+
+            # Pre-compute all KG paths in one GPU batch before parallel Bedrock calls
+            # Only applies to MedReason (model has precompute_kg_paths method)
+            model = getattr(self, "model", None)
+            if model is not None and hasattr(model, "precompute_kg_paths") and \
+               not getattr(self.cfg, "cached_paths_only", False):
+                contexts = [
+                    str(row.get("clinical_context", row.get("prompt", "")))
+                    for row in remaining
+                ]
+                model.precompute_kg_paths(contexts)
+
             if n_workers > 1:
                 results += self._process_parallel(remaining, n_workers)
             else:
