@@ -225,6 +225,12 @@ def get_default_config(
         # MedReason: KG-augmented reasoning + Bedrock LLM, no GPU required.
         # Requires kg_path and node_embeddings_path to be set via CLI or overridden after this call.
         # (Previously named "MEDPATHAGENT" — renamed because the new combined model is now MedPathAgent.)
+        import torch as _torch
+        _auto_device = (
+            "cuda" if _torch.cuda.is_available()
+            else "mps" if _torch.backends.mps.is_available()
+            else "cpu"
+        )
         bedrock_model_id = MODELS.get(name, name)
         model_cfg = ModelConfig(
             name=f"medreason_{name}",
@@ -237,6 +243,7 @@ def get_default_config(
             node_embeddings_path=f"{DATA_DIR}/node_embeddings_sapbert.pt",
             max_tokens=max_tokens,
             temperature=0.3,
+            device=_auto_device,
         )
         cfg.primary_model = f"medreason/{name}"
 
