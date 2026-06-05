@@ -1,0 +1,1717 @@
+backbone,context_id,perturbation,task,dataset,ablation,n_novel_tools,n_kept_tools,n_dropped,tool_context_len,pred,flipped,raw_text
+llama70b3_3,askdocs_34,summary,manage,askdocs,full,1,1,0,2000,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,manage,askdocs,no_europepmc,1,0,1,0,YES,True,"MANAGE: yes
+VISIT: no
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,manage,askdocs,no_fda_safety,1,1,0,1500,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,manage,askdocs,no_adverse_rx,1,1,0,1500,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,manage,askdocs,no_novel,1,0,1,0,YES,True,"MANAGE: yes
+VISIT: no
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,manage,askdocs,full,1,1,0,1869,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,manage,askdocs,no_europepmc,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,manage,askdocs,no_fda_safety,1,1,0,1193,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,manage,askdocs,no_adverse_rx,1,1,0,1175,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,manage,askdocs,no_novel,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,manage,askdocs,full,5,5,0,1730,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,manage,askdocs,no_europepmc,5,5,0,2120,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,manage,askdocs,no_fda_safety,5,3,2,1351,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,manage,askdocs,no_adverse_rx,5,4,1,2254,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,manage,askdocs,no_novel,5,0,5,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,manage,askdocs,full,5,5,0,2040,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,manage,askdocs,no_europepmc,5,4,1,2041,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,manage,askdocs,no_fda_safety,5,3,2,1490,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,manage,askdocs,no_adverse_rx,5,4,1,1884,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,manage,askdocs,no_novel,5,0,5,0,YES,True,"MANAGE: yes
+VISIT: no
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,manage,askdocs,full,4,4,0,1857,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,manage,askdocs,no_europepmc,4,3,1,1361,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,manage,askdocs,no_fda_safety,4,2,2,1803,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,manage,askdocs,no_adverse_rx,4,3,1,1441,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,manage,askdocs,no_novel,4,0,4,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,full,1,1,0,1446,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,no_europepmc,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,no_fda_safety,1,1,0,1500,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,no_adverse_rx,1,1,0,1500,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,no_novel,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,full,4,4,0,1329,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,no_europepmc,4,3,1,1077,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,no_fda_safety,4,2,2,1588,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,no_adverse_rx,4,3,1,1351,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,no_novel,4,0,4,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,full,5,5,0,1776,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,no_europepmc,5,4,1,1459,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,no_fda_safety,5,3,2,1402,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,no_adverse_rx,5,4,1,1137,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,no_novel,5,0,5,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,full,4,4,0,1384,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,no_europepmc,4,3,1,1361,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,no_fda_safety,4,2,2,1373,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,no_adverse_rx,4,3,1,1329,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,no_novel,4,0,4,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,full,1,1,0,1999,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,no_europepmc,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,no_fda_safety,1,1,0,1500,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,no_adverse_rx,1,1,0,1500,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,no_novel,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_100,summary,visit,askdocs,full,1,1,0,1422,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_100,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_100,summary,visit,askdocs,no_fda_safety,1,1,0,590,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_100,summary,visit,askdocs,no_adverse_rx,1,1,0,590,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_100,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,full,1,1,0,1954,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,no_europepmc,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,no_fda_safety,1,1,0,844,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,no_adverse_rx,1,1,0,910,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,no_novel,1,0,1,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,full,5,5,0,2248,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,no_europepmc,5,4,1,1619,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,no_fda_safety,5,3,2,1960,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,no_adverse_rx,5,4,1,2044,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,no_novel,5,0,5,0,NO,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_159,summary,visit,askdocs,full,1,1,0,1843,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_159,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_159,summary,visit,askdocs,no_fda_safety,1,1,0,964,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_159,summary,visit,askdocs,no_adverse_rx,1,1,0,1004,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_159,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,visit,askdocs,full,4,4,0,1857,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,visit,askdocs,no_europepmc,4,3,1,1361,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,visit,askdocs,no_fda_safety,4,2,2,1638,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,visit,askdocs,no_adverse_rx,4,3,1,1306,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,summary,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,summary,visit,askdocs,full,5,5,0,2112,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,summary,visit,askdocs,no_europepmc,5,5,0,1989,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,summary,visit,askdocs,no_fda_safety,5,3,2,1688,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,summary,visit,askdocs,no_adverse_rx,5,4,1,1847,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,summary,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_162,summary,visit,askdocs,full,3,3,0,2040,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_162,summary,visit,askdocs,no_europepmc,3,3,0,1723,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_162,summary,visit,askdocs,no_fda_safety,3,1,2,1276,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_162,summary,visit,askdocs,no_adverse_rx,3,2,1,1664,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_162,summary,visit,askdocs,no_novel,3,0,3,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,summary,visit,askdocs,full,0,0,0,3,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,summary,visit,askdocs,no_europepmc,0,0,0,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,summary,visit,askdocs,no_fda_safety,0,0,0,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,summary,visit,askdocs,no_adverse_rx,0,0,0,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,summary,visit,askdocs,no_novel,0,0,0,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,visit,askdocs,no_europepmc,1,0,1,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_34,summary,visit,askdocs,no_novel,1,0,1,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: yes"
+llama70b3_3,askdocs_31,summary,visit,askdocs,full,1,1,0,1664,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_31,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_31,summary,visit,askdocs,no_fda_safety,1,1,0,1185,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_31,summary,visit,askdocs,no_adverse_rx,1,1,0,1196,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_31,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_174,summary,visit,askdocs,full,4,4,0,813,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_174,summary,visit,askdocs,no_europepmc,4,3,1,1830,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_174,summary,visit,askdocs,no_fda_safety,4,2,2,959,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_174,summary,visit,askdocs,no_adverse_rx,4,3,1,1369,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_174,summary,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,summary,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,summary,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,summary,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,visit,askdocs,full,5,5,0,1730,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,visit,askdocs,no_europepmc,5,5,0,1983,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,visit,askdocs,no_fda_safety,5,3,2,1351,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,visit,askdocs,no_adverse_rx,5,4,1,1589,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_24,summary,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_54,summary,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_54,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_54,summary,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_54,summary,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_54,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_62,summary,visit,askdocs,full,2,2,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_62,summary,visit,askdocs,no_europepmc,2,1,1,1101,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_62,summary,visit,askdocs,no_fda_safety,2,1,1,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_62,summary,visit,askdocs,no_adverse_rx,2,2,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_62,summary,visit,askdocs,no_novel,2,0,2,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,summary,visit,askdocs,full,1,1,0,1866,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,summary,visit,askdocs,no_fda_safety,1,1,0,1267,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,summary,visit,askdocs,no_adverse_rx,1,1,0,1267,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,summary,visit,askdocs,full,5,5,0,1447,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,summary,visit,askdocs,no_europepmc,5,4,1,2262,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,summary,visit,askdocs,no_fda_safety,5,3,2,2298,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,summary,visit,askdocs,no_adverse_rx,5,4,1,1896,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,summary,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,summary,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: yes
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,summary,visit,askdocs,no_fda_safety,1,1,0,1641,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,summary,visit,askdocs,no_adverse_rx,1,1,0,1596,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: yes
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,summary,visit,askdocs,full,1,1,0,1662,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,summary,visit,askdocs,no_fda_safety,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,summary,visit,askdocs,no_adverse_rx,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,visit,askdocs,full,1,1,0,1869,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,visit,askdocs,no_fda_safety,1,1,0,1171,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,visit,askdocs,no_adverse_rx,1,1,0,1193,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_88,summary,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,no_fda_safety,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,visit,askdocs,full,5,5,0,2040,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,visit,askdocs,no_europepmc,5,4,1,1930,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,visit,askdocs,no_fda_safety,5,3,2,1329,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,visit,askdocs,no_adverse_rx,5,4,1,1861,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,summary,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,full,1,1,0,1235,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,no_fda_safety,1,1,0,1030,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,996,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,full,4,4,0,1329,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,no_europepmc,4,3,1,1077,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,no_fda_safety,4,2,2,872,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,no_adverse_rx,4,3,1,1352,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,full,4,4,0,1478,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,no_europepmc,4,4,0,1620,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,no_fda_safety,4,2,2,1059,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,no_adverse_rx,4,3,1,1257,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,full,5,5,0,1776,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,no_europepmc,5,4,1,1513,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,no_fda_safety,5,3,2,1402,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,no_adverse_rx,5,4,1,1180,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,no_fda_safety,1,1,0,680,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,754,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,full,1,1,0,1960,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,no_fda_safety,1,1,0,861,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,957,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,full,5,5,0,1564,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,no_europepmc,5,4,1,2331,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,no_fda_safety,5,3,2,2297,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,no_adverse_rx,5,4,1,1972,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,full,5,5,0,1748,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,no_europepmc,5,5,0,1748,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,no_fda_safety,5,3,2,1425,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,no_adverse_rx,5,4,1,1458,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,full,1,1,0,1146,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,full,1,1,0,2002,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,no_europepmc,1,0,1,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,no_fda_safety,1,1,0,831,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,no_adverse_rx,1,1,0,831,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,no_novel,1,0,1,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,no_fda_safety,1,1,0,977,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,no_adverse_rx,1,1,0,980,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,full,4,4,0,674,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,no_europepmc,4,3,1,1687,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,no_fda_safety,4,2,2,1024,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,no_adverse_rx,4,3,1,1301,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,no_novel,4,0,4,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,full,4,4,0,2064,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,no_europepmc,4,3,1,1995,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,no_fda_safety,4,2,2,1449,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,no_adverse_rx,4,3,1,2002,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,no_novel,4,0,4,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,full,6,6,0,1763,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,no_europepmc,6,5,1,2319,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,no_fda_safety,6,4,2,1656,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,no_adverse_rx,6,5,1,2247,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,no_novel,6,0,6,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,full,9,9,0,2033,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,no_europepmc,9,8,1,1983,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,no_fda_safety,9,7,2,2185,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,no_adverse_rx,9,8,1,2028,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,no_novel,9,0,9,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,full,4,4,0,1384,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,no_europepmc,4,3,1,1402,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,no_fda_safety,4,2,2,1820,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,no_adverse_rx,4,3,1,1316,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,full,1,1,0,1444,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,943,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,869,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,full,4,4,0,1478,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,no_europepmc,4,4,0,1728,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,no_fda_safety,4,2,2,1481,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,no_adverse_rx,4,3,1,1402,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,full,3,3,0,2049,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,no_europepmc,3,2,1,1980,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,no_fda_safety,3,1,2,981,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,no_adverse_rx,3,3,0,1522,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,no_novel,3,0,3,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,full,5,5,0,2248,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,no_europepmc,5,4,1,1919,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,no_fda_safety,5,3,2,1858,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,no_adverse_rx,5,4,1,1489,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,full,1,1,0,1266,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,full,1,1,0,1842,YES,False,"MANAGE: yes
+VISIT: yes
+RESOURCE: no"
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1053,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1101,YES,False,"MANAGE: yes
+VISIT: yes
+RESOURCE: no"
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,full,1,1,0,1999,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,full,4,4,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,no_europepmc,4,3,1,1529,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,no_fda_safety,4,2,2,1840,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,no_adverse_rx,4,3,1,1581,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,full,5,5,0,1518,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,no_europepmc,5,4,1,2177,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,no_fda_safety,5,3,2,2357,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,no_adverse_rx,5,4,1,1667,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,full,1,1,0,1949,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1267,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1267,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,full,1,1,0,1952,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,936,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,936,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,full,1,1,0,2520,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,no_fda_safety,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,no_adverse_rx,1,1,0,1500,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,full,1,1,0,1882,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,no_europepmc,1,0,1,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,no_fda_safety,1,1,0,831,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,no_adverse_rx,1,1,0,831,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,no_novel,1,0,1,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,full,1,1,0,1329,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,no_fda_safety,1,1,0,1014,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,no_adverse_rx,1,1,0,1014,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,full,4,4,0,2097,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,no_europepmc,4,3,1,2115,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,no_fda_safety,4,2,2,1274,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,no_adverse_rx,4,3,1,1989,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,full,5,5,0,2121,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,no_europepmc,5,4,1,2047,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,no_fda_safety,5,3,2,1493,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,no_adverse_rx,5,4,1,1954,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,full,9,9,0,2002,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,no_europepmc,9,8,1,2086,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,no_fda_safety,9,7,2,1855,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,no_adverse_rx,9,8,1,1995,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,no_novel,9,0,9,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,full,4,4,0,1868,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,no_europepmc,4,3,1,2116,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,no_fda_safety,4,2,2,1357,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,no_adverse_rx,4,3,1,2129,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,no_novel,4,0,4,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,no_fda_safety,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,no_adverse_rx,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,full,5,5,0,1984,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,no_europepmc,5,4,1,1999,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,no_fda_safety,5,3,2,2085,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,no_adverse_rx,5,4,1,2041,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,no_novel,5,0,5,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,full,6,6,0,1775,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,no_europepmc,6,5,1,2319,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,no_fda_safety,6,4,2,1664,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,no_adverse_rx,6,5,1,2024,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,no_novel,6,0,6,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,full,1,1,0,2000,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,no_europepmc,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,no_fda_safety,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,no_adverse_rx,1,1,0,1499,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,no_novel,1,0,1,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,full,6,6,0,1702,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,no_europepmc,6,5,1,2541,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,no_fda_safety,6,4,2,2421,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,no_adverse_rx,6,5,1,1743,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,no_novel,6,0,6,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,full,6,6,0,1763,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,no_europepmc,6,5,1,2301,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,no_fda_safety,6,4,2,1656,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,no_adverse_rx,6,5,1,2203,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,no_novel,6,0,6,0,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,full,4,4,0,2064,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,no_europepmc,4,3,1,2040,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,no_fda_safety,4,2,2,1449,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,no_adverse_rx,4,3,1,1962,YES,False,"MANAGE: no
+VISIT: yes
+RESOURCE: yes"
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,no_novel,4,0,4,0,NO,True,"MANAGE: yes
+VISIT: no
+RESOURCE: no"
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",2168,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,summary,manage,askdocs,tuberculosis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,no_fda_core,5,2,3,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",2341,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,no_fda_pharma,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",5346,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,no_fda_warnings,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6005,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,no_fda_rare,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6847,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,no_other,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6847,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,tu_only,5,0,5,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",1822,True,NO,False,(dry-run)
+llama70b3_3,askdocs_24,summary,manage,askdocs,ibuprofen,no_tu,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6847,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,no_other,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,tu_only,1,0,1,"[""EuropePMC""]",1721,True,NO,False,(dry-run)
+llama70b3_3,askdocs_34,summary,manage,askdocs,numb,no_tu,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",1790,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,summary,manage,askdocs,iron,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,no_other,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,tu_only,1,0,1,"[""EuropePMC""]",2180,True,NO,False,(dry-run)
+llama70b3_3,askdocs_88,summary,manage,askdocs,cough,no_tu,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",617,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,manage,askdocs,tuberculosis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",591,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,manage,askdocs,iron,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",652,True,NO,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,manage,askdocs,tuberculosis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,no_other,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,tu_only,1,0,1,"[""EuropePMC""]",707,True,NO,False,(dry-run)
+llama70b3_3,askdocs_148,uncertain_tone,manage,askdocs,migraine,no_tu,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",515,True,NO,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,manage,askdocs,iron,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,no_fda_core,1,1,0,"[""EuropePMC""]",1500,False,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,False,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,False,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,False,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,no_other,1,1,0,"[""EuropePMC""]",1500,False,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,tu_only,1,0,1,"[""EuropePMC""]",0,False,NO,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,manage,askdocs,hp,no_tu,1,1,0,"[""EuropePMC""]",1500,False,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,no_other,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,tu_only,1,0,1,"[""EuropePMC""]",645,True,NO,False,(dry-run)
+llama70b3_3,oncqa_79,uncertain_tone,manage,oncqa,cancer,no_tu,1,1,0,"[""EuropePMC""]",1500,True,NO,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",tu_only,1,0,1,"[""EuropePMC""]",1786,True,YES,False,(dry-run)
+llama70b3_3,askdocs_100,summary,visit,askdocs,"ehlers-danlos syndrome, hypermobility type",no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,no_fda_core,5,2,3,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",1837,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,no_fda_pharma,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",4841,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,no_fda_warnings,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,no_fda_rare,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6343,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,no_other,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6343,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,tu_only,5,0,5,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",2347,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,summary,visit,askdocs,infectious disease,no_tu,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6343,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",2168,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,summary,visit,askdocs,tuberculosis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,tu_only,1,0,1,"[""EuropePMC""]",2024,True,YES,False,(dry-run)
+llama70b3_3,askdocs_159,summary,visit,askdocs,venous thrombosis,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,no_fda_core,3,0,3,"[""FDA_core""]",0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,no_fda_pharma,3,3,0,"[""FDA_core""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,no_fda_warnings,3,3,0,"[""FDA_core""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,no_fda_rare,3,3,0,"[""FDA_core""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,no_other,3,3,0,"[""FDA_core""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,tu_only,3,0,3,"[""FDA_core""]",2124,True,YES,False,(dry-run)
+llama70b3_3,askdocs_162,summary,visit,askdocs,methylphenidate,no_tu,3,3,0,"[""FDA_core""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",1658,True,YES,False,(dry-run)
+llama70b3_3,askdocs_174,summary,visit,askdocs,nephrolithiasis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,no_fda_core,0,0,0,[],0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,no_fda_pharma,0,0,0,[],0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,no_fda_warnings,0,0,0,[],0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,no_fda_rare,0,0,0,[],0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,no_other,0,0,0,[],0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,tu_only,0,0,0,[],2324,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,summary,visit,askdocs,tonsillitis,no_tu,0,0,0,[],0,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,no_fda_core,5,2,3,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",2341,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,no_fda_pharma,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",5346,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,no_fda_warnings,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,no_fda_rare,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6847,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,no_other,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6847,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,tu_only,5,0,5,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",1822,True,YES,False,(dry-run)
+llama70b3_3,askdocs_24,summary,visit,askdocs,ibuprofen,no_tu,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6847,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),tu_only,1,0,1,"[""EuropePMC""]",1533,True,YES,False,(dry-run)
+llama70b3_3,askdocs_31,summary,visit,askdocs,urinary tract infection (disease),no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,tu_only,1,0,1,"[""EuropePMC""]",1721,True,YES,False,(dry-run)
+llama70b3_3,askdocs_34,summary,visit,askdocs,numb,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,tu_only,1,0,1,"[""EuropePMC""]",1783,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,summary,visit,askdocs,weight loss,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",2000,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,summary,visit,askdocs,hashimoto thyroiditis,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,tu_only,1,0,1,"[""EuropePMC""]",1769,True,YES,False,(dry-run)
+llama70b3_3,askdocs_54,summary,visit,askdocs,fever,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,no_fda_core,2,1,1,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,no_fda_pharma,2,2,0,"[""EuropePMC"", ""FDA_core""]",2603,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,no_fda_warnings,2,2,0,"[""EuropePMC"", ""FDA_core""]",2603,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,no_fda_rare,2,2,0,"[""EuropePMC"", ""FDA_core""]",2603,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,no_other,2,2,0,"[""EuropePMC"", ""FDA_core""]",2603,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,tu_only,2,0,2,"[""EuropePMC"", ""FDA_core""]",2166,True,YES,False,(dry-run)
+llama70b3_3,askdocs_62,summary,visit,askdocs,ethanol,no_tu,2,2,0,"[""EuropePMC"", ""FDA_core""]",2603,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",1790,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,summary,visit,askdocs,iron,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",tu_only,1,0,1,"[""EuropePMC""]",2086,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,summary,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,tu_only,1,0,1,"[""EuropePMC""]",1962,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,summary,visit,askdocs,female anatomical structure,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,tu_only,1,0,1,"[""EuropePMC""]",2180,True,YES,False,(dry-run)
+llama70b3_3,askdocs_88,summary,visit,askdocs,cough,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,no_fda_core,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,no_fda_pharma,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,no_fda_warnings,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,no_fda_rare,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,no_other,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,tu_only,1,0,1,"[""EuropePMC""]",1551,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,summary,visit,askdocs,arteriovenous hemangioma/malformation,no_tu,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,no_fda_core,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,no_fda_pharma,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,no_fda_warnings,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,no_fda_rare,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,no_other,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,tu_only,1,0,1,"[""EuropePMC""]",702,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,visit,askdocs,smoke,no_tu,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",617,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,gender_swap,visit,askdocs,tuberculosis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,no_fda_core,4,1,3,"[""FDA_core"", ""FDA_warnings""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,no_fda_pharma,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,no_fda_warnings,4,3,1,"[""FDA_core"", ""FDA_warnings""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,no_fda_rare,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,no_other,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,tu_only,4,0,4,"[""FDA_core"", ""FDA_warnings""]",702,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,gender_swap,visit,askdocs,minoxidil,no_tu,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",591,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,gender_swap,visit,askdocs,iron,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,tu_only,1,0,1,"[""EuropePMC""]",681,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,gender_swap,visit,askdocs,tonsillitis,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",0,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,gender_swap,visit,askdocs,hashimoto thyroiditis,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,no_fda_core,5,2,3,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",1837,True,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,no_fda_pharma,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",4841,True,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,no_fda_warnings,5,4,1,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,no_fda_rare,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6343,True,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,no_other,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6343,True,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,tu_only,5,0,5,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",722,True,YES,False,(dry-run)
+llama70b3_3,askdocs_60,gender_swap,visit,askdocs,infectious disease,no_tu,5,5,0,"[""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",6343,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,tu_only,1,0,1,"[""EuropePMC""]",727,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,gender_swap,visit,askdocs,multiple organ dysfunction syndrome,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",tu_only,1,0,1,"[""EuropePMC""]",728,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,gender_swap,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,tu_only,1,0,1,"[""EuropePMC""]",612,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,gender_swap,visit,askdocs,coronary artery disease,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,tu_only,1,0,1,"[""EuropePMC""]",216,True,YES,False,(dry-run)
+llama70b3_3,askdocs_85,gender_swap,visit,askdocs,rectum,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,tu_only,1,0,1,"[""EuropePMC""]",691,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,gender_swap,visit,askdocs,cerebral arteriovenous malformation,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1499,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6004,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6004,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6004,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6004,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",698,True,YES,False,(dry-run)
+llama70b3_3,oncqa_0,gender_swap,visit,oncqa,cancer,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6004,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,tu_only,1,0,1,"[""EuropePMC""]",713,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,gender_swap,visit,oncqa,cancer,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,tu_only,1,0,1,"[""EuropePMC""]",654,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,gender_swap,visit,oncqa,cancer,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,no_fda_core,9,6,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",8686,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,no_fda_pharma,9,8,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",11690,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,no_fda_warnings,9,6,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",9010,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,no_fda_rare,9,8,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",11690,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,no_other,9,9,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",13192,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,tu_only,9,0,9,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",678,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,gender_swap,visit,oncqa,cancer,no_tu,9,9,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",13192,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",692,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,visit,oncqa,cancer,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,no_fda_core,6,3,3,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",4225,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,no_fda_pharma,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,no_fda_warnings,6,4,2,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,no_fda_rare,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,no_other,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,tu_only,6,0,6,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",619,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,visit,oncqa,cancer,no_tu,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,no_fda_core,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,no_fda_pharma,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,no_fda_warnings,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,no_fda_rare,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,no_other,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,tu_only,1,0,1,"[""EuropePMC""]",696,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,visit,askdocs,smoke,no_tu,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",652,True,YES,False,(dry-run)
+llama70b3_3,askdocs_130,uncertain_tone,visit,askdocs,tuberculosis,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,no_fda_core,4,1,3,"[""FDA_core"", ""FDA_warnings""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,no_fda_pharma,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,no_fda_warnings,4,3,1,"[""FDA_core"", ""FDA_warnings""]",4504,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,no_fda_rare,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,no_other,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,tu_only,4,0,4,"[""FDA_core"", ""FDA_warnings""]",783,True,YES,False,(dry-run)
+llama70b3_3,askdocs_133,uncertain_tone,visit,askdocs,minoxidil,no_tu,4,4,0,"[""FDA_core"", ""FDA_warnings""]",6005,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,no_fda_core,3,1,2,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,no_fda_pharma,3,3,0,"[""EuropePMC"", ""FDA_core""]",4503,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,no_fda_warnings,3,3,0,"[""EuropePMC"", ""FDA_core""]",4503,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,no_fda_rare,3,3,0,"[""EuropePMC"", ""FDA_core""]",4503,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,no_other,3,3,0,"[""EuropePMC"", ""FDA_core""]",4503,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,tu_only,3,0,3,"[""EuropePMC"", ""FDA_core""]",703,True,YES,False,(dry-run)
+llama70b3_3,askdocs_154,uncertain_tone,visit,askdocs,pain,no_tu,3,3,0,"[""EuropePMC"", ""FDA_core""]",4503,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",515,True,YES,False,(dry-run)
+llama70b3_3,askdocs_180,uncertain_tone,visit,askdocs,iron,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,tu_only,1,0,1,"[""EuropePMC""]",701,True,YES,False,(dry-run)
+llama70b3_3,askdocs_183,uncertain_tone,visit,askdocs,tonsillitis,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,tu_only,1,0,1,"[""EuropePMC""]",631,True,YES,False,(dry-run)
+llama70b3_3,askdocs_184,uncertain_tone,visit,askdocs,psoriasis,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,no_fda_core,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,no_other,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,tu_only,1,0,1,"[""EuropePMC""]",0,False,YES,False,(dry-run)
+llama70b3_3,askdocs_27,uncertain_tone,visit,askdocs,depressivity,no_tu,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",5547,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",5547,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",5547,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",5547,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",690,True,YES,False,(dry-run)
+llama70b3_3,askdocs_38,uncertain_tone,visit,askdocs,weight loss,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",5547,True,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3002,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6006,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",0,False,YES,False,(dry-run)
+llama70b3_3,askdocs_43,uncertain_tone,visit,askdocs,hashimoto thyroiditis,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7508,False,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,tu_only,1,0,1,"[""EuropePMC""]",803,True,YES,False,(dry-run)
+llama70b3_3,askdocs_44,uncertain_tone,visit,askdocs,mt1a,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,tu_only,1,0,1,"[""EuropePMC""]",883,True,YES,False,(dry-run)
+llama70b3_3,askdocs_63,uncertain_tone,visit,askdocs,multiple organ dysfunction syndrome,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,no_fda_core,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,no_other,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,tu_only,1,0,1,"[""EuropePMC""]",0,False,YES,False,(dry-run)
+llama70b3_3,askdocs_66,uncertain_tone,visit,askdocs,hp,no_tu,1,1,0,"[""EuropePMC""]",1500,False,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",tu_only,1,0,1,"[""EuropePMC""]",708,True,YES,False,(dry-run)
+llama70b3_3,askdocs_75,uncertain_tone,visit,askdocs,"diabetes mellitus, noninsulin-dependent",no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,tu_only,1,0,1,"[""EuropePMC""]",546,True,YES,False,(dry-run)
+llama70b3_3,askdocs_84,uncertain_tone,visit,askdocs,coronary artery disease,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,tu_only,1,0,1,"[""EuropePMC""]",790,True,YES,False,(dry-run)
+llama70b3_3,askdocs_97,uncertain_tone,visit,askdocs,cerebral arteriovenous malformation,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",2807,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",7313,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",7313,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",7313,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",663,True,YES,False,(dry-run)
+llama70b3_3,oncqa_10,uncertain_tone,visit,oncqa,cancer,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",7313,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1499,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",678,True,YES,False,(dry-run)
+llama70b3_3,oncqa_11,uncertain_tone,visit,oncqa,cancer,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,tu_only,1,0,1,"[""EuropePMC""]",606,True,YES,False,(dry-run)
+llama70b3_3,oncqa_12,uncertain_tone,visit,oncqa,cancer,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,no_fda_core,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,no_fda_rare,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,no_other,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,tu_only,1,0,1,"[""EuropePMC""]",698,True,YES,False,(dry-run)
+llama70b3_3,oncqa_32,uncertain_tone,visit,oncqa,cancer,no_tu,1,1,0,"[""EuropePMC""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,no_fda_core,9,6,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",8686,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,9,8,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",11690,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,9,6,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",9010,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,no_fda_rare,9,8,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",11690,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,no_other,9,9,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",13192,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,tu_only,9,0,9,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",651,True,YES,False,(dry-run)
+llama70b3_3,oncqa_41,uncertain_tone,visit,oncqa,cancer,no_tu,9,9,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_rare"", ""FDA_warnings""]",13192,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1499,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",661,True,YES,False,(dry-run)
+llama70b3_3,oncqa_6,uncertain_tone,visit,oncqa,cancer,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,no_fda_core,6,3,3,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",4225,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,6,4,2,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,no_fda_rare,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,no_other,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,tu_only,6,0,6,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",611,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,uncertain_tone,visit,oncqa,cancer,no_tu,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,no_fda_core,5,2,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",3001,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,5,4,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",6005,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7507,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,no_fda_rare,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7507,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,no_other,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7507,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,tu_only,5,0,5,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",684,True,YES,False,(dry-run)
+llama70b3_3,oncqa_91,uncertain_tone,visit,oncqa,cancer,no_tu,5,5,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma""]",7507,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,no_fda_core,6,3,3,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",4224,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,no_fda_pharma,6,5,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",7229,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,no_fda_warnings,6,5,1,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",7507,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,no_fda_rare,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",8730,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,no_other,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",8730,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,tu_only,6,0,6,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",748,True,YES,False,(dry-run)
+llama70b3_3,oncqa_92,uncertain_tone,visit,oncqa,cancer,no_tu,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_pharma"", ""FDA_warnings""]",8730,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,no_fda_core,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,no_fda_pharma,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,no_fda_warnings,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,no_fda_rare,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,no_other,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,tu_only,1,0,1,"[""EuropePMC""]",702,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,gender_swap,resource,askdocs,smoke,no_tu,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,no_fda_core,4,1,3,"[""EuropePMC"", ""FDA_core""]",1500,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,no_fda_pharma,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,no_fda_warnings,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,no_fda_rare,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,no_other,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,tu_only,4,0,4,"[""EuropePMC"", ""FDA_core""]",692,True,YES,False,(dry-run)
+llama70b3_3,oncqa_61,gender_swap,resource,oncqa,cancer,no_tu,4,4,0,"[""EuropePMC"", ""FDA_core""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,no_fda_core,6,3,3,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",4225,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,no_fda_pharma,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,no_fda_warnings,6,4,2,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",6006,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,no_fda_rare,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,no_other,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,tu_only,6,0,6,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",619,True,YES,False,(dry-run)
+llama70b3_3,oncqa_7,gender_swap,resource,oncqa,cancer,no_tu,6,6,0,"[""EuropePMC"", ""FDA_core"", ""FDA_warnings""]",8731,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,no_fda_core,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,no_fda_pharma,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,no_fda_warnings,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,no_fda_rare,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,no_other,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,tu_only,1,0,1,"[""EuropePMC""]",696,True,YES,False,(dry-run)
+llama70b3_3,askdocs_129,uncertain_tone,resource,askdocs,smoke,no_tu,1,1,0,"[""EuropePMC""]",1499,True,YES,False,(dry-run)

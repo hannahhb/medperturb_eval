@@ -13,6 +13,9 @@ Examples:
   python run.py --start 0.0 --end 0.5
 """
 import argparse
+import warnings
+warnings.filterwarnings("ignore", message="resource_tracker: There appear to be",
+                        category=UserWarning)
 
 from scripts.logging_setup import setup_logging
 from config import get_default_config
@@ -29,13 +32,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--datasets",
         nargs="+",
-        default=["usmle_derm", "sct"],
+        default=["oncqa", "askdocs"],
         help="Datasets to include (default: oncqa askdocs).",
     )
     parser.add_argument(
         "--perturbations",
         nargs="+",
-        default=["gender_swap"], # "baseline", "summary", "uncertain_tone", "colorful_tone"
+        default=["gender_swap", "baseline", "summary", "uncertain_tone", "colorful_tone"],
         help="Perturbations to include.",
     )
     parser.add_argument(
@@ -79,13 +82,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="Disable resume and reprocess all rows.",
     )
     parser.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Number of parallel worker threads (default: 1). "
+             "For TOOLUNI, the pipeline semaphore caps concurrent tool pipelines "
+             "regardless of worker count — set TOOLUNI_CONCURRENCY env var to tune.",
+    )
+    parser.add_argument(
         "--mode",
         default="MEDREASON",
-        choices=["TXAGENT", "TXAGENT_BEDROCK", "AWS", "MEDREASON", "MEDPATHAGENT", "AGENTMD"],
+        choices=["TXAGENT", "TXAGENT_BEDROCK", "AWS", "MEDREASON", "MEDPATHAGENT", "AGENTMD", "TOOLUNI", "KGRANK"],
         help=(
             "Runner mode (default: MEDREASON). "
-            "MEDREASON = KG-augmented reasoning (was MEDPATHAGENT). "
-            "MEDPATHAGENT = NEW combined KG + tool-augmented model. "
+            "MEDREASON = KG-augmented reasoning. "
+            "MEDPATHAGENT = combined KG + tool-augmented model. "
+            "TOOLUNI = FDA tool retrieval + iterative YES/NO reasoning. "
+            "KGRANK = one-hop KG triplet retrieval with MMR/similarity/MedCPT ranking. "
             "AGENTMD requires setup_agentmd.py to be run first."
         ),
     )
@@ -97,12 +110,65 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--kg-path",
         default=None,
-        help="Path to kg.csv (PrimeKG). Required for MEDREASON and MEDPATHAGENT modes.",
+        help="Path to kg.csv (PrimeKG). Required for MEDREASON mode.",
     )
     parser.add_argument(
         "--emb-path",
         default=None,
-        help="Path to node_embeddings_sapbert.pt cache. Required for MEDREASON and MEDPATHAGENT modes.",
+        help="Path to node_embeddings_sapbert.pt cache. Required for MEDREASON mode.",
+    )
+    parser.add_argument(
+        "--medreason-csv",
+        default=None,
+        help=(
+            "Path to a MedReason results CSV containing a 'kg_paths' column. "
+            "Required for MEDPATHAGENT mode. Only rows with non-empty kg_paths are processed."
+        ),
+    )
+    parser.add_argument(
+        "--mpa-mode",
+        default="dual",
+        choices=["dual", "cached_dual", "paths_only"],
+        help=(
+            "MedPathAgent retrieval mode (default: dual). "
+            "'dual' = retrieve from clinical context + KG paths separately (two live API calls). "
+            "'cached_dual' = read clinical-context tool output from existing ToolUni logs "
+            "(requires --tooluni-log-dir), run paths retrieval live, deduplicate and merge. "
+            "'paths_only' = retrieve from KG paths text only (ablation)."
+        ),
+    )
+    parser.add_argument(
+        "--tooluni-log-dir",
+        default=None,
+        help=(
+            "Path to directory containing ToolUni log JSONs (tool_<row_id>.json). "
+            "Required when --mpa-mode cached_dual is set."
+        ),
+    )
+    parser.add_argument(
+        "--tooluni-results-csv",
+        default=None,
+        help=(
+            "Path to a ToolUni results CSV.  In cached_dual mode, rows that are "
+            "skipped (no kg_paths) are copied from this CSV into the MedPathAgent "
+            "output so the results file is complete for all row IDs."
+        ),
+    )
+    parser.add_argument(
+        "--runs",
+        type=int,
+        default=1,
+        help="Number of independent runs (default: 1). "
+             "Each run is saved to run_0, run_1, ... sub-directories.",
+    )
+    parser.add_argument(
+        "--tooluni-cache-csv",
+        default=None,
+        help=(
+            "Path to a prior ToolUni results CSV (must have tu_tool_context and row_id columns). "
+            "When set for TOOLUNI mode, FDA tool calls are skipped; only the summarise "
+            "and final-answer LLM steps are re-run fresh. Use for multi-run variance estimation."
+        ),
     )
     return parser
 
@@ -120,6 +186,8 @@ def main() -> None:
         "MEDREASON": "llama70b3_3",
         "MEDPATHAGENT": "llama70b3_3",
         "AGENTMD": "llama70b3_3",
+        "TOOLUNI": "llama70b3_3",
+        "KGRANK":  "llama70b3_3",
     }[args.mode]
     name = args.name or default_name
 
@@ -137,48 +205,96 @@ def main() -> None:
     cfg.perturbations = args.perturbations
     if args.mode == "TXAGENT":
         cfg.model_configs[0].device_id = args.device
-    if args.mode in ("MEDREASON", "MEDPATHAGENT"):
+    if args.mode in ("MEDREASON", "KGRANK"):
         mc = cfg.model_configs[0]
         if args.kg_path:
             mc.kg_path = args.kg_path
         if args.emb_path:
             mc.node_embeddings_path = args.emb_path
+        if args.medreason_csv:
+            # Reuse pre-extracted KG paths — skip KG/SapBERT/spaCy loading entirely
+            cfg.medreason_csv_path = args.medreason_csv
+            cfg.cached_paths_only = True
+
+    if args.mode == "TOOLUNI":
+        if args.tooluni_log_dir:
+            cfg.tooluni_log_path = args.tooluni_log_dir
+        if args.tooluni_cache_csv:
+            cfg.tooluni_cache_csv_path = args.tooluni_cache_csv
+
+    if args.mode == "MEDPATHAGENT":
+        if not args.medreason_csv:
+            raise ValueError("--medreason-csv is required for MEDPATHAGENT mode")
+        cfg.medreason_csv_path = args.medreason_csv
+        cfg.model_configs[0].mpa_retrieval_mode = args.mpa_mode
+        if args.mpa_mode == "cached_dual":
+            if not args.tooluni_log_dir:
+                raise ValueError(
+                    "--tooluni-log-dir is required when --mpa-mode cached_dual is set"
+                )
+            cfg.tooluni_log_path = args.tooluni_log_dir
+            if args.tooluni_results_csv:
+                cfg.tooluni_results_csv = args.tooluni_results_csv
 
     run_name = "_".join(cfg.datasets)
-    cfg.output_path = f"./output/{cfg.primary_model}/{run_name}/run_0"
-    cfg.log_path = f"./logs/{cfg.primary_model}/{run_name}/run_0"
+    cfg.max_workers = args.workers
 
     if args.debug:
         cfg.debug_mode = True
         cfg.sample_size = args.sample_size
 
-    mc = cfg.model_configs[0]
-    print(f"\n{'='*60}")
-    print(f"  MedPerturb Experiment  [{args.mode}]")
-    print(f"  Model        : {mc.checkpoint or mc.name}")
-    print(f"  Backend      : {mc.backend}")
-    print(f"  Datasets     : {', '.join(cfg.datasets)}")
-    print(f"  Perturbations: {', '.join(cfg.perturbations)}")
-    if args.mode == "TXAGENT":
-        print(f"  Device       : cuda:{mc.device_id}")
-    if args.mode in ("MEDREASON", "MEDPATHAGENT"):
-        print(f"  KG path      : {mc.kg_path}")
-        print(f"  Embeddings   : {mc.node_embeddings_path}")
-    if args.mode == "AGENTMD":
-        print(f"  Tools path   : {mc.agentmd_tools_path}")
-        print(f"  LLM backend  : {mc.agentmd_llm or 'auto (OpenAI if key set, else Bedrock)'}")
-        print(f"  LLM model    : {mc.agentmd_llm_model}")
-    print(f"  Slice        : {args.start:.2f} - {args.end:.2f}")
-    print(f"  Output       : {cfg.output_path}")
-    print(f"{'='*60}\n")
+    for run_idx in range(args.runs):
+        cfg.output_path = f"./output/{cfg.primary_model}/{run_name}/run_{run_idx}"
+        cfg.log_path    = f"./logs/{cfg.primary_model}/{run_name}/run_{run_idx}"
 
-    processor = MedPerturbProcessor(cfg)
-    df = processor.process(resume=not args.no_resume)
+        mc = cfg.model_configs[0]
+        print(f"\n{'='*60}")
+        print(f"  MedPerturb Experiment  [{args.mode}]  run {run_idx + 1}/{args.runs}")
+        print(f"  Model        : {mc.checkpoint or mc.name}")
+        print(f"  Backend      : {mc.backend}")
+        print(f"  Datasets     : {', '.join(cfg.datasets)}")
+        print(f"  Perturbations: {', '.join(cfg.perturbations)}")
+        print(f"  Temperature  : {mc.temperature}")
+        if args.mode == "TXAGENT":
+            print(f"  Device       : cuda:{mc.device_id}")
+        if args.mode == "MEDREASON":
+            if args.medreason_csv:
+                print(f"  Cached paths : {args.medreason_csv}  (KG extraction skipped)")
+            else:
+                print(f"  KG path      : {mc.kg_path}")
+                print(f"  Embeddings   : {mc.node_embeddings_path}")
+        if args.mode == "MEDPATHAGENT":
+            print(f"  MedReason CSV: {args.medreason_csv}")
+            print(f"  Retrieval    : {args.mpa_mode}")
+            if args.mpa_mode == "cached_dual":
+                print(f"  ToolUni logs : {args.tooluni_log_dir}")
+                if args.tooluni_results_csv:
+                    print(f"  ToolUni CSV  : {args.tooluni_results_csv}")
+        if args.mode == "AGENTMD":
+            print(f"  Tools path   : {mc.agentmd_tools_path}")
+            print(f"  LLM backend  : {mc.agentmd_llm or 'auto (OpenAI if key set, else Bedrock)'}")
+            print(f"  LLM model    : {mc.agentmd_llm_model}")
+        if args.mode == "TOOLUNI":
+            print(f"  ToolRAG      : {mc.use_toolrag}")
+            if mc.use_toolrag:
+                print(f"  ToolRAG model: {mc.toolrag_model}")
+                print(f"  ToolRAG dev  : {mc.toolrag_device}")
+            if args.tooluni_cache_csv:
+                print(f"  Cached tools : {args.tooluni_cache_csv}  (FDA pipeline skipped, summarise+answer re-run)")
+            elif args.tooluni_log_dir:
+                print(f"  Cached tools : {args.tooluni_log_dir}  (tool pipeline skipped)")
+        print(f"  Workers      : {args.workers}")
+        print(f"  Slice        : {args.start:.2f} - {args.end:.2f}")
+        print(f"  Output       : {cfg.output_path}")
+        print(f"{'='*60}\n")
 
-    print(f"\n{'='*60}")
-    print(f"  DONE  -  {len(df)} rows processed")
-    print(f"  Results: {cfg.output_path}/results.csv")
-    print(f"{'='*60}\n")
+        processor = MedPerturbProcessor(cfg)
+        df = processor.process(resume=not args.no_resume)
+
+        print(f"\n{'='*60}")
+        print(f"  DONE run {run_idx + 1}/{args.runs}  -  {len(df)} rows processed")
+        print(f"  Results: {cfg.output_path}/results.csv")
+        print(f"{'='*60}\n")
 
 
 if __name__ == "__main__":

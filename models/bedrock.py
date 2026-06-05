@@ -11,6 +11,7 @@ import boto3
 from botocore.config import Config as BotoConfig
 
 from .base import BaseAdvancedModel, ReasoningResult
+from prompts import SYSTEM_PROMPT
 
 
 def _extract_text_from_blocks(blocks: list) -> str:
@@ -63,12 +64,15 @@ class BedrockChatModel(BaseAdvancedModel):
         with self._client_lock:
             return next(self.client_cycle)
 
-    def generate(self, prompt: str, system_prompt: str = None, stage=None, **kwargs) -> ReasoningResult:
+    def generate(self, prompt: str = None, system_prompt: str = None, **kwargs) -> ReasoningResult:
         start = time.time()
         client = self.get_client()
 
         temperature = kwargs.get("temperature", self.model_config.temperature)
         max_tokens = kwargs.get("max_tokens", self.model_config.max_tokens)
+
+        if prompt is None:
+            prompt = ""
 
         converse_params = {
             "modelId": self.model_id,

@@ -5,6 +5,7 @@ import asyncio
 from typing import Any, Dict, List, Optional
 
 from .base import BaseAdvancedModel, ReasoningResult
+from prompts import SYSTEM_PROMPT
 
 from txagent import TxAgent
 
@@ -58,7 +59,7 @@ class TxAgentModel(BaseAdvancedModel):
                 use_bedrock=True,
                 bedrock_model_id=self.model_config.bedrock_model_id,
                 bedrock_region=getattr(self.model_config, "region_name", None)
-                    or os.environ.get("AWS_REGION", "us-east-1"),
+                    or os.environ.get("AWS_REGION", "us-east-2"),
                 bedrock_rag_model_id=self.model_config.bedrock_model_id,  # same model handles RAG
                 device_id="cpu",   # no GPU needed
                 **common_kwargs,
@@ -80,8 +81,11 @@ class TxAgentModel(BaseAdvancedModel):
 
     # ── inference ─────────────────────────────────────────────────────────────
 
-    def generate(self, prompt: str, system_prompt: str = None, **kwargs) -> ReasoningResult:
+    def generate(self, prompt: str = None, system_prompt: str = None, **kwargs) -> ReasoningResult:
         assert self.agent is not None, "TxAgent not initialized"
+
+        if prompt is None:
+            prompt = ""
 
         temperature = kwargs.get("temperature", self.model_config.temperature)
         max_new_tokens = kwargs.get("max_tokens", self.model_config.max_tokens)

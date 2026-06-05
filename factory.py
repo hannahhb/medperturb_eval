@@ -24,5 +24,8 @@ class ModelFactory:
         elif mc.type == ModelType.TOOLUNI:
             from models.tooluni import ToolUniModel
             return ToolUniModel(mc, cfg)
+        elif mc.type == ModelType.KGRANK:
+            from models.kgrank import KGRankModel
+            return KGRankModel(mc, cfg)
         else:
             raise ValueError(f"Unsupported model type: {mc.type}")

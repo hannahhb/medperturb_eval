@@ -474,7 +474,7 @@ def plot_accuracy(stats: pd.DataFrame, groups: list[str], title: str,
 def main():
     import argparse
     _DEFAULT_BODY_SYSTEMS = [
-        "Reproductive", "Cardiovascular", "Endocrine", "Integumentary"
+        "Integumetary", "Reproductive", "Urinary", "Muscular",  "Cardiovascular",  "Muscular", "Skeletal"
     ]
 
     parser = argparse.ArgumentParser()

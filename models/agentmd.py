@@ -36,14 +36,9 @@ import contextlib
 from typing import Any, Dict, List, Optional, Tuple
 
 from .base import BaseAdvancedModel, ReasoningResult
+from prompts import SYSTEM_PROMPT, CALCULATOR_AUGMENTATION_HEADER
 
 logger = logging.getLogger(__name__)
-
-# Detects the MedXpertQA Turn-2 extraction prompt — no tool pipeline needed
-_TURN2_RE = re.compile(
-    r"reply with the single letter of the correct answer",
-    re.IGNORECASE,
-)
 
 # ── Prompt templates ──────────────────────────────────────────────────────────
 
@@ -65,6 +60,7 @@ Tool ID: <8-character-id>
 """
 
 _COMPUTATION_SYSTEM = (
+    # Extends SYSTEM_PROMPT with code-execution instructions for the calculator loop
     "You are a physician provided with patient information trying to assign a treatment plan. "
     "You can write Python code that will be executed automatically — results are returned to you. "
     "Reason step by step. When you have a final answer, start a line with 'Answer: '."
@@ -302,7 +298,7 @@ class AgentMDModel(BaseAdvancedModel):
         from botocore.config import Config as BotoConfig
         self._llm_client = boto3.client(
             "bedrock-runtime",
-            region_name=getattr(mc, "region_name", None) or os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=getattr(mc, "region_name", None) or os.environ.get("AWS_REGION", "us-east-2"),
             config=BotoConfig(
                 retries={"max_attempts": 10, "mode": "adaptive"},
                 connect_timeout=30,
@@ -484,66 +480,42 @@ class AgentMDModel(BaseAdvancedModel):
 
     # ── Step 3: final answer using caller's prompt ───────────────────────────
 
-    def _answer_with_calculator(
-        self, prompt: str, system_prompt: str, calculator_result: str
-    ) -> tuple[str, str]:
-        """Augment the caller's prompt with calculator result and get a response.
-
-        This is format-agnostic: MedPerturb prompts ask for MANAGE/VISIT/RESOURCE;
-        MedXpertQA prompts ask for an MCQ letter. The caller's prompt determines
-        the output format — no hardcoding here.
-
-        If the calculator already resolved to a single answer letter (A–J), we
-        surface that explicitly so the LLM doesn't silently override it.
-        """
-        result_text = calculator_result.strip()[:1000]
-        calc_block = f"Risk Calculator Result:\n{result_text}"
-
-        augmented = f"{prompt}\n\n{calc_block}"
-        response = self._llm(
-            messages=[{"role": "user", "content": [{"text": augmented}]}],
-            system=system_prompt,
-            max_tokens=self.model_config.max_tokens,
-            temperature=0.0,
-        )
-        return response, augmented
-
     # ── Public interface ─────────────────────────────────────────────────────
 
-    def generate(self, prompt: str, system_prompt: str = None, **kwargs) -> ReasoningResult:
-        _system = system_prompt or (
-            "You are a physician provided with patient information trying to assign a treatment plan."
-        )
+    def generate(
+        self,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        retrieval_query: Optional[str] = None,
+        **kwargs,
+    ) -> ReasoningResult:
+        """
+        Augment prompt with risk calculator result, then call Bedrock LLM.
 
-        # ── Turn-2 short-circuit ──────────────────────────────────────────────
-        # The MedXpertQA two-turn CoT sends a second call whose only job is to
-        # extract a single answer letter from the reasoning already produced by
-        # Turn 1.  Running the full tool pipeline again would be pure waste.
-        if _TURN2_RE.search(prompt):
-            text = self._llm(
-                messages=[{"role": "user", "content": [{"text": prompt}]}],
-                system=_system,
-                max_tokens=4,
-                temperature=0.0,
-            )
-            return ReasoningResult(
-                reasoning=text or "(no response)",
-                answer=text or "(no response)",
-                model_name=self.model_config.name,
-                metadata={},
-            )
+        Args:
+            prompt:           Full pre-built prompt (triage, MCQ, etc.).
+            system_prompt:    Optional system message.
+            retrieval_query:  Text used for tool selection / calculator scoring.
+                              Defaults to prompt when not supplied.  Pass the raw
+                              clinical context or question text for cleaner selection.
+        """
+        _system = system_prompt or SYSTEM_PROMPT
+        prompt  = prompt or ""
+        query   = retrieval_query or prompt
 
         # ── Full tool pipeline ────────────────────────────────────────────────
-        # Extract patient text for tool selection / computation.
-        # Works with MedPerturb's "Clinical Context:\n..." format or raw prompts.
-        ctx_match = re.search(r"Clinical Context:\n(.+?)(?:\n\nBased on)", prompt, re.DOTALL)
-        patient_text = ctx_match.group(1).strip() if ctx_match else prompt
-
         start = time.time()
-        tool_id, tool = self._select_tool(patient_text)
-        calculator_result, trace = self._compute_with_tool(tool, patient_text, tool_id=tool_id)
-        final_response, final_prompt = self._answer_with_calculator(
-            prompt, _system, calculator_result
+        tool_id, tool = self._select_tool(query)
+        calculator_result, trace = self._compute_with_tool(tool, query, tool_id=tool_id)
+
+        augmentation = f"{CALCULATOR_AUGMENTATION_HEADER}\n{calculator_result.strip()[:1000]}"
+        full_prompt  = f"{prompt}\n\n{augmentation}" if augmentation.strip() else prompt
+
+        final_response = self._llm(
+            messages=[{"role": "user", "content": [{"text": full_prompt}]}],
+            system=_system,
+            max_tokens=self.model_config.max_tokens,
+            temperature=0.0,
         )
 
         self.total_time += time.time() - start
@@ -552,14 +524,13 @@ class AgentMDModel(BaseAdvancedModel):
             answer=final_response,
             model_name=self.model_config.name,
             metadata={
-                "tool_id": tool_id,
-                "tool_title": tool.get("title", ""),
-                "calculator_result": calculator_result,
-                # Execution trace — lets you audit what actually ran
-                "agentmd_n_rounds": trace["n_rounds"],
-                "agentmd_code_executed": trace["code_executed"],
+                "tool_id":                tool_id,
+                "tool_title":             tool.get("title", ""),
+                "calculator_result":      calculator_result,
+                "agentmd_n_rounds":       trace["n_rounds"],
+                "agentmd_code_executed":  trace["code_executed"],
                 "agentmd_exec_had_error": trace["exec_had_error"],
-                "agentmd_rounds": trace["rounds"],  # list of {round, code, exec_output, error}
-                "final_prompt": final_prompt,
+                "agentmd_rounds":         trace["rounds"],
+                "final_prompt":           full_prompt,
             },
         )

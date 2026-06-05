@@ -7,6 +7,7 @@ as a CSV that matches the MedPerturb data.csv schema.
 """
 from __future__ import annotations
 
+import concurrent.futures
 import json
 import logging
 import os
@@ -20,7 +21,7 @@ from tqdm import tqdm
 
 from config import AdvancedConfig
 from factory import ModelFactory
-from prompts import build_prompt, SYSTEM_PROMPT
+from prompts import build_triage_prompt, SYSTEM_PROMPT
 from scripts.logging_setup import (
     discover_processed_ids,
     load_cached_rows,
@@ -28,6 +29,72 @@ from scripts.logging_setup import (
     save_csv,
     append_row_csv,
 )
+
+
+# ── tool log ─────────────────────────────────────────────────────────────────
+
+def _save_tool_log(
+    log_path: str,
+    row_id: str,
+    perturbation: str,
+    meta: dict,
+    lock: Optional[Lock] = None,
+) -> None:
+    """
+    Write a per-row tool-detail JSON to logs/<model>/run_0/tool_<row_id>.json.
+    Mirrors run_medxpertqa._save_tool_log — one file per vignette.
+    """
+    if meta.get("tooluni"):
+        detail = {
+            "row_id":         row_id,
+            "perturbation":   perturbation,
+            "tu_rounds":      meta.get("tu_rounds", []),
+            "tool_context":   meta.get("tool_context", ""),
+            "trace_manage":   meta.get("trace_manage", ""),
+            "trace_visit":    meta.get("trace_visit", ""),
+            "trace_resource": meta.get("trace_resource", ""),
+            "final_prompt":   meta.get("final_prompt", ""),
+        }
+    elif meta.get("medpathagent"):
+        detail = {
+            "row_id":             row_id,
+            "perturbation":       perturbation,
+            "entities":           meta.get("entities", []),
+            "kg_paths":           meta.get("kg_paths", ""),
+            "tool_plan":          meta.get("tool_plan", []),
+            "tool_plan_source":   meta.get("tool_plan_source", ""),
+            "tool_context":       meta.get("tool_context", ""),
+            "combined_context":   meta.get("combined_context", ""),
+            "tu_rounds":          meta.get("tu_rounds", []),
+            "trace_manage":       meta.get("trace_manage", ""),
+            "trace_visit":        meta.get("trace_visit", ""),
+            "trace_resource":     meta.get("trace_resource", ""),
+        }
+    elif "tool_id" in meta:  # AgentMD
+        detail = {
+            "row_id":                 row_id,
+            "perturbation":           perturbation,
+            "tool_id":                meta.get("tool_id", ""),
+            "tool_title":             meta.get("tool_title", ""),
+            "calculator_result":      meta.get("calculator_result", ""),
+            "agentmd_n_rounds":       meta.get("agentmd_n_rounds", 0),
+            "agentmd_code_executed":  meta.get("agentmd_code_executed", False),
+            "agentmd_exec_had_error": meta.get("agentmd_exec_had_error", False),
+            "agentmd_rounds":         meta.get("agentmd_rounds", []),
+            "final_prompt":           meta.get("final_prompt", ""),
+        }
+    else:
+        return
+
+    os.makedirs(log_path, exist_ok=True)
+    fname = os.path.join(log_path, f"tool_{row_id}.json")
+    if lock:
+        with lock:
+            with open(fname, "w", encoding="utf-8") as f:
+                json.dump(detail, f, indent=2, default=str)
+    else:
+        with open(fname, "w", encoding="utf-8") as f:
+            json.dump(detail, f, indent=2, default=str)
 
 
 # ── answer extraction ────────────────────────────────────────────────────────
@@ -86,6 +153,52 @@ class MedPerturbProcessor:
         primary_cfg = cfg.model_configs[0]
         self.model = ModelFactory.create_model(primary_cfg, cfg)
         self.model_name = primary_cfg.name
+
+        # Optional: ToolUni log directory for MedPathAgent cached_dual mode
+        self.tooluni_log_dir: Optional[str] = getattr(cfg, "tooluni_log_path", None)
+
+        # Optional: row_id → tool_context lookup for cached ToolUni runs
+        # Loaded from a prior ToolUni results CSV via cfg.tooluni_cache_csv_path
+        # row_id → (rounds, fallback_tool_context) for cached ToolUni runs
+        self.tool_rounds_lookup: Dict[str, list] = {}
+        self.tool_context_fallback: Dict[str, str] = {}
+        tooluni_cache_csv = getattr(cfg, "tooluni_cache_csv_path", None)
+        if tooluni_cache_csv and os.path.exists(tooluni_cache_csv) and os.path.getsize(tooluni_cache_csv) > 0:
+            tu = pd.read_csv(tooluni_cache_csv)
+            if "tu_rounds" in tu.columns and "row_id" in tu.columns:
+                for _, row in tu[tu["tu_rounds"].notna()].iterrows():
+                    rid = row["row_id"]
+                    try:
+                        rounds = json.loads(row["tu_rounds"])
+                        if rounds:
+                            self.tool_rounds_lookup[rid] = rounds
+                    except Exception:
+                        pass
+                    # store tu_tool_context as fallback for rows with no raw outputs
+                    if "tu_tool_context" in tu.columns and pd.notna(row.get("tu_tool_context", "")):
+                        ctx = str(row["tu_tool_context"]).strip()
+                        if ctx:
+                            self.tool_context_fallback[rid] = ctx
+                self.logger.info(
+                    "Loaded %d tu_rounds + %d fallback contexts from %s",
+                    len(self.tool_rounds_lookup), len(self.tool_context_fallback), tooluni_cache_csv
+                )
+
+        # Optional: row_id → kg_paths lookup for MedPathAgent
+        # Loaded from a prior MedReason results CSV via cfg.medreason_csv_path
+        self.kg_paths_lookup: Dict[str, str] = {}
+        medreason_csv = getattr(cfg, "medreason_csv_path", None)
+        if medreason_csv and os.path.exists(medreason_csv):
+            mr = pd.read_csv(medreason_csv)
+            if "kg_paths" in mr.columns and "row_id" in mr.columns:
+                self.kg_paths_lookup = (
+                    mr[mr["kg_paths"].notna() & (mr["kg_paths"].str.strip() != "")]
+                    .set_index("row_id")["kg_paths"]
+                    .to_dict()
+                )
+                self.logger.info(
+                    "Loaded %d kg_paths entries from %s", len(self.kg_paths_lookup), medreason_csv
+                )
 
     # ── data loading ──────────────────────────────────────────────────────────
 
@@ -146,34 +259,169 @@ class MedPerturbProcessor:
             if _row_id(str(row["context_id"]), str(row["perturbation"])) not in cached_ids
         ]
 
+        # MedPathAgent: exclude colorful_tone (medreason never ran on it so
+        # there are no kg_paths to guide retrieval and it's out of scope).
+        if self.kg_paths_lookup:
+            before = len(remaining)
+            remaining = [
+                row for row in remaining
+                if str(row.get("perturbation", "")) != "colorful_tone"
+            ]
+            self.logger.info(
+                "MedPathAgent: excluded colorful_tone, %d → %d rows remaining",
+                before, len(remaining),
+            )
+
+        # cached_dual: skip rows with no kg_paths — they would add nothing over
+        # the existing ToolUni result (same tool context, no KG signal).
+        mpa_mode = getattr(
+            self.cfg.model_configs[0] if self.cfg.model_configs else None,
+            "mpa_retrieval_mode", ""
+        )
+        if mpa_mode == "cached_dual":
+            before = len(remaining)
+            remaining = [
+                row for row in remaining
+                if self.kg_paths_lookup.get(
+                    _row_id(str(row["context_id"]), str(row["perturbation"])), ""
+                ).strip()
+            ]
+            self.logger.info(
+                "cached_dual: excluded %d rows without kg_paths, %d → %d remaining",
+                before - len(remaining), before, len(remaining),
+            )
+
         if remaining:
-            pbar = tqdm(remaining, desc="Processing vignettes")
-            for row in pbar:
-                rid = _row_id(str(row["context_id"]), str(row["perturbation"]))
-                try:
-                    result = self._process_row(row, rid)
-                    results.append(result)
-                    if self.cfg.save_intermediate:
-                        save_detail(self.cfg.log_path, rid, result, self.write_lock)
-                    append_row_csv(result, self.cfg.output_path, "results.csv")
-                except Exception as e:
-                    self.logger.error(f"Failed on {rid}: {e}")
-                    import traceback
-                    results.append(self._error_row(row, rid, traceback.format_exc()))
-                time.sleep(self.cfg.rate_limit_delay)
-            pbar.close()
+            n_workers = getattr(self.cfg, "max_workers", 1)
+            if n_workers > 1:
+                results += self._process_parallel(remaining, n_workers)
+            else:
+                results += self._process_sequential(remaining)
 
         out_df = pd.DataFrame(results)
-        self.logger.info(f"Saved {len(results)} results to {self.cfg.output_path}/results.csv")
+
+        # cached_dual: fill in rows that were skipped (no kg_paths) by copying
+        # the corresponding ToolUni results, renaming prediction columns so the
+        # output CSV is complete for all row IDs.
+        tooluni_csv = getattr(self.cfg, "tooluni_results_csv", None)
+        if mpa_mode == "cached_dual" and tooluni_csv and os.path.exists(tooluni_csv):
+            out_df = self._fill_from_tooluni(out_df, tooluni_csv)
+
+        self.logger.info(f"Saved {len(out_df)} results to {self.cfg.output_path}/results.csv")
         return out_df
+
+    def _fill_from_tooluni(self, out_df: pd.DataFrame, tooluni_csv: str) -> pd.DataFrame:
+        """
+        Copy rows from a ToolUni results CSV that are missing in out_df.
+        Prediction columns (anything ending in _manage, _visit, _resource and
+        their _reasoning siblings) are renamed from the ToolUni model name to
+        the current MedPathAgent model name.  All other columns are kept as-is.
+        """
+        tu = pd.read_csv(tooluni_csv, low_memory=False)
+
+        present_ids = set(out_df["row_id"]) if "row_id" in out_df.columns else set()
+        missing = tu[~tu["row_id"].isin(present_ids)].copy()
+
+        if missing.empty:
+            self.logger.info("cached_dual fill: no missing rows in ToolUni CSV")
+            return out_df
+
+        # Detect the ToolUni model-name prefix by looking for a *_manage column
+        tu_model = None
+        for col in tu.columns:
+            if col.endswith("_manage") and not col.startswith("gold"):
+                tu_model = col[: -len("_manage")]
+                break
+
+        if tu_model:
+            suffixes = ["_manage", "_visit", "_resource",
+                        "_manage_reasoning", "_visit_reasoning", "_resource_reasoning"]
+            rename = {
+                f"{tu_model}{s}": f"{self.model_name}{s}"
+                for s in suffixes
+                if f"{tu_model}{s}" in missing.columns
+            }
+            missing = missing.rename(columns=rename)
+            self.logger.info(
+                "cached_dual fill: copying %d rows from ToolUni (src model=%s → dst model=%s)",
+                len(missing), tu_model, self.model_name,
+            )
+        else:
+            self.logger.warning(
+                "cached_dual fill: could not detect ToolUni model name; "
+                "prediction columns will not be renamed"
+            )
+
+        filled = pd.concat([out_df, missing], ignore_index=True, sort=False)
+
+        # Persist the filled CSV
+        results_path = os.path.join(self.cfg.output_path, "results.csv")
+        filled.to_csv(results_path, index=False)
+        return filled
+
+    def _process_sequential(self, rows) -> List[Dict]:
+        results = []
+        pbar = tqdm(rows, desc="Processing vignettes")
+        for row in pbar:
+            rid = _row_id(str(row["context_id"]), str(row["perturbation"]))
+            try:
+                result = self._process_row(row, rid)
+                results.append(result)
+                if self.cfg.save_intermediate:
+                    save_detail(self.cfg.log_path, rid, result, self.write_lock)
+                append_row_csv(result, self.cfg.output_path, "results.csv")
+            except Exception as e:
+                self.logger.error(f"Failed on {rid}: {e}")
+                import traceback
+                results.append(self._error_row(row, rid, traceback.format_exc()))
+            time.sleep(self.cfg.rate_limit_delay)
+        pbar.close()
+        return results
+
+    def _process_parallel(self, rows, n_workers: int) -> List[Dict]:
+        results = []
+        pbar = tqdm(total=len(rows), desc=f"Processing vignettes ({n_workers} workers)")
+
+        def _work(row):
+            rid = _row_id(str(row["context_id"]), str(row["perturbation"]))
+            try:
+                result = self._process_row(row, rid)
+                if self.cfg.save_intermediate:
+                    save_detail(self.cfg.log_path, rid, result, self.write_lock)
+                append_row_csv(result, self.cfg.output_path, "results.csv")
+                return result
+            except Exception as e:
+                self.logger.error(f"Failed on {rid}: {e}")
+                import traceback
+                return self._error_row(row, rid, traceback.format_exc())
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=n_workers) as ex:
+            futures = {ex.submit(_work, row): row for row in rows}
+            for fut in concurrent.futures.as_completed(futures):
+                results.append(fut.result())
+                pbar.update(1)
+
+        pbar.close()
+        return results
 
     def _process_row(self, row: pd.Series, rid: str) -> Dict:
         clinical_context = str(row.get("clinical_context", ""))
-        prompt = build_prompt(clinical_context)
+
+        # Pass pre-extracted kg_paths if available (used by MedPathAgent)
+        kg_paths = self.kg_paths_lookup.get(rid, "")
+
+        # Build full triage prompt here so models stay dataset-agnostic
+        triage_prompt = build_triage_prompt(clinical_context)
 
         result = self.model.generate(
-            prompt=prompt,
+            prompt=triage_prompt,
             system_prompt=SYSTEM_PROMPT,
+            retrieval_query=clinical_context,   # clean text for NER / tool retrieval
+            kg_paths=kg_paths,
+            row_id=rid,
+            tooluni_log_dir=self.tooluni_log_dir,
+            cached_tool_rounds=self.tool_rounds_lookup.get(rid, None),
+            cached_tool_context_fallback=self.tool_context_fallback.get(rid, ""),
         )
 
         parsed = parse_response(result.reasoning)
@@ -215,6 +463,12 @@ class MedPerturbProcessor:
             base["tu_trace_visit"]    = meta.get("trace_visit", "")
             base["tu_trace_resource"] = meta.get("trace_resource", "")
             base["tu_rounds"]         = json.dumps(meta.get("tu_rounds", []), default=str)
+        if meta.get("kgrank"):
+            base["kgrank_entities"]   = json.dumps(meta.get("entities", []), default=str)
+            base["kgrank_n_entities"] = meta.get("n_entities", 0)
+            base["kgrank_triplets"]   = meta.get("triplets_text", "")
+            base["kgrank_n_triplets"] = meta.get("n_triplets", 0)
+            base["kgrank_method"]     = meta.get("kgrank_method", "")
         if meta.get("medpathagent"):
             # NEW combined MedPathAgent: KG entities + paths + FDA tool results
             base["mpa_entities"]         = json.dumps(meta.get("entities", []), default=str)
@@ -224,9 +478,14 @@ class MedPerturbProcessor:
             base["mpa_tool_plan"]        = json.dumps(meta.get("tool_plan", []), default=str)
             base["mpa_tool_plan_source"] = meta.get("tool_plan_source", "")
             base["mpa_tool_context"]     = meta.get("tool_context", "")
+            base["mpa_tu_rounds"]        = json.dumps(meta.get("tu_rounds", []), default=str)
             base["mpa_trace_manage"]     = meta.get("trace_manage", "")
             base["mpa_trace_visit"]      = meta.get("trace_visit", "")
             base["mpa_trace_resource"]   = meta.get("trace_resource", "")
+        # Write separate tool-detail JSON (mirrors run_medxpertqa._save_tool_log)
+        if meta.get("tooluni") or meta.get("medpathagent") or "tool_id" in meta:
+            _save_tool_log(self.cfg.log_path, rid, base.get("perturbation", ""), meta, self.write_lock)
+
         if "tool_id" in meta:
             base["agentmd_tool_id"] = meta.get("tool_id", "")
             base["agentmd_tool_title"] = meta.get("tool_title", "")

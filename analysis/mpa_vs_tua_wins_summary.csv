@@ -1,0 +1,24 @@
+backbone,task,perturbation,MPA,TUA
+Llama 70B,manage,gender_swap,1,1
+Llama 70B,manage,summary,1,3
+Llama 70B,resource,gender_swap,2,1
+Llama 70B,resource,summary,1,1
+Llama 70B,visit,gender_swap,1,1
+Llama 70B,visit,summary,1,2
+Llama 8B,manage,gender_swap,1,2
+Llama 8B,manage,summary,2,3
+Llama 8B,manage,uncertain_tone,0,2
+Llama 8B,resource,gender_swap,2,0
+Llama 8B,resource,summary,2,0
+Llama 8B,resource,uncertain_tone,0,1
+Llama 8B,visit,gender_swap,2,1
+Llama 8B,visit,summary,3,0
+Llama 8B,visit,uncertain_tone,0,2
+Qwen 235B,manage,gender_swap,1,1
+Qwen 235B,manage,summary,1,2
+Qwen 235B,manage,uncertain_tone,1,3
+Qwen 235B,resource,gender_swap,1,1
+Qwen 235B,resource,summary,0,1
+Qwen 235B,resource,uncertain_tone,2,4
+Qwen 235B,visit,summary,0,3
+Qwen 235B,visit,uncertain_tone,0,4

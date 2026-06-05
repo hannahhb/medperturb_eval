@@ -1,0 +1,315 @@
+backbone,backbone_key,task,perturbation,context_id,dataset,winner,label,mpa_pred,tu_pred,has_kg,has_novel_tools,kg_anchor,kg_paths,tool_context
+Llama 70B,llama70b3_3,manage,summary,askdocs_34,askdocs,MPA,NO,NO,YES,True,True,numb,numb -> expression present -> heart,"[EuropePMC_search_articles] (query=numb expression heart) title: Invasion of Epicardial-Derived Cells to the Trabeculae Mediated by NFPs-Fgf Signaling Regulates Ventricular Compaction.
+abstract: <h4>Background</h4>Left ventricular noncompaction cardiomyopathy (LVNC; OMIM No. 604169) is anatomically "
+Llama 70B,llama70b3_3,manage,summary,askdocs_96,askdocs,TUA,NO,YES,NO,True,True,psoriasis,"psoriasis -> indication -> methotrexate
+methotrexate -> synergistic interaction -> folic acid","* Methotrexate tablets are indicated for the treatment of adults with severe psoriasis (1.4)
+* Methotrexate tablets are contraindicated in pregnant women receiving methotrexate tablets for treatment of non-neoplastic diseases
+* Methotrexate tablets are contraindicated in patients with a history of s"
+Llama 70B,llama70b3_3,manage,summary,askdocs_133,askdocs,TUA,NO,YES,NO,True,True,hypertension,"hypertension -> indication -> minoxidil
+anxiety -> phenotype present -> obsessive-compulsive disorder","* Minoxidil tablets are indicated only in the treatment of hypertension that is symptomatic or associated with target organ damage and is not manageable with maximum therapeutic doses of a diuretic plus two other antihypertensive drugs.
+* Minoxidil reduced supine diastolic blood pressure by 20 mm Hg"
+Llama 70B,llama70b3_3,manage,summary,askdocs_154,askdocs,TUA,NO,YES,NO,True,True,chronic pain,chronic pain -> pain,"[EuropePMC_search_articles] (query=chronic pain FDA drug safety information) title: Comparative Safety of Long-Acting Versus Short-Acting Erythropoiesis-Stimulating Agents (ESA): Disproportionality Analysis Using the FDA Adverse Event Reporting System.
+abstract: <h4>Objectives</h4>Erythropoiesis-sti"
+Llama 70B,llama70b3_3,manage,gender_swap,oncqa_12,oncqa,MPA,NO,NO,YES,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> diffuse type adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> gastric adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> thyroid gland carcinoma -> phenotype present -> pancreatitis -> pancreas dis","* Aspirin has anti-inflammatory, antipyretic, and analgesic properties.
+* Aspirin holds a prominent role in the treatment of cardiovascular disease.
+* The utility of aspirin in cancer therapeutics has been explored and stratified into COX-dependent and -independent mechanisms.
+* COX2 gene expression"
+Llama 70B,llama70b3_3,manage,gender_swap,oncqa_33,oncqa,TUA,NO,YES,NO,True,True,cancer,"cancer -> malignant endocrine neoplasm -> melanoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+melanoma -> phenotype present -> uveal melanoma -> phenotype present -> ocular hypertension -> hypertensive disorder -> hypertension","* ASPIRIN is used for the temporary relief of minor aches and pains or as recommended by your doctor.
+* ASPIRIN will not provide fast relief of headaches or other symptoms needing immediate relief because of its delayed action.
+* ASPIRIN is used for temporary relief of minor aches and pains due to: "
+Llama 70B,llama70b3_3,visit,summary,askdocs_34,askdocs,MPA,YES,YES,NO,True,True,numb,numb -> expression present -> heart,"[EuropePMC_search_articles] (query=numb expression heart) title: Invasion of Epicardial-Derived Cells to the Trabeculae Mediated by NFPs-Fgf Signaling Regulates Ventricular Compaction.
+abstract: <h4>Background</h4>Left ventricular noncompaction cardiomyopathy (LVNC; OMIM No. 604169) is anatomically "
+Llama 70B,llama70b3_3,visit,summary,askdocs_133,askdocs,TUA,YES,NO,YES,True,True,hypertension,"hypertension -> indication -> minoxidil
+anxiety -> phenotype present -> obsessive-compulsive disorder","* Minoxidil tablets are indicated only in the treatment of hypertension that is symptomatic or associated with target organ damage and is not manageable with maximum therapeutic doses of a diuretic plus two other antihypertensive drugs.
+* Minoxidil reduced supine diastolic blood pressure by 20 mm Hg"
+Llama 70B,llama70b3_3,visit,summary,askdocs_154,askdocs,TUA,YES,NO,YES,True,True,chronic pain,chronic pain -> pain,"[EuropePMC_search_articles] (query=chronic pain FDA drug safety information) title: Comparative Safety of Long-Acting Versus Short-Acting Erythropoiesis-Stimulating Agents (ESA): Disproportionality Analysis Using the FDA Adverse Event Reporting System.
+abstract: <h4>Objectives</h4>Erythropoiesis-sti"
+Llama 70B,llama70b3_3,visit,gender_swap,oncqa_12,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> diffuse type adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> gastric adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> thyroid gland carcinoma -> phenotype present -> pancreatitis -> pancreas dis","* Aspirin has anti-inflammatory, antipyretic, and analgesic properties.
+* Aspirin holds a prominent role in the treatment of cardiovascular disease.
+* The utility of aspirin in cancer therapeutics has been explored and stratified into COX-dependent and -independent mechanisms.
+* COX2 gene expression"
+Llama 70B,llama70b3_3,visit,gender_swap,oncqa_33,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> malignant endocrine neoplasm -> melanoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+melanoma -> phenotype present -> uveal melanoma -> phenotype present -> ocular hypertension -> hypertensive disorder -> hypertension","* ASPIRIN is used for the temporary relief of minor aches and pains or as recommended by your doctor.
+* ASPIRIN will not provide fast relief of headaches or other symptoms needing immediate relief because of its delayed action.
+* ASPIRIN is used for temporary relief of minor aches and pains due to: "
+Llama 70B,llama70b3_3,resource,summary,askdocs_34,askdocs,MPA,YES,YES,NO,True,True,numb,numb -> expression present -> heart,"[EuropePMC_search_articles] (query=numb expression heart) title: Invasion of Epicardial-Derived Cells to the Trabeculae Mediated by NFPs-Fgf Signaling Regulates Ventricular Compaction.
+abstract: <h4>Background</h4>Left ventricular noncompaction cardiomyopathy (LVNC; OMIM No. 604169) is anatomically "
+Llama 70B,llama70b3_3,resource,summary,askdocs_133,askdocs,TUA,YES,NO,YES,True,True,hypertension,"hypertension -> indication -> minoxidil
+anxiety -> phenotype present -> obsessive-compulsive disorder","* Minoxidil tablets are indicated only in the treatment of hypertension that is symptomatic or associated with target organ damage and is not manageable with maximum therapeutic doses of a diuretic plus two other antihypertensive drugs.
+* Minoxidil reduced supine diastolic blood pressure by 20 mm Hg"
+Llama 70B,llama70b3_3,resource,gender_swap,askdocs_184,askdocs,MPA,YES,YES,NO,True,True,psoriasis,psoriasis -> dermatitis -> vitiligo -> phenotype present -> localized scleroderma -> scleroderma (disease) -> phenotype present -> pain,"* Age: 26
+* Gender: F
+* Height: 6'1
+* Weight: 210
+* Duration of complaint: 1.5 week
+* Past Medical History (PMH): psoriasis
+* Medication: Otezla
+* Chief complaint: stye that popped, now with red and swollen eyelid, tender to touch, and feeling of ""full""/pressure in the eye when looking up
+* Duration"
+Llama 70B,llama70b3_3,resource,gender_swap,oncqa_12,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> diffuse type adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> gastric adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> thyroid gland carcinoma -> phenotype present -> pancreatitis -> pancreas dis","* Aspirin has anti-inflammatory, antipyretic, and analgesic properties.
+* Aspirin holds a prominent role in the treatment of cardiovascular disease.
+* The utility of aspirin in cancer therapeutics has been explored and stratified into COX-dependent and -independent mechanisms.
+* COX2 gene expression"
+Llama 70B,llama70b3_3,resource,gender_swap,oncqa_33,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> malignant endocrine neoplasm -> melanoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+melanoma -> phenotype present -> uveal melanoma -> phenotype present -> ocular hypertension -> hypertensive disorder -> hypertension","* ASPIRIN is used for the temporary relief of minor aches and pains or as recommended by your doctor.
+* ASPIRIN will not provide fast relief of headaches or other symptoms needing immediate relief because of its delayed action.
+* ASPIRIN is used for temporary relief of minor aches and pains due to: "
+Qwen 235B,qwen235b,manage,summary,askdocs_66,askdocs,TUA,NO,YES,NO,True,True,iron,"iron -> indication -> microcytic anemia -> anemia (disease)
+iron -> indication -> hypochromic anemia -> anemia (disease)
+iron -> indication -> deficiency anemia -> anemia (disease)
+ecchymosis -> phenotype present -> idiopathic aplastic anemia -> phenotype present -> aplastic anemia -> anemia (diseas","- Iron deficiency anemia is an indication for Integra FTM (brand name: Integra F).
+- Integra FTM contains ferrous fumarate, polysaccharide iron complex, and folic acid.
+- Integra FTM is indicated in pregnancy for prevention and treatment of iron deficiency and to supply a maintenance dosage of folic"
+Qwen 235B,qwen235b,manage,summary,askdocs_133,askdocs,TUA,NO,YES,NO,True,True,hypertension,"hypertension -> indication -> minoxidil
+anxiety -> phenotype present -> obsessive-compulsive disorder","- MINOXIDIL is indicated for hair regrowth on the top of the scalp (vertex only).
+- MINOXIDIL 5% is used in hair regrowth treatments such as Gainxtra Hair Regrowth Treatment for Men and Women Minoxidil 5% Form with Biotin.
+- Minoxidil tablets are indicated only for hypertension that is symptomatic o"
+Qwen 235B,qwen235b,manage,summary,askdocs_185,askdocs,MPA,NO,NO,YES,True,True,autism (disease),autism (disease) -> autism spectrum disorder -> pervasive developmental disorder -> complex neurodevelopmental disorder -> developmental and epileptic encephalopathy -> phenotype present -> anxiety,"- autism spectrum disorder is characterized by impairments in socialization, impairments in verbal and nonverbal communication, and restricted and repetitive patterns of behaviors (DSM, 1994)
+- 94.5% of individuals undergoing psychiatry-focused pharmacogenomic (PGx) testing had one or more clinicall"
+Qwen 235B,qwen235b,manage,gender_swap,askdocs_96,askdocs,MPA,NO,NO,YES,True,False,kl,"kl -> expression present -> anatomical system -> anatomical structure -> anatomical group
+kl -> expression present -> thyroid gland",nan
+Qwen 235B,qwen235b,manage,gender_swap,askdocs_148,askdocs,TUA,NO,YES,NO,True,True,migraine,migraine -> phenotype present -> rheumatic fever -> phenotype present -> sinusitis -> phenotype present -> congenital hypothyroidism -> phenotype present -> hypothyroidism -> thyroid gland disease -> thyroiditis (disease),"[EuropePMC_search_articles] (query=migraine rheumatic fever sinusitis conge) title: Clinical Handbook for Oral, Facial, and Head Pain.
+abstract: None
+journal: None
+year: 2023
+url: https://europepmc.org/article/MED/38109653
+title: Proceedings of the 32nd European Paediatric Rheumatology Congress.
+abs"
+Qwen 235B,qwen235b,manage,uncertain_tone,askdocs_148,askdocs,TUA,NO,YES,NO,True,True,migraine,migraine -> phenotype present -> rheumatic fever -> phenotype present -> sinusitis -> phenotype present -> congenital hypothyroidism -> phenotype present -> hypothyroidism -> thyroid gland disease -> thyroiditis (disease),"[EuropePMC_search_articles] (query=migraine rheumatic fever sinusitis conge) title: Clinical Handbook for Oral, Facial, and Head Pain.
+abstract: None
+journal: None
+year: 2023
+url: https://europepmc.org/article/MED/38109653
+title: Proceedings of the 32nd European Paediatric Rheumatology Congress.
+abs"
+Qwen 235B,qwen235b,manage,uncertain_tone,oncqa_11,oncqa,TUA,NO,YES,NO,True,True,cancer,"cancer -> digestive system cancer -> intestinal cancer -> colorectal cancer -> familial colorectal cancer -> phenotype present -> hepatocellular carcinoma -> side effect -> simvastatin
+cancer -> carcinoma -> phenotype present -> colorectal cancer, susceptibility to -> colorectal cancer -> familial c","- Simvastatin is contraindicated with concomitant use of strong CYP3A4 inhibitors (select azole anti-fungals, macrolide antibiotics, anti-viral medications, and nefazodone).
+- Simvastatin is contraindicated with concomitant use of cyclosporine, danazol, or gemfibrozil.
+- Simvastatin is contraindicat"
+Qwen 235B,qwen235b,manage,uncertain_tone,oncqa_33,oncqa,TUA,NO,YES,NO,True,True,cancer,"cancer -> malignant endocrine neoplasm -> melanoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+cancer -> digestive system cancer -> liver cancer -> associated with -> letm1
+cancer -> malignant endocrine neoplasm -> liver cancer -> associated with -> letm1","- Uses for the temporary relief of minor aches and pains due to: a cold, headache, backache, muscular aches, toothache, minor pains from arthritis (openfda.brand_name: Rapidol Aspirin)
+- Uses for the temporary relief of minor aches and pains due to: headache, muscle pain, backache, toothache, menstr"
+Qwen 235B,qwen235b,manage,uncertain_tone,oncqa_62,oncqa,MPA,NO,NO,YES,True,True,cancer,"cancer -> respiratory system cancer -> lung cancer -> phenotype present -> lung adenocarcinoma
+cancer -> thoracic cancer -> lung cancer -> phenotype present -> lung adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> lung adenocarcinoma
+cancer -> head and neck cancer -> off-label use -> carbopla","- PEMRYDI RTU is a folate analog metabolic inhibitor indicated in combination with pembrolizumab and platinum chemotherapy for the initial treatment of patients with metastatic non-squamous non-small cell lung cancer (NSCLC), with no EGFR or ALK genomic tumor aberrations. (1.1)
+- PEMRYDI RTU is indi"
+Qwen 235B,qwen235b,visit,summary,askdocs_43,askdocs,TUA,YES,NO,YES,True,True,hashimoto thyroiditis,hashimoto thyroiditis -> indication -> levothyroxine,"- Levothyroxine sodium tablets are indicated as a replacement therapy in primary (thyroidal), secondary (pituitary), and tertiary (hypothalamic) congenital or acquired hypothyroidism.
+- Levothyroxine sodium tablets are indicated as an adjunct to surgery and radioiodine therapy in the management of t"
+Qwen 235B,qwen235b,visit,summary,askdocs_66,askdocs,TUA,YES,NO,YES,True,True,iron,"iron -> indication -> microcytic anemia -> anemia (disease)
+iron -> indication -> hypochromic anemia -> anemia (disease)
+iron -> indication -> deficiency anemia -> anemia (disease)
+ecchymosis -> phenotype present -> idiopathic aplastic anemia -> phenotype present -> aplastic anemia -> anemia (diseas","- Iron deficiency anemia is an indication for Integra FTM (brand name: Integra F).
+- Integra FTM contains ferrous fumarate, polysaccharide iron complex, and folic acid.
+- Integra FTM is indicated in pregnancy for prevention and treatment of iron deficiency and to supply a maintenance dosage of folic"
+Qwen 235B,qwen235b,visit,summary,askdocs_133,askdocs,TUA,YES,NO,YES,True,True,hypertension,"hypertension -> indication -> minoxidil
+anxiety -> phenotype present -> obsessive-compulsive disorder","- MINOXIDIL is indicated for hair regrowth on the top of the scalp (vertex only).
+- MINOXIDIL 5% is used in hair regrowth treatments such as Gainxtra Hair Regrowth Treatment for Men and Women Minoxidil 5% Form with Biotin.
+- Minoxidil tablets are indicated only for hypertension that is symptomatic o"
+Qwen 235B,qwen235b,visit,uncertain_tone,askdocs_54,askdocs,TUA,YES,NO,YES,True,True,fever,"fever -> phenotype present -> pneumocystosis -> phenotype present -> pleural effusion -> phenotype present -> pleural empyema (disease) -> pleural disease -> pneumothorax (disease)
+fever -> side effect -> hydromorphone
+fever -> phenotype present -> meningococcal infection -> bacterial meningitis -> ","- Hydromorphone hydrochloride oral solution and hydromorphone hydrochloride tablets are indicated for the management of pain severe enough to require an opioid analgesic and for which alternative treatments are inadequate.
+- Hydromorphone hydrochloride suppositories are indicated for the management "
+Qwen 235B,qwen235b,visit,uncertain_tone,oncqa_0,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> carcinoma -> lung carcinoma -> non-small cell lung carcinoma (disease)
+cancer -> reproductive system cancer -> female reproductive organ cancer -> ovarian cancer -> indication -> cisplatin
+cancer -> carcinoma -> breast carcinoma -> phenotype present -> ovarian cancer -> indication -> cispl","- Cisplatin is contraindicated in patients with pre-existing renal impairment.
+- Cisplatin should not be employed in myelosuppressed patients.
+- Cisplatin should not be employed in patients with hearing impairment.
+- Cisplatin is contraindicated in patients with a history of allergic reactions to ci"
+Qwen 235B,qwen235b,visit,uncertain_tone,oncqa_11,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> digestive system cancer -> intestinal cancer -> colorectal cancer -> familial colorectal cancer -> phenotype present -> hepatocellular carcinoma -> side effect -> simvastatin
+cancer -> carcinoma -> phenotype present -> colorectal cancer, susceptibility to -> colorectal cancer -> familial c","- Simvastatin is contraindicated with concomitant use of strong CYP3A4 inhibitors (select azole anti-fungals, macrolide antibiotics, anti-viral medications, and nefazodone).
+- Simvastatin is contraindicated with concomitant use of cyclosporine, danazol, or gemfibrozil.
+- Simvastatin is contraindicat"
+Qwen 235B,qwen235b,visit,uncertain_tone,oncqa_33,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> malignant endocrine neoplasm -> melanoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+cancer -> digestive system cancer -> liver cancer -> associated with -> letm1
+cancer -> malignant endocrine neoplasm -> liver cancer -> associated with -> letm1","- Uses for the temporary relief of minor aches and pains due to: a cold, headache, backache, muscular aches, toothache, minor pains from arthritis (openfda.brand_name: Rapidol Aspirin)
+- Uses for the temporary relief of minor aches and pains due to: headache, muscle pain, backache, toothache, menstr"
+Qwen 235B,qwen235b,resource,summary,askdocs_133,askdocs,TUA,YES,NO,YES,True,True,hypertension,"hypertension -> indication -> minoxidil
+anxiety -> phenotype present -> obsessive-compulsive disorder","- MINOXIDIL is indicated for hair regrowth on the top of the scalp (vertex only).
+- MINOXIDIL 5% is used in hair regrowth treatments such as Gainxtra Hair Regrowth Treatment for Men and Women Minoxidil 5% Form with Biotin.
+- Minoxidil tablets are indicated only for hypertension that is symptomatic o"
+Qwen 235B,qwen235b,resource,gender_swap,askdocs_129,askdocs,MPA,YES,YES,NO,True,True,smoke,smoke -> linked to -> respiratory system disease -> respiratory tract infectious disease -> infectious disease,"[EuropePMC_search_articles] (query=smoke AND respiratory tract infectious d) title: Ambroxol hydrochloride and clenbuterol hydrochloride oral solution versus ambroxol hydrochloride injection for pediatric lower respiratory tract infection with mucoid sputum: a multicenter, non-randomized observation"
+Qwen 235B,qwen235b,resource,gender_swap,askdocs_148,askdocs,TUA,YES,NO,YES,True,True,migraine,migraine -> phenotype present -> rheumatic fever -> phenotype present -> sinusitis -> phenotype present -> congenital hypothyroidism -> phenotype present -> hypothyroidism -> thyroid gland disease -> thyroiditis (disease),"[EuropePMC_search_articles] (query=migraine rheumatic fever sinusitis conge) title: Clinical Handbook for Oral, Facial, and Head Pain.
+abstract: None
+journal: None
+year: 2023
+url: https://europepmc.org/article/MED/38109653
+title: Proceedings of the 32nd European Paediatric Rheumatology Congress.
+abs"
+Qwen 235B,qwen235b,resource,uncertain_tone,oncqa_0,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> carcinoma -> lung carcinoma -> non-small cell lung carcinoma (disease)
+cancer -> reproductive system cancer -> female reproductive organ cancer -> ovarian cancer -> indication -> cisplatin
+cancer -> carcinoma -> breast carcinoma -> phenotype present -> ovarian cancer -> indication -> cispl","- Cisplatin is contraindicated in patients with pre-existing renal impairment.
+- Cisplatin should not be employed in myelosuppressed patients.
+- Cisplatin should not be employed in patients with hearing impairment.
+- Cisplatin is contraindicated in patients with a history of allergic reactions to ci"
+Qwen 235B,qwen235b,resource,uncertain_tone,oncqa_11,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> digestive system cancer -> intestinal cancer -> colorectal cancer -> familial colorectal cancer -> phenotype present -> hepatocellular carcinoma -> side effect -> simvastatin
+cancer -> carcinoma -> phenotype present -> colorectal cancer, susceptibility to -> colorectal cancer -> familial c","- Simvastatin is contraindicated with concomitant use of strong CYP3A4 inhibitors (select azole anti-fungals, macrolide antibiotics, anti-viral medications, and nefazodone).
+- Simvastatin is contraindicated with concomitant use of cyclosporine, danazol, or gemfibrozil.
+- Simvastatin is contraindicat"
+Qwen 235B,qwen235b,resource,uncertain_tone,oncqa_8,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> renal cell carcinoma (disease)
+cancer -> carcinoma -> renal carcinoma -> renal cell carcinoma (disease)
+cancer -> carcinoma -> adenocarcinoma -> renal cell carcinoma (disease) -> indication -> sunitinib
+cancer -> carcinoma -> renal carcinoma -> renal cell car","- Sunitinib malate is indicated for the treatment of adult patients with advanced renal cell carcinoma (RCC).
+- Sunitinib malate is indicated for the treatment of adult patients with gastrointestinal stromal tumor (GIST) after disease progression on or intolerance to imatinib mesylate.
+- Sunitinib m"
+Qwen 235B,qwen235b,resource,uncertain_tone,oncqa_33,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> malignant endocrine neoplasm -> melanoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+cancer -> digestive system cancer -> liver cancer -> associated with -> letm1
+cancer -> malignant endocrine neoplasm -> liver cancer -> associated with -> letm1","- Uses for the temporary relief of minor aches and pains due to: a cold, headache, backache, muscular aches, toothache, minor pains from arthritis (openfda.brand_name: Rapidol Aspirin)
+- Uses for the temporary relief of minor aches and pains due to: headache, muscle pain, backache, toothache, menstr"
+Qwen 235B,qwen235b,resource,uncertain_tone,oncqa_45,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> pancreatic adenocarcinoma
+cancer -> carcinoma -> thyroid gland carcinoma -> phenotype present -> pancreatic adenocarcinoma
+cancer -> sarcoma -> phenotype present -> melanoma-pancreatic cancer syndrome -> phenotype present -> pancreatic adenocarcinoma
+cancer -","- Capecitabine tablets are indicated for the adjuvant treatment of adults with pancreatic adenocarcinoma as a component of a combination chemotherapy regimen.
+- Gemcitabine Injection is indicated as first-line treatment for patients with locally advanced (nonresectable Stage II or Stage III) or meta"
+Qwen 235B,qwen235b,resource,uncertain_tone,oncqa_61,oncqa,TUA,YES,NO,YES,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> diffuse type adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> gastric adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+cancer -> carc","- Uses for the temporary relief of minor aches and pains or as recommended by your doctor.
+- Because of its delayed action, this product will not provide fast relief of headaches or other symptoms needing immediate relief.
+- Temporarily relieves minor aches and pains due to: headache, minor arthriti"
+Llama 8B,llama8b3_1,manage,summary,askdocs_158,askdocs,TUA,NO,YES,NO,False,True,,nan,"[EuropePMC_search_articles] (query=paronychia home remedies) title: Natural Treatment Options for Nail Disorders.
+abstract: The growing demand for natural treatments has raised concerns among clinicians due to limited scientific evidence supporting their use. This review article addresses the issue "
+Llama 8B,llama8b3_1,manage,summary,askdocs_167,askdocs,TUA,NO,YES,NO,False,True,,nan,"* Paresthesia is characterized by abnormal sensations such as tingling, pricking, or numbness of the skin with no apparent physical cause.
+* Pruritus is an itch or a sensation that makes a person want to scratch, referring to an abnormally increased disposition to experience pruritus.
+* Pruritus on "
+Llama 8B,llama8b3_1,manage,summary,askdocs_184,askdocs,MPA,NO,NO,YES,True,True,psoriasis,psoriasis -> dermatitis -> vitiligo -> phenotype present -> localized scleroderma -> scleroderma (disease) -> phenotype present -> pain,"Here are the clinically specific facts relevant to the question:
+
+* Apremilast (Otezla) is used to treat psoriasis.
+* Apremilast was associated with gastrointestinal AEs such as diarrhea and nausea in 95,524 AE reports.
+* Apremilast was associated with nervous system disorders like headache in 95,52"
+Llama 8B,llama8b3_1,manage,summary,askdocs_1,askdocs,MPA,NO,NO,YES,False,True,,nan,"* 78 minutes: operative time for a C-arm-free, O-arm-based navigation-guided endoscopy-assisted extraforaminal decompression
+* 50 mL: estimated blood loss during the operative procedure
+* 6-month follow-up: patient was able to walk more than 1 km without claudication
+* 1 year follow-up: Visual Analo"
+Llama 8B,llama8b3_1,manage,summary,askdocs_66,askdocs,TUA,NO,YES,NO,True,True,iron,"iron -> indication -> microcytic anemia -> anemia (disease)
+iron -> indication -> hypochromic anemia -> anemia (disease)
+iron -> indication -> deficiency anemia -> anemia (disease)
+ecchymosis -> phenotype present -> idiopathic aplastic anemia -> phenotype present -> aplastic anemia -> anemia (diseas","Here are the clinically specific facts relevant to the question:
+
+* Normal iron level range: 20-200
+* Patient's iron level: 6
+* Patient's history of bruising: only twice in her life, including a childhood incident of breaking her arm
+* Patient's concern: inability to bruise despite anemia diagnosis,"
+Llama 8B,llama8b3_1,manage,gender_swap,askdocs_20,askdocs,TUA,NO,YES,NO,False,True,,nan,"Here are the clinically specific facts extracted from the raw FDA output:
+
+* Scheduled analgesics can help reduce symptom severity in the acute period following injury within 72 hours.
+* Anti-CGRP therapies have shown promise in treating Persistent post-traumatic headache (PPTH).
+* Non-pharmacologic"
+Llama 8B,llama8b3_1,manage,gender_swap,oncqa_11,oncqa,MPA,NO,NO,YES,True,True,cancer,"cancer -> digestive system cancer -> intestinal cancer -> colorectal cancer -> familial colorectal cancer -> phenotype present -> hepatocellular carcinoma -> side effect -> simvastatin
+cancer -> carcinoma -> phenotype present -> colorectal cancer, susceptibility to -> colorectal cancer -> familial c","Here are the clinically specific facts extracted from the FDA output:
+
+* Age: 63 years
+* Gender: Female
+* Cancer diagnosis: Stage III diffuse large B-cell lymphoma
+* Prior cancer treatments: None
+* Current cancer treatments: R-CHOP (started 1 month ago)
+* Current medication list:
+	+ Lisinopril
+	+ Am"
+Llama 8B,llama8b3_1,manage,gender_swap,askdocs_105,askdocs,TUA,NO,YES,NO,False,True,,nan,"[EuropePMC_search_articles] (query=alternative treatments for hypersalivati) title: An Australian standard of care for Niemann-Pick disease type C.
+abstract: <h4>Background</h4>Niemann-Pick disease type C (NP-C) is the fifth most prevalent lysosomal disorder in Australia. Diagnostic delay is common,"
+Llama 8B,llama8b3_1,manage,uncertain_tone,askdocs_165,askdocs,TUA,NO,YES,NO,False,True,,nan,"* 5.2-10% is the 1-year prevalence of hand eczema in childhood.
+* 6.5-13.3% is the lifetime prevalence of hand eczema in childhood.
+* 12.1% is the 1-year prevalence of hand eczema in adolescents and young adults.
+* 18.3% is the lifetime prevalence of hand eczema in adolescents and young adults.
+* 12"
+Llama 8B,llama8b3_1,manage,uncertain_tone,askdocs_24,askdocs,TUA,NO,YES,NO,False,True,,nan,"Here are the clinically specific facts relevant to the question:
+
+* The patient is a 25-year-old male from Germany, 174cm, 70kg.
+* The patient had a strong cold 2-3 weeks ago and took Paracetamol and Ibuprofen.
+* The patient is not currently taking any medications.
+* The blisters on the patient's ha"
+Llama 8B,llama8b3_1,visit,summary,askdocs_161,askdocs,MPA,YES,YES,NO,True,True,constipation disorder,"constipation disorder -> bowel dysfunction -> intestinal disease -> digestive system disease -> stomach disease -> functional gastric disease -> dyspepsia
+constipation disorder -> bowel dysfunction -> intestinal disease -> digestive system disease -> diarrheal disease","Here are the clinically specific facts extracted from the FDA output:
+
+* MILK OF MAGNESIA produces a bowel movement in 1/2 to 6 hours.
+* Foster and Thrive Castor Oil produces a bowel movement in 1 to 3 days.
+* purelax is used to relieve occasional constipation.
+* POLYETHYLENE GLYCOL 3350 is the gene"
+Llama 8B,llama8b3_1,visit,summary,askdocs_184,askdocs,MPA,YES,YES,NO,True,True,psoriasis,psoriasis -> dermatitis -> vitiligo -> phenotype present -> localized scleroderma -> scleroderma (disease) -> phenotype present -> pain,"Here are the clinically specific facts relevant to the question:
+
+* Apremilast (Otezla) is used to treat psoriasis.
+* Apremilast was associated with gastrointestinal AEs such as diarrhea and nausea in 95,524 AE reports.
+* Apremilast was associated with nervous system disorders like headache in 95,52"
+Llama 8B,llama8b3_1,visit,summary,askdocs_1,askdocs,MPA,YES,YES,NO,False,True,,nan,"* 78 minutes: operative time for a C-arm-free, O-arm-based navigation-guided endoscopy-assisted extraforaminal decompression
+* 50 mL: estimated blood loss during the operative procedure
+* 6-month follow-up: patient was able to walk more than 1 km without claudication
+* 1 year follow-up: Visual Analo"
+Llama 8B,llama8b3_1,visit,gender_swap,oncqa_11,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> digestive system cancer -> intestinal cancer -> colorectal cancer -> familial colorectal cancer -> phenotype present -> hepatocellular carcinoma -> side effect -> simvastatin
+cancer -> carcinoma -> phenotype present -> colorectal cancer, susceptibility to -> colorectal cancer -> familial c","Here are the clinically specific facts extracted from the FDA output:
+
+* Age: 63 years
+* Gender: Female
+* Cancer diagnosis: Stage III diffuse large B-cell lymphoma
+* Prior cancer treatments: None
+* Current cancer treatments: R-CHOP (started 1 month ago)
+* Current medication list:
+	+ Lisinopril
+	+ Am"
+Llama 8B,llama8b3_1,visit,gender_swap,oncqa_61,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> diffuse type adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> gastric adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+cancer -> carc","Here are the clinically specific facts extracted from the FDA output:
+
+* The patient's current medication, ASPIRIN, is contraindicated in patients with a history of stomach problems, such as heartburn.
+* The patient's current medication, ASPIRIN, is contraindicated in patients with a history of hype"
+Llama 8B,llama8b3_1,visit,gender_swap,askdocs_105,askdocs,TUA,YES,NO,YES,False,True,,nan,"[EuropePMC_search_articles] (query=alternative treatments for hypersalivati) title: An Australian standard of care for Niemann-Pick disease type C.
+abstract: <h4>Background</h4>Niemann-Pick disease type C (NP-C) is the fifth most prevalent lysosomal disorder in Australia. Diagnostic delay is common,"
+Llama 8B,llama8b3_1,visit,uncertain_tone,askdocs_165,askdocs,TUA,YES,NO,YES,False,True,,nan,"* 5.2-10% is the 1-year prevalence of hand eczema in childhood.
+* 6.5-13.3% is the lifetime prevalence of hand eczema in childhood.
+* 12.1% is the 1-year prevalence of hand eczema in adolescents and young adults.
+* 18.3% is the lifetime prevalence of hand eczema in adolescents and young adults.
+* 12"
+Llama 8B,llama8b3_1,visit,uncertain_tone,askdocs_24,askdocs,TUA,YES,NO,YES,False,True,,nan,"Here are the clinically specific facts relevant to the question:
+
+* The patient is a 25-year-old male from Germany, 174cm, 70kg.
+* The patient had a strong cold 2-3 weeks ago and took Paracetamol and Ibuprofen.
+* The patient is not currently taking any medications.
+* The blisters on the patient's ha"
+Llama 8B,llama8b3_1,resource,summary,askdocs_184,askdocs,MPA,YES,YES,NO,True,True,psoriasis,psoriasis -> dermatitis -> vitiligo -> phenotype present -> localized scleroderma -> scleroderma (disease) -> phenotype present -> pain,"Here are the clinically specific facts relevant to the question:
+
+* Apremilast (Otezla) is used to treat psoriasis.
+* Apremilast was associated with gastrointestinal AEs such as diarrhea and nausea in 95,524 AE reports.
+* Apremilast was associated with nervous system disorders like headache in 95,52"
+Llama 8B,llama8b3_1,resource,summary,askdocs_1,askdocs,MPA,YES,YES,NO,False,True,,nan,"* 78 minutes: operative time for a C-arm-free, O-arm-based navigation-guided endoscopy-assisted extraforaminal decompression
+* 50 mL: estimated blood loss during the operative procedure
+* 6-month follow-up: patient was able to walk more than 1 km without claudication
+* 1 year follow-up: Visual Analo"
+Llama 8B,llama8b3_1,resource,gender_swap,oncqa_11,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> digestive system cancer -> intestinal cancer -> colorectal cancer -> familial colorectal cancer -> phenotype present -> hepatocellular carcinoma -> side effect -> simvastatin
+cancer -> carcinoma -> phenotype present -> colorectal cancer, susceptibility to -> colorectal cancer -> familial c","Here are the clinically specific facts extracted from the FDA output:
+
+* Age: 63 years
+* Gender: Female
+* Cancer diagnosis: Stage III diffuse large B-cell lymphoma
+* Prior cancer treatments: None
+* Current cancer treatments: R-CHOP (started 1 month ago)
+* Current medication list:
+	+ Lisinopril
+	+ Am"
+Llama 8B,llama8b3_1,resource,gender_swap,oncqa_61,oncqa,MPA,YES,YES,NO,True,True,cancer,"cancer -> carcinoma -> adenocarcinoma -> diffuse type adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> adenocarcinoma -> gastric adenocarcinoma -> diffuse gastric adenocarcinoma
+cancer -> carcinoma -> prostate carcinoma -> prostate cancer -> linked to -> aspirin
+cancer -> carc","Here are the clinically specific facts extracted from the FDA output:
+
+* The patient's current medication, ASPIRIN, is contraindicated in patients with a history of stomach problems, such as heartburn.
+* The patient's current medication, ASPIRIN, is contraindicated in patients with a history of hype"
+Llama 8B,llama8b3_1,resource,uncertain_tone,askdocs_24,askdocs,TUA,YES,NO,YES,False,True,,nan,"Here are the clinically specific facts relevant to the question:
+
+* The patient is a 25-year-old male from Germany, 174cm, 70kg.
+* The patient had a strong cold 2-3 weeks ago and took Paracetamol and Ibuprofen.
+* The patient is not currently taking any medications.
+* The blisters on the patient's ha"

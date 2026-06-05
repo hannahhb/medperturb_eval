@@ -10,6 +10,7 @@ class ModelType(Enum):
     TX_AGENT = "txagent"
     MEDREASON = "medreason"            # KG-augmented reasoning (was MEDPATH_AGENT)
     MEDPATH_AGENT = "medpathagent"     # NEW: combined KG + tool-augmented model
+    KGRANK        = "kgrank"           # KGRank: one-hop triplet retrieval with MMR/similarity/MedCPT ranking
     AGENT_MD = "agentmd"
     TOOLUNI = "tooluni"                # FDA tool retrieval + iterative YES/NO reasoning
 
@@ -52,13 +53,15 @@ class ModelConfig:
     # ToolUni / ToolRAG extras
     use_toolrag: bool = False
     toolrag_model: str = "mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B"
-    toolrag_device: str = "mps"          # "cpu" | "mps" (Apple Silicon) | "cuda:0"
+    toolrag_device: str = "cpu"          # "cpu" | "mps" (Apple Silicon) | "cuda:0"
+                                         # NOTE: MPS shares unified RAM with CPU — no memory benefit on Apple Silicon
     toolrag_cache_dir: Optional[str] = None   # defaults to tooluni_agent package dir
 
     # MedPathAgent extras
     kg_path: Optional[str] = None
     node_embeddings_path: Optional[str] = None
     sapbert_model: str = "cambridgeltl/SapBERT-from-PubMedBERT-fulltext"
+    mpa_retrieval_mode: str = "dual"   # "dual" | "paths_only"
 
     # AgentMD extras
     agentmd_tools_path: Optional[str] = None   # path to riskcalcs.json
@@ -112,6 +115,29 @@ class AdvancedConfig(BaseModel):
 
     # Resume
     save_intermediate: bool = True
+
+    # MedPathAgent / MedReason: path to a results CSV with a 'kg_paths' column.
+    # When set for MEDREASON mode, paths are reused and KG/SapBERT are not loaded.
+    medreason_csv_path: Optional[str] = None
+
+    # When True, MedReasonModel skips KG/SapBERT/spaCy loading entirely and
+    # relies solely on pre-cached kg_paths from medreason_csv_path.
+    cached_paths_only: bool = False
+
+    # ToolUni cached mode: path to a prior ToolUni results CSV.
+    # Loads tu_tool_context per row_id so the FDA tool pipeline is skipped;
+    # only the summarise + final-answer LLM steps are re-run.
+    tooluni_cache_csv_path: Optional[str] = None
+
+    # MedPathAgent cached_dual mode: directory containing ToolUni log JSONs
+    # (tool_<row_id>.json).  Set via --tooluni-log-dir.
+    tooluni_log_path: Optional[str] = None
+
+    # MedPathAgent cached_dual mode: path to the ToolUni results CSV.
+    # Rows missing from the MedPathAgent output (no kg_paths) are copied from
+    # here with prediction columns renamed to the MedPathAgent model name.
+    # Set via --tooluni-results-csv.
+    tooluni_results_csv: Optional[str] = None
 
     class Config:
         arbitrary_types_allowed = True
@@ -168,7 +194,7 @@ def get_default_config(
             backend="bedrock",
             checkpoint=bedrock_model_id,    # passed to TxAgent as model_name
             bedrock_model_id=bedrock_model_id,
-            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
             rag_model=bedrock_model_id,     # ToolRAGModelBedrock uses same model
             max_tokens=max_tokens,
             temperature=0.3,
@@ -178,7 +204,7 @@ def get_default_config(
             enable_summary=False,
             enable_entity_awareness=False,  # spaCy NER not needed for Bedrock mode
         )
-        cfg.primary_model = f"txagent_bedrock_{name}"
+        cfg.primary_model = f"txagent_bedrock/{name}"
 
     elif mode == "AWS":
         # Plain Bedrock — no TxAgent tool-calling loop
@@ -188,10 +214,12 @@ def get_default_config(
             type=ModelType.BEDROCK,
             backend="bedrock",
             weight=2.0,
-            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
             bedrock_model_id=model_id,
             max_tokens=max_tokens,
         )
+        cfg.primary_model = f"baseline/{name}"
+
 
     elif mode == "MEDREASON":
         # MedReason: KG-augmented reasoning + Bedrock LLM, no GPU required.
@@ -204,13 +232,13 @@ def get_default_config(
             backend="medreason",
             checkpoint=bedrock_model_id,
             bedrock_model_id=bedrock_model_id,
-            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
             kg_path=f"{DATA_DIR}/kg.csv",
             node_embeddings_path=f"{DATA_DIR}/node_embeddings_sapbert.pt",
             max_tokens=max_tokens,
             temperature=0.3,
         )
-        cfg.primary_model = f"medreason_{name}"
+        cfg.primary_model = f"medreason/{name}"
 
     elif mode == "MEDPATHAGENT":
         # MedPathAgent: NEW combined KG + tool-augmented model.
@@ -225,13 +253,13 @@ def get_default_config(
             backend="medpathagent",
             checkpoint=bedrock_model_id,
             bedrock_model_id=bedrock_model_id,
-            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
             kg_path=f"{DATA_DIR}/kg.csv",
             node_embeddings_path=f"{DATA_DIR}/node_embeddings_sapbert.pt",
             max_tokens=max_tokens,
             temperature=0.3,
         )
-        cfg.primary_model = f"medpathagent_{name}"
+        cfg.primary_model = f"medpathagent/{name}"
 
     elif mode == "AGENTMD":
         # AgentMD: MedCPT tool retrieval + iterative code execution + Bedrock/OpenAI LLM.
@@ -243,7 +271,7 @@ def get_default_config(
             backend="agentmd",
             checkpoint=bedrock_model_id,
             bedrock_model_id=bedrock_model_id,
-            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
             agentmd_tools_path=os.path.join(DATA_DIR, "agentmd", "riskcalcs.json"),
             agentmd_llm=None,          # auto-detect from env (openai key → OpenAI, else Bedrock)
             agentmd_llm_model=bedrock_model_id,
@@ -251,7 +279,7 @@ def get_default_config(
             max_tokens=max_tokens,
             temperature=0.0,
         )
-        cfg.primary_model = f"agentmd_{name}"
+        cfg.primary_model = f"agentmd/{name}"
 
     elif mode == "TOOLUNI":
         # ToolUni: FDA tool retrieval (ToolUniverse) + iterative YES/NO reasoning.
@@ -264,20 +292,43 @@ def get_default_config(
             type=ModelType.TOOLUNI,
             backend="tooluni",
             bedrock_model_id=bedrock_model_id,
-            region_name=os.environ.get("AWS_REGION", "us-east-1"),
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
             max_tokens=max_tokens,
             temperature=0.0,
             use_toolrag=True,                                           # flip to True to enable
             toolrag_model="mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B",
-            toolrag_device="mps",                                        # "cpu" if no Apple Silicon
+            toolrag_device="cpu",                                        # MPS shares unified RAM — no benefit
             toolrag_cache_dir=DATA_DIR,
         )
-        cfg.primary_model = f"tooluni_{name}"
+        cfg.primary_model = f"tooluni/{name}"
+
+    elif mode == "KGRANK":
+        # KGRank: one-hop KG triplet retrieval with MMR/similarity/MedCPT re-ranking + Bedrock LLM.
+        bedrock_model_id = MODELS.get(name, name)
+        model_cfg = ModelConfig(
+            name=f"kgrank_{name}",
+            type=ModelType.KGRANK,
+            backend="kgrank",
+            checkpoint=bedrock_model_id,
+            bedrock_model_id=bedrock_model_id,
+            region_name=os.environ.get("AWS_REGION", "us-east-2"),
+            kg_path=f"{DATA_DIR}/kg.csv",
+            node_embeddings_path=f"{DATA_DIR}/node_embeddings_sapbert.pt",
+            max_tokens=max_tokens,
+            temperature=0.3,
+            kgrank_method="mmr",          # "similarity" | "mmr" | "rerank"
+            kgrank_top_p=20,              # top-p triplets to keep
+            kgrank_mmr_w_base=0.5,        # MMR diversity weight base
+            kgrank_mmr_delta=0.05,        # MMR weight increment per selected
+            kgrank_rerank_top_n=50,       # MedCPT rerank candidate pool
+            medcpt_model="ncats/MedCPT-Cross-Encoder",
+        )
+        cfg.primary_model = f"kgrank/{name}"
 
     else:
         raise ValueError(
             f"Unknown mode: {mode!r}. "
-            "Supported: AWS, TXAGENT, TXAGENT_BEDROCK, MEDREASON, MEDPATHAGENT, AGENTMD, TOOLUNI"
+            "Supported: AWS, TXAGENT, TXAGENT_BEDROCK, MEDREASON, MEDPATHAGENT, AGENTMD, TOOLUNI, KGRANK"
         )
 
     cfg.model_configs = [model_cfg]

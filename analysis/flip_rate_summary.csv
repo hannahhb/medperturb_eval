@@ -1,0 +1,5 @@
+method,summary_manage,summary_visit,summary_resource,summary_avg,gender_swap_manage,gender_swap_visit,gender_swap_resource,gender_swap_avg,uncertain_tone_manage,uncertain_tone_visit,uncertain_tone_resource,uncertain_tone_avg,manage_avg,manage_std,visit_avg,visit_std,resource_avg,resource_std,overall_avg,overall_std
+Baseline,18.8,17.8,15.4,17.3,3.6,4.4,3.8,3.9,9.7,9.7,9.5,9.6,10.7,10.9,10.7,10.0,9.6,10.0,10.3,10.3
+MedReason,25.8,24.1,22.3,24.1,4.2,4.4,4.4,4.4,12.4,12.9,12.2,12.5,14.1,12.0,13.8,11.3,13.0,10.5,13.6,11.3
+ToolUni,9.9,14.2,8.1,10.7,4.0,5.6,3.3,4.3,7.6,9.8,6.2,7.9,7.2,2.5,9.8,4.6,5.9,2.2,7.6,3.7
+MedPathAgent,10.8,17.5,8.4,12.2,4.0,7.1,2.7,4.6,5.8,8.9,5.8,6.8,6.9,2.9,11.2,4.5,5.6,2.4,7.9,4.1
