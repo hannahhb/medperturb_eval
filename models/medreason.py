@@ -104,45 +104,56 @@ def _ppr_subgraph(
         return G.subgraph([])
 
     # 1. BFS neighbourhood — bounded.
+    #    Cap is enforced DURING expansion (not just at hop start) so we never
+    #    overshoot max_neighbourhood by a full hop's worth of nodes.
     seed_set = set(seeds)
     neighbourhood: set = set(seeds)
     frontier: set = set(seeds)
     for _ in range(bfs_hops):
         if len(neighbourhood) >= max_neighbourhood:
             break
-        nxt = set()
+        nxt: set = set()
+        remaining = max_neighbourhood - len(neighbourhood)
         for node in frontier:
             if node not in seed_set and G.degree(node) > hub_degree:
                 continue
             nxt.update(G.neighbors(node))
+            if len(nxt) >= remaining:
+                break
         nxt -= neighbourhood
         neighbourhood |= nxt
         frontier = nxt
 
-    local_G = G.subgraph(neighbourhood).copy()
-
-    nodes = list(local_G.nodes())
+    # 2. Build sparse adjacency directly from neighbourhood — no subgraph copy.
+    #    Iterating G.neighbors() per node is the same work as subgraph.copy()
+    #    but avoids allocating a full networkx Graph object for 20K+ nodes.
+    nodes = list(neighbourhood)
     n = len(nodes)
     if n == 0:
-        return local_G
+        return G.subgraph([])
 
     node_idx = {nd: i for i, nd in enumerate(nodes)}
 
-    # 2. Build sparse adjacency (undirected → symmetric)
-    edge_list = list(local_G.edges())
-    if edge_list:
-        src = [node_idx[u] for u, v in edge_list] + [node_idx[v] for u, v in edge_list]
-        dst = [node_idx[v] for u, v in edge_list] + [node_idx[u] for u, v in edge_list]
+    src_list, dst_list = [], []
+    for u in neighbourhood:
+        ui = node_idx[u]
+        for v in G.neighbors(u):
+            if v in node_idx:
+                src_list.append(ui)
+                dst_list.append(node_idx[v])
+
+    if src_list:
         A = sp.csr_matrix(
-            (np.ones(len(src), dtype=np.float32), (src, dst)), shape=(n, n)
+            (np.ones(len(src_list), dtype=np.float32),
+             (src_list, dst_list)), shape=(n, n)
         )
     else:
-        A = sp.eye(n, format="csr", dtype=np.float32) * 0.0
+        A = sp.csr_matrix((n, n), dtype=np.float32)
 
     # Column-normalise → column-stochastic transition matrix
     col_sums = np.asarray(A.sum(axis=0)).flatten()
     col_sums[col_sums == 0] = 1.0
-    M = A.multiply(1.0 / col_sums)   # M[:, j] sums to 1
+    M = A.multiply(1.0 / col_sums)
 
     # Personalisation vector (uniform over seeds)
     p = np.zeros(n, dtype=np.float32)
@@ -162,10 +173,10 @@ def _ppr_subgraph(
             break
         x = x_new
 
-    # 3. Top-k nodes (seeds always kept)
+    # 3. Top-k nodes — small induced subgraph for nx.shortest_path
     top_idxs = set(np.argpartition(x, -min(top_k, n))[-min(top_k, n):].tolist())
     top_nodes = {nodes[i] for i in top_idxs} | set(seeds)
-    return G.subgraph(top_nodes).copy()
+    return G.subgraph(top_nodes).copy()  # ~300 nodes: copy is fast
 
 
 def _serialize_paths(path_data: List, max_paths: int = 50) -> str:

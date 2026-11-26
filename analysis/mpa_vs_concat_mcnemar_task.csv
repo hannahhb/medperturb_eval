@@ -1,0 +1,28 @@
+backbone,perturbation,task,n,b_mpa_wins,c_concat_wins,p,p_holm
+Llama-8B,Summary,manage,166,19,16,0.735878800856881,1.0
+Llama-8B,Summary,visit,166,18,14,0.5966148958541453,1.0
+Llama-8B,Summary,resource,166,17,12,0.45825831964612007,1.0
+Llama-8B,Gender swap,manage,225,15,13,0.8505540192127228,1.0
+Llama-8B,Gender swap,visit,225,14,12,0.8450189828872681,1.0
+Llama-8B,Gender swap,resource,225,15,11,0.557197093963623,1.0
+Llama-8B,Uncertain tone,manage,225,13,12,1.0,1.0
+Llama-8B,Uncertain tone,visit,225,13,11,0.8388197422027588,1.0
+Llama-8B,Uncertain tone,resource,225,12,11,1.0,1.0
+Llama-70B,Summary,manage,166,3,6,0.5078125,1.0
+Llama-70B,Summary,visit,166,2,7,0.1796875,1.0
+Llama-70B,Summary,resource,166,2,5,0.453125,1.0
+Llama-70B,Gender swap,manage,225,9,3,0.14599609375,1.0
+Llama-70B,Gender swap,visit,225,8,4,0.3876953125,1.0
+Llama-70B,Gender swap,resource,225,8,2,0.109375,1.0
+Llama-70B,Uncertain tone,manage,225,6,2,0.2890625,1.0
+Llama-70B,Uncertain tone,visit,225,6,2,0.2890625,1.0
+Llama-70B,Uncertain tone,resource,225,6,2,0.2890625,1.0
+Qwen-235B,Summary,manage,166,9,9,1.0,1.0
+Qwen-235B,Summary,visit,166,7,11,0.480682373046875,1.0
+Qwen-235B,Summary,resource,166,7,9,0.803619384765625,1.0
+Qwen-235B,Gender swap,manage,225,11,5,0.210113525390625,1.0
+Qwen-235B,Gender swap,visit,225,10,5,0.30175781249999994,1.0
+Qwen-235B,Gender swap,resource,225,6,6,1.0,1.0
+Qwen-235B,Uncertain tone,manage,225,8,6,0.79052734375,1.0
+Qwen-235B,Uncertain tone,visit,225,9,7,0.803619384765625,1.0
+Qwen-235B,Uncertain tone,resource,225,7,10,0.629058837890625,1.0

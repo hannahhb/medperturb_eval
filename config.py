@@ -208,7 +208,7 @@ def get_default_config(
 
     elif mode == "AWS":
         # Plain Bedrock — no TxAgent tool-calling loop
-        model_id = MODELS[name]
+        model_id = MODELS.get(name, name)   # accept a raw Bedrock model ID too
         model_cfg = ModelConfig(
             name=name,
             type=ModelType.BEDROCK,

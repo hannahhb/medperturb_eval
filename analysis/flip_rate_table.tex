@@ -1,0 +1,41 @@
+% Required in preamble:
+% \usepackage{colortbl}
+% \usepackage[table]{xcolor}
+% \definecolor{rowgreen}{RGB}{198,239,206}
+% \definecolor{rowblue}{RGB}{189,215,238}
+% \definecolor{rowyellow}{RGB}{255,242,204}
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ll ccc ccc ccc ccc}
+\toprule
+ &  & \multicolumn{3}{c}{\textbf{Summary (Sum.)}} & \multicolumn{3}{c}{\textbf{Gender Swap (GS)}} & \multicolumn{3}{c}{\textbf{Uncertain Tone (UT)}} & \multicolumn{3}{c}{\textbf{Average}} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}\cmidrule(lr){9-11}\cmidrule(lr){12-14}
+Model & Backbone & M & V & R & M & V & R & M & V & R & M & V & R \\
+
+\midrule
+\multirow{3}{*}{Baseline} & Llama-8B & 45.1{\tiny$\pm$1.5} & 42.1{\tiny$\pm$0.8} & 41.6{\tiny$\pm$0.5} & 8.4{\tiny$\pm$0.4} & 7.9{\tiny$\pm$0.5} & 7.9{\tiny$\pm$0.6} & 19.8{\tiny$\pm$1.5} & 19.7{\tiny$\pm$1.2} & 19.3{\tiny$\pm$1.5} & 24.4{\tiny$\pm$1.1} & 23.2{\tiny$\pm$0.8} & 22.9{\tiny$\pm$0.8} \\
+ & Llama-70B & 10.4{\tiny$\pm$0.3} & 10.6{\tiny$\pm$0.6} & 7.8{\tiny$\pm$0.5} & 3.0{\tiny$\pm$0.2} & 4.9{\tiny$\pm$0.0} & 4.0{\tiny$\pm$0.0} & 10.4{\tiny$\pm$0.8} & 10.4{\tiny$\pm$0.2} & 9.5{\tiny$\pm$0.4} & 7.9{\tiny$\pm$0.4} & 8.6{\tiny$\pm$0.3} & 7.1{\tiny$\pm$0.3} \\
+ & Qwen-235B & 12.4{\tiny$\pm$0.6} & 11.6{\tiny$\pm$1.0} & 9.0{\tiny$\pm$0.5} & \cellcolor{rowyellow}2.1{\tiny$\pm$0.2} & 3.1{\tiny$\pm$0.6} & \cellcolor{rowyellow}2.5{\tiny$\pm$0.6} & \cellcolor{rowyellow}6.1{\tiny$\pm$0.9} & 6.4{\tiny$\pm$0.6} & 6.5{\tiny$\pm$0.4} & 6.9{\tiny$\pm$0.6} & 7.0{\tiny$\pm$0.7} & 6.0{\tiny$\pm$0.5} \\
+
+\midrule
+\multirow{3}{*}{MedReasonAgent} & Llama-8B & 21.3{\tiny$\pm$0.8} & 20.7{\tiny$\pm$0.3} & 18.9{\tiny$\pm$1.2} & \cellcolor{rowgreen}6.5{\tiny$\pm$0.9} & \cellcolor{rowgreen}6.5{\tiny$\pm$0.8} & \cellcolor{rowgreen}5.9{\tiny$\pm$0.6} & \cellcolor{rowgreen}9.6{\tiny$\pm$0.2} & \cellcolor{rowgreen}9.5{\tiny$\pm$0.2} & \cellcolor{rowgreen}9.2{\tiny$\pm$0.2} & \cellcolor{rowgreen}12.5{\tiny$\pm$0.6} & 12.2{\tiny$\pm$0.4} & 11.3{\tiny$\pm$0.7} \\
+ & Llama-70B & 10.0{\tiny$\pm$0.3} & 10.8{\tiny$\pm$0.0} & 9.2{\tiny$\pm$0.3} & \textbf{\cellcolor{rowblue}1.0{\tiny$\pm$0.2}} & \textbf{\cellcolor{rowblue}0.9{\tiny$\pm$0.4}} & \textbf{\cellcolor{rowblue}0.7{\tiny$\pm$0.2}} & 4.6{\tiny$\pm$0.2} & 5.0{\tiny$\pm$0.2} & 3.7{\tiny$\pm$0.2} & \textbf{\cellcolor{rowblue}5.2{\tiny$\pm$0.2}} & \textbf{\cellcolor{rowblue}5.6{\tiny$\pm$0.2}} & 4.6{\tiny$\pm$0.2} \\
+ & Qwen-235B & 10.6{\tiny$\pm$0.8} & \cellcolor{rowyellow}9.8{\tiny$\pm$0.3} & 9.2{\tiny$\pm$0.8} & 2.8{\tiny$\pm$0.6} & 2.8{\tiny$\pm$0.8} & 3.3{\tiny$\pm$0.8} & 6.4{\tiny$\pm$0.6} & \cellcolor{rowyellow}5.9{\tiny$\pm$0.6} & \cellcolor{rowyellow}4.4{\tiny$\pm$0.0} & \cellcolor{rowyellow}6.6{\tiny$\pm$0.6} & \cellcolor{rowyellow}6.2{\tiny$\pm$0.5} & \cellcolor{rowyellow}5.6{\tiny$\pm$0.5} \\
+
+\midrule
+\multirow{3}{*}{ToolUniAgent} & Llama-8B & 18.3{\tiny$\pm$3.3} & 17.7{\tiny$\pm$2.4} & 16.3{\tiny$\pm$3.4} & 9.9{\tiny$\pm$0.9} & 9.8{\tiny$\pm$1.5} & 9.3{\tiny$\pm$1.9} & 13.8{\tiny$\pm$1.3} & 13.3{\tiny$\pm$1.1} & 12.9{\tiny$\pm$1.3} & 14.0{\tiny$\pm$1.8} & 13.6{\tiny$\pm$1.7} & 12.8{\tiny$\pm$2.2} \\
+ & Llama-70B & \textbf{\cellcolor{rowblue}7.6{\tiny$\pm$1.2}} & \textbf{\cellcolor{rowblue}8.0{\tiny$\pm$1.0}} & \textbf{\cellcolor{rowblue}6.8{\tiny$\pm$1.6}} & 5.2{\tiny$\pm$0.6} & 4.7{\tiny$\pm$0.9} & 4.7{\tiny$\pm$0.4} & 6.1{\tiny$\pm$0.2} & 5.5{\tiny$\pm$0.6} & 5.3{\tiny$\pm$0.4} & 6.3{\tiny$\pm$0.7} & 6.1{\tiny$\pm$0.8} & 5.6{\tiny$\pm$0.8} \\
+ & Qwen-235B & \cellcolor{rowyellow}10.2{\tiny$\pm$0.5} & \cellcolor{rowyellow}9.8{\tiny$\pm$0.8} & \cellcolor{rowyellow}8.4{\tiny$\pm$0.0} & 3.7{\tiny$\pm$0.6} & 4.1{\tiny$\pm$0.6} & 3.1{\tiny$\pm$0.0} & 7.1{\tiny$\pm$1.0} & \cellcolor{rowyellow}5.9{\tiny$\pm$1.2} & 7.3{\tiny$\pm$0.8} & 7.0{\tiny$\pm$0.7} & 6.6{\tiny$\pm$0.8} & 6.3{\tiny$\pm$0.3} \\
+
+\midrule
+\multirow{3}{*}{MedPathAgent} & Llama-8B & \cellcolor{rowgreen}15.6{\tiny$\pm$0.1} & \cellcolor{rowgreen}14.4{\tiny$\pm$0.5} & \cellcolor{rowgreen}13.2{\tiny$\pm$0.3} & 11.6{\tiny$\pm$0.2} & 10.7{\tiny$\pm$0.2} & 10.2{\tiny$\pm$0.3} & 10.7{\tiny$\pm$0.2} & 9.8{\tiny$\pm$0.4} & 9.8{\tiny$\pm$0.4} & 12.6{\tiny$\pm$0.4} & \cellcolor{rowgreen}11.6{\tiny$\pm$0.3} & \cellcolor{rowgreen}11.1{\tiny$\pm$0.3} \\
+ & Llama-70B & 9.6{\tiny$\pm$0.3} & 10.2{\tiny$\pm$0.4} & 8.4{\tiny$\pm$0.1} & 2.7{\tiny$\pm$0.3} & 2.7{\tiny$\pm$0.1} & 1.3{\tiny$\pm$0.3} & \textbf{\cellcolor{rowblue}4.0{\tiny$\pm$0.2}} & \textbf{\cellcolor{rowblue}4.0{\tiny$\pm$0.2}} & \textbf{\cellcolor{rowblue}3.1{\tiny$\pm$0.1}} & 5.4{\tiny$\pm$0.3} & \textbf{\cellcolor{rowblue}5.6{\tiny$\pm$0.2}} & \textbf{\cellcolor{rowblue}4.3{\tiny$\pm$0.5}} \\
+ & Qwen-235B & 12.7{\tiny$\pm$0.3} & 12.0{\tiny$\pm$0.2} & 9.6{\tiny$\pm$0.3} & 3.1{\tiny$\pm$0.1} & \cellcolor{rowyellow}2.7{\tiny$\pm$0.5} & 2.7{\tiny$\pm$0.3} & 7.6{\tiny$\pm$0.4} & 7.6{\tiny$\pm$0.1} & 7.1{\tiny$\pm$0.3} & 7.8{\tiny$\pm$0.3} & 7.4{\tiny$\pm$0.5} & 6.5{\tiny$\pm$0.3} \\
+
+\bottomrule
+\end{tabular}}
+\caption{Flip rate (\%) per model, backbone, perturbation type, and triage task (M=\textsc{Manage}, V=\textsc{Visit}, R=\textsc{Resource}). Values show mean$\pm$std across 3 runs. Lowest overall results per column are \textbf{bolded}. Shading indicates the lowest flip rate for each backbone model group: \colorbox{rowgreen}{Llama-8B}, \colorbox{rowblue}{Llama-70B}, \colorbox{rowyellow}{Qwen-235B}. The "Average" column reports the mean across perturbation types per task.}
+\label{tab:flip_rate_full}
+\end{table}

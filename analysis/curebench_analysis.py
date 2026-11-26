@@ -18,13 +18,23 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 import pandas as pd
-from scipy.stats import chi2 as _chi2
+from scipy.stats import chi2 as _chi2, binom as _binom
 
 def mcnemar(b01: int, b10: int):
-    """McNemar test with continuity correction. Returns p-value."""
-    if b01 + b10 == 0:
+    """McNemar test. Returns p-value.
+
+    Uses exact two-tailed binomial when discordant pairs < 25 (chi-squared
+    approximation is unreliable below this threshold). Falls back to
+    continuity-corrected chi-squared for larger samples.
+    """
+    n = b01 + b10
+    if n == 0:
         return 1.0
-    stat = (abs(b01 - b10) - 1) ** 2 / (b01 + b10)
+    if n < 25:
+        # Under H0 each discordant pair is a fair coin flip.
+        # p = 2 * P(Binomial(n, 0.5) <= min(b01, b10))
+        return float(min(2 * _binom.cdf(min(b01, b10), n, 0.5), 1.0))
+    stat = (abs(b01 - b10) - 1) ** 2 / n
     return float(1 - _chi2.cdf(stat, df=1))
 
 # ── paths ─────────────────────────────────────────────────────────────────────
@@ -308,10 +318,11 @@ def plot_difficulty(dfs: Dict[str, pd.DataFrame]):
 
 
 def plot_mcnemar(dfs: Dict[str, pd.DataFrame]):
-    """Heatmap of McNemar p-values for pairwise significance testing."""
+    """Heatmap of Bonferroni-corrected McNemar p-values for pairwise significance testing."""
     names = list(dfs.keys())
     common = list(set.intersection(*[set(df.index) for df in dfs.values()]))
     n = len(names)
+    n_comparisons = n * (n - 1) // 2  # C(n, 2) unique pairs
     pmat = np.ones((n, n))
 
     for i, a in enumerate(names):
@@ -320,10 +331,10 @@ def plot_mcnemar(dfs: Dict[str, pd.DataFrame]):
                 continue
             da = dfs[a].loc[common, "correct"].values
             db = dfs[b].loc[common, "correct"].values
-            # Contingency: b=1 a=0, b=0 a=1
             b01 = ((da == 0) & (db == 1)).sum()
             b10 = ((da == 1) & (db == 0)).sum()
-            pmat[i, j] = mcnemar(b01, b10)
+            p_raw = mcnemar(b01, b10)
+            pmat[i, j] = min(p_raw * n_comparisons, 1.0)  # Bonferroni-adjusted
 
     fig, ax = plt.subplots(figsize=(5, 4))
     im = ax.imshow(np.where(np.eye(n, dtype=bool), np.nan, pmat),
@@ -331,13 +342,13 @@ def plot_mcnemar(dfs: Dict[str, pd.DataFrame]):
     ax.set_xticks(range(n)); ax.set_yticks(range(n))
     ax.set_xticklabels(names, rotation=30, ha="right", fontsize=9)
     ax.set_yticklabels(names, fontsize=9)
-    ax.set_title("McNemar p-values (row vs col)\ngreen=significant (p<0.05)")
+    ax.set_title(f"McNemar p-values (Bonferroni, k={n_comparisons})\ngreen=significant (p_adj<0.05)")
     for i in range(n):
         for j in range(n):
             txt = "—" if i == j else f"{pmat[i,j]:.3f}"
             color = "white" if i != j and pmat[i,j] < 0.01 else "black"
             ax.text(j, i, txt, ha="center", va="center", fontsize=9, color=color)
-    plt.colorbar(im, ax=ax, shrink=0.8, label="p-value")
+    plt.colorbar(im, ax=ax, shrink=0.8, label="p-value (adjusted)")
     plt.tight_layout()
     savefig("08_mcnemar_pvalues.png")
 
@@ -400,23 +411,36 @@ def section_pairwise(dfs):
 
 
 def section_mcnemar(dfs):
-    sep("10. McNemar Significance Tests")
     names = list(dfs.keys())
     common = list(set.intersection(*[set(df.index) for df in dfs.values()]))
+    n_comparisons = len(names) * (len(names) - 1) // 2  # C(n, 2) unique pairs
+    sep(f"10. McNemar Significance Tests (Bonferroni k={n_comparisons})")
+
+    # Collect raw results first, then apply correction
+    results = []
     for i, a in enumerate(names):
         for j, b in enumerate(names):
-            if j <= i: continue
+            if j <= i:
+                continue
             da = dfs[a].loc[common, "correct"].values
             db = dfs[b].loc[common, "correct"].values
-            b01 = ((da==0)&(db==1)).sum()
-            b10 = ((da==1)&(db==0)).sum()
-            if b01+b10 == 0:
-                print(f"  {a} vs {b}: no discordant pairs")
+            b01 = int(((da == 0) & (db == 1)).sum())
+            b10 = int(((da == 1) & (db == 0)).sum())
+            n = b01 + b10
+            if n == 0:
+                results.append((a, b, b01, b10, 1.0, 1.0, "—"))
                 continue
-            p = mcnemar(b01, b10)
-            sig = "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else "ns"
-            print(f"  {a:<14} vs {b:<14}  p={p:.4f}  {sig}"
-                  f"  (discordant: {b10} favour {a}, {b01} favour {b})")
+            p_raw = mcnemar(b01, b10)
+            p_adj = min(p_raw * n_comparisons, 1.0)
+            method = "exact-binomial" if n < 25 else "chi2-cc"
+            results.append((a, b, b01, b10, p_raw, p_adj, method))
+
+    for a, b, b01, b10, p_raw, p_adj, method in results:
+        n = b01 + b10
+        sig = "***" if p_adj < 0.001 else "**" if p_adj < 0.01 else "*" if p_adj < 0.05 else "ns"
+        print(f"  {a:<14} vs {b:<14}  "
+              f"p_raw={p_raw:.4f}  p_adj={p_adj:.4f}  {sig:<4}  "
+              f"(n={n}: {b10}↑{a}, {b01}↑{b})  [{method}]")
 
 
 # ── main ──────────────────────────────────────────────────────────────────────

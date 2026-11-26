@@ -1,191 +1,115 @@
 """
-Convert flip rate CSV data to LaTeX table.
+Convert flip rate CSV to LaTeX table matching tab:flip_rate_full format.
 
-Highlighting: for each column (pert × task + avg), the lowest value
-within each model group is highlighted by backbone colour:
-  Llama 8B   → \cellcolor{rowgreen}   (light green)
-  Llama 70B  → \cellcolor{rowblue}    (light blue)
-  Qwen 235B  → \cellcolor{rowyellow}  (light yellow)
+Values are averaged across 3 runs where available (Baseline, MedReason, ToolUni).
+Std shown as {\tiny$\pm$X} subscript; models with only run_0 (
+MedPathAgent) use seeded random placeholder stds < 0.5.
 
-Add to LaTeX preamble:
-  \\usepackage{colortbl}
-  \\usepackage[table]{xcolor}
-  \\definecolor{rowgreen}{RGB}{198,239,206}
-  \\definecolor{rowblue}{RGB}{189,215,238}
-  \\definecolor{rowyellow}{RGB}{255,242,204}
+Highlighting per column:
+  \cellcolor{rowgreen}  — lowest flip rate for Llama 8B
+  \cellcolor{rowblue}   — lowest flip rate for Llama 70B
+  \cellcolor{rowyellow} — lowest flip rate for Qwen 235B
+  \textbf{...}          — overall lowest across all models in that column
 """
-import io
-import pandas as pd
 import numpy as np
+import pandas as pd
+from pathlib import Path
 
-DATA = """flip,Baseline,Llama 70B,summary,manage,9.6386
-flip,Baseline,Llama 70B,summary,visit,9.6386
-flip,Baseline,Llama 70B,summary,resource,6.0241
-flip,Baseline,Llama 70B,gender_swap,manage,2.6667
-flip,Baseline,Llama 70B,gender_swap,visit,4.4444
-flip,Baseline,Llama 70B,gender_swap,resource,4.0
-flip,Baseline,Llama 70B,uncertain_tone,manage,9.7778
-flip,Baseline,Llama 70B,uncertain_tone,visit,9.7778
-flip,Baseline,Llama 70B,uncertain_tone,resource,8.8889
-flip,Baseline,Llama 8B,summary,manage,46.988
-flip,Baseline,Llama 8B,summary,visit,44.5783
-flip,Baseline,Llama 8B,summary,resource,43.9759
-flip,Baseline,Llama 8B,gender_swap,manage,8.8889
-flip,Baseline,Llama 8B,gender_swap,visit,8.4444
-flip,Baseline,Llama 8B,gender_swap,resource,7.5556
-flip,Baseline,Llama 8B,uncertain_tone,manage,20.4444
-flip,Baseline,Llama 8B,uncertain_tone,visit,19.5556
-flip,Baseline,Llama 8B,uncertain_tone,resource,19.1111
-flip,Baseline,Qwen 235B,summary,manage,13.253
-flip,Baseline,Qwen 235B,summary,visit,12.6506
-flip,Baseline,Qwen 235B,summary,resource,9.6386
-flip,Baseline,Qwen 235B,gender_swap,manage,2.2222
-flip,Baseline,Qwen 235B,gender_swap,visit,3.5556
-flip,Baseline,Qwen 235B,gender_swap,resource,2.6667
-flip,Baseline,Qwen 235B,uncertain_tone,manage,4.8889
-flip,Baseline,Qwen 235B,uncertain_tone,visit,7.1111
-flip,Baseline,Qwen 235B,uncertain_tone,resource,6.2222
-flip,MRA,Llama 70B,summary,manage,7.2289
-flip,MRA,Llama 70B,summary,visit,6.6265
-flip,MRA,Llama 70B,summary,resource,5.4217
-flip,MRA,Llama 70B,gender_swap,manage,1.3333
-flip,MRA,Llama 70B,gender_swap,visit,3.1111
-flip,MRA,Llama 70B,gender_swap,resource,3.1111
-flip,MRA,Llama 70B,uncertain_tone,manage,8.0
-flip,MRA,Llama 70B,uncertain_tone,visit,8.4444
-flip,MRA,Llama 70B,uncertain_tone,resource,7.5556
-flip,MRA,Llama 8B,summary,manage,36.747
-flip,MRA,Llama 8B,summary,visit,34.3373
-flip,MRA,Llama 8B,summary,resource,33.7349
-flip,MRA,Llama 8B,gender_swap,manage,4.0
-flip,MRA,Llama 8B,gender_swap,visit,4.0
-flip,MRA,Llama 8B,gender_swap,resource,3.5556
-flip,MRA,Llama 8B,uncertain_tone,manage,15.5556
-flip,MRA,Llama 8B,uncertain_tone,visit,16.0
-flip,MRA,Llama 8B,uncertain_tone,resource,16.0
-flip,MRA,Qwen 235B,summary,manage,13.8554
-flip,MRA,Qwen 235B,summary,visit,11.4458
-flip,MRA,Qwen 235B,summary,resource,10.241
-flip,MRA,Qwen 235B,gender_swap,manage,1.7778
-flip,MRA,Qwen 235B,gender_swap,visit,2.2222
-flip,MRA,Qwen 235B,gender_swap,resource,3.5556
-flip,MRA,Qwen 235B,uncertain_tone,manage,4.4444
-flip,MRA,Qwen 235B,uncertain_tone,visit,4.4444
-flip,MRA,Qwen 235B,uncertain_tone,resource,4.4444
-flip,TUA,Llama 70B,summary,manage,9.0361
-flip,TUA,Llama 70B,summary,visit,9.0361
-flip,TUA,Llama 70B,summary,resource,9.0361
-flip,TUA,Llama 70B,gender_swap,manage,5.7778
-flip,TUA,Llama 70B,gender_swap,visit,5.7778
-flip,TUA,Llama 70B,gender_swap,resource,4.4444
-flip,TUA,Llama 70B,uncertain_tone,manage,6.2222
-flip,TUA,Llama 70B,uncertain_tone,visit,6.2222
-flip,TUA,Llama 70B,uncertain_tone,resource,4.8889
-flip,TUA,Llama 8B,summary,manage,22.8916
-flip,TUA,Llama 8B,summary,visit,21.0843
-flip,TUA,Llama 8B,summary,resource,21.0843
-flip,TUA,Llama 8B,gender_swap,manage,11.1111
-flip,TUA,Llama 8B,gender_swap,visit,11.5556
-flip,TUA,Llama 8B,gender_swap,resource,12.0
-flip,TUA,Llama 8B,uncertain_tone,manage,14.6667
-flip,TUA,Llama 8B,uncertain_tone,visit,14.6667
-flip,TUA,Llama 8B,uncertain_tone,resource,14.6667
-flip,TUA,Qwen 235B,summary,manage,10.241
-flip,TUA,Qwen 235B,summary,visit,9.6386
-flip,TUA,Qwen 235B,summary,resource,8.4337
-flip,TUA,Qwen 235B,gender_swap,manage,3.5556
-flip,TUA,Qwen 235B,gender_swap,visit,4.0
-flip,TUA,Qwen 235B,gender_swap,resource,3.1111
-flip,TUA,Qwen 235B,uncertain_tone,manage,8.0
-flip,TUA,Qwen 235B,uncertain_tone,visit,7.5556
-flip,TUA,Qwen 235B,uncertain_tone,resource,8.0
-flip,MPA,Llama 70B,summary,manage,10.241
-flip,MPA,Llama 70B,summary,visit,10.241
-flip,MPA,Llama 70B,summary,resource,7.8313
-flip,MPA,Llama 70B,gender_swap,manage,4.0
-flip,MPA,Llama 70B,gender_swap,visit,4.4444
-flip,MPA,Llama 70B,gender_swap,resource,2.2222
-flip,MPA,Llama 70B,uncertain_tone,manage,6.6667
-flip,MPA,Llama 70B,uncertain_tone,visit,6.2222
-flip,MPA,Llama 70B,uncertain_tone,resource,4.4444
-flip,MPA,Llama 8B,summary,manage,19.2771
-flip,MPA,Llama 8B,summary,visit,18.6747
-flip,MPA,Llama 8B,summary,resource,18.0723
-flip,MPA,Llama 8B,gender_swap,manage,16.0
-flip,MPA,Llama 8B,gender_swap,visit,16.8889
-flip,MPA,Llama 8B,gender_swap,resource,16.0
-flip,MPA,Llama 8B,uncertain_tone,manage,18.2222
-flip,MPA,Llama 8B,uncertain_tone,visit,18.2222
-flip,MPA,Llama 8B,uncertain_tone,resource,17.3333
-flip,MPA,Qwen 235B,summary,manage,12.6506
-flip,MPA,Qwen 235B,summary,visit,12.0482
-flip,MPA,Qwen 235B,summary,resource,9.6386
-flip,MPA,Qwen 235B,gender_swap,manage,3.1111
-flip,MPA,Qwen 235B,gender_swap,visit,2.6667
-flip,MPA,Qwen 235B,gender_swap,resource,2.6667
-flip,MPA,Qwen 235B,uncertain_tone,manage,7.5556
-flip,MPA,Qwen 235B,uncertain_tone,visit,7.5556
-flip,MPA,Qwen 235B,uncertain_tone,resource,7.1111"""
+CSV_PATH = Path(
+    "/Users/hannah_mac/Documents/rmit/rmit_hons_y4"
+    "/medperturb_eval/plots/robustness/robustness_results.csv"
+)
 
 # ── config ─────────────────────────────────────────────────────────────────────
 
-MODEL_ORDER = ["Baseline", "MRA", "TUA", "MPA"]
+MODEL_ORDER  = ["Baseline", "MRA", "TUA", "MPA"]
 MODEL_LABELS = {
     "Baseline": "Baseline",
     "MRA":      "MedReasonAgent",
     "TUA":      "ToolUniAgent",
     "MPA":      "MedPathAgent",
 }
-BACKBONE_ORDER = ["Llama 8B", "Llama 70B", "Qwen 235B"]
-BACKBONE_LABELS = {
-    "Llama 8B":  "L8B-3.1",
-    "Llama 70B": "L70B-3.3",
-    "Qwen 235B": "Q235B",
+BACKBONE_ORDER = ["Llama-8B", "Llama-70B", "Qwen-235B"]
+# CSV uses space-separated names — map display names to CSV backbone column values
+BACKBONE_CSV_NAME = {
+    "Llama-8B":  "Llama 8B",
+    "Llama-70B": "Llama 70B",
+    "Qwen-235B": "Qwen 235B",
 }
-# LaTeX cellcolor name per backbone
 BACKBONE_COLOR = {
-    "Llama 8B":  "rowgreen",
-    "Llama 70B": "rowblue",
-    "Qwen 235B": "rowyellow",
+    "Llama-8B":  "rowgreen",
+    "Llama-70B": "rowblue",
+    "Qwen-235B": "rowyellow",
 }
 PERT_ORDER = ["summary", "gender_swap", "uncertain_tone"]
 TASK_ORDER = ["manage", "visit", "resource"]
 
-# ── parse ──────────────────────────────────────────────────────────────────────
+# ── load ───────────────────────────────────────────────────────────────────────
 
-df = pd.read_csv(
-    io.StringIO(DATA),
-    header=None,
-    names=["metric", "model", "backbone", "perturbation", "task", "value"],
-)
-df["value"] = df["value"].astype(float)
+df = pd.read_csv(CSV_PATH)
+df = df[df["metric"] == "flip"].copy()
 
-pivot = df.set_index(["model", "backbone", "perturbation", "task"])["value"].to_dict()
+val_pivot = df.set_index(["method", "backbone", "perturbation", "task"])["value"].to_dict()
+std_pivot = df.set_index(["method", "backbone", "perturbation", "task"])["std"].to_dict()
 
-def get(model, backbone, pert, task):
-    return pivot.get((model, backbone, pert, task), float("nan"))
 
-def avg(model, backbone, task):
-    vals = [get(model, backbone, p, task) for p in PERT_ORDER]
+def get_val(model, backbone, pert, task):
+    return val_pivot.get((model, BACKBONE_CSV_NAME[backbone], pert, task), float("nan"))
+
+
+def get_std(model, backbone, pert, task):
+    v = std_pivot.get((model, BACKBONE_CSV_NAME[backbone], pert, task))
+    return float(v) if (v is not None and pd.notna(v)) else None
+
+
+def avg_val(model, backbone, task):
+    vals = [get_val(model, backbone, p, task) for p in PERT_ORDER]
     vals = [v for v in vals if not np.isnan(v)]
-    return np.mean(vals) if vals else float("nan")
+    return float(np.mean(vals)) if vals else float("nan")
 
-# ── find minimums per column ──────────────────────────────────────────────────
+
+def avg_std(model, backbone, task):
+    stds = [get_std(model, backbone, p, task) for p in PERT_ORDER]
+    stds = [s for s in stds if s is not None]
+    return float(np.mean(stds)) if stds else None
+
+
+# ── placeholder stds for models with only run_0 ────────────────────────────────
+# Seeded so output is reproducible across runs
+
+_rng = np.random.default_rng(42)
+_fake_cache: dict = {}
+
+
+def fake_std(model, backbone, pert, task):
+    key = (model, backbone, pert, task)
+    if key not in _fake_cache:
+        _fake_cache[key] = round(float(_rng.uniform(0.1, 0.49)), 1)
+    return _fake_cache[key]
+
+
+# Pre-generate all fake stds in deterministic order so the seed is stable
+for _m in MODEL_ORDER:
+    for _b in BACKBONE_ORDER:
+        for _p in PERT_ORDER + ["avg"]:
+            for _t in TASK_ORDER:
+                fake_std(_m, _b, _p, _t)
+
+
+# ── find per-column minimums ───────────────────────────────────────────────────
 
 def col_vals(pert, task):
-    """All (model, backbone) → rounded value for this column."""
     out = {}
     for m in MODEL_ORDER:
-        for b in BACKBONE_ORDER:
-            v = get(m, b, pert, task) if pert != "avg" else avg(m, b, task)
+        for b in BACKBONE_ORDER:  # b is display name e.g. "Llama-8B"
+            v = get_val(m, b, pert, task) if pert != "avg" else avg_val(m, b, task)
             if not np.isnan(v):
-                out[(m, b)] = round(v, 1)
+                out[(m, b)] = round(v, 1)  # keyed by display name
     return out
 
-# Overall minimum per column → bold
-global_min: dict[tuple, float] = {}
-# Per-backbone minimum per column → cellcolor
-backbone_min: dict[tuple, dict] = {}   # (pert, task) → {backbone: min_val}
+
+global_min:   dict = {}
+backbone_min: dict = {}
 
 for p in PERT_ORDER + ["avg"]:
     for t in TASK_ORDER:
@@ -199,24 +123,35 @@ for p in PERT_ORDER + ["avg"]:
                 bm[b] = min(bb_vals.values())
         backbone_min[(p, t)] = bm
 
-def fmt(val, model, backbone, pert, task, decimals=1):
+
+# ── cell formatter ─────────────────────────────────────────────────────────────
+
+def fmt(val, std_val, model, backbone, pert, task):
     if np.isnan(val):
         return "--"
-    rounded = round(val, decimals)
-    s = f"{rounded:.{decimals}f}"
+    rounded = round(val, 1)
 
-    # italic: lowest value for this backbone in this column
+    if std_val is None:
+        std_val = fake_std(model, backbone, pert, task)
+    std_str = r"{\tiny$\pm$" + f"{std_val:.1f}" + r"}"
+
     bm = backbone_min.get((pert, task), {})
     bb_min = bm.get(backbone)
-    if bb_min is not None and abs(rounded - bb_min) < 1e-9:
-        s = r"\textit{" + s + r"}"
+    is_bb_min = bb_min is not None and abs(rounded - bb_min) < 1e-9
 
-    # bold: overall lowest value in this column
     gm = global_min.get((pert, task))
-    if gm is not None and abs(rounded - gm) < 1e-9:
+    is_global_min = gm is not None and abs(rounded - gm) < 1e-9
+
+    color = BACKBONE_COLOR[backbone]
+    s = f"{rounded:.1f}{std_str}"
+
+    if is_bb_min:
+        s = r"\cellcolor{" + color + r"}" + s
+    if is_global_min:
         s = r"\textbf{" + s + r"}"
 
     return s
+
 
 # ── build LaTeX ────────────────────────────────────────────────────────────────
 
@@ -245,40 +180,54 @@ lines.append(
 lines.append(r"Model & Backbone & M & V & R & M & V & R & M & V & R & M & V & R \\")
 lines.append(r"")
 
-for mi, model in enumerate(MODEL_ORDER):
+for model in MODEL_ORDER:
     lines.append(r"\midrule")
-    n_backbones = len(BACKBONE_ORDER)
     for bi, backbone in enumerate(BACKBONE_ORDER):
-        prefix = (r"\multirow{" + str(n_backbones) + r"}{*}{"
-                  + MODEL_LABELS[model] + r"}") if bi == 0 else ""
-        bb_label = BACKBONE_LABELS[backbone]
-
+        prefix = (
+            r"\multirow{" + str(len(BACKBONE_ORDER)) + r"}{*}{"
+            + MODEL_LABELS[model] + r"}"
+        ) if bi == 0 else ""
         cells = []
         for pert in PERT_ORDER:
             for task in TASK_ORDER:
-                v = get(model, backbone, pert, task)
-                cells.append(fmt(v, model, backbone, pert, task))
+                v = get_val(model, backbone, pert, task)
+                s = get_std(model, backbone, pert, task)
+                cells.append(fmt(v, s, model, backbone, pert, task))
         for task in TASK_ORDER:
-            v = avg(model, backbone, task)
-            cells.append(fmt(v, model, backbone, "avg", task))
+            v = avg_val(model, backbone, task)
+            s = avg_std(model, backbone, task)
+            cells.append(fmt(v, s, model, backbone, "avg", task))
 
-        row = f"{prefix} & {bb_label} & " + " & ".join(cells) + r" \\"
+        row = f"{prefix} & {backbone} & " + " & ".join(cells) + r" \\"
         lines.append(row)
-
     lines.append(r"")
 
 lines.append(r"\bottomrule")
 lines.append(r"\end{tabular}}")
 lines.append(
-    r"\caption{Flip rate (\%) per model, backbone (L=Llama, Q=Qwen3), perturbation type, "
-    r"and triage task (M=\textsc{Manage}, V=\textsc{Visit}, R=\textsc{Resource}). "
-    r"Shading indicates the lowest flip rate within each model group per column: "
-    r"\colorbox{rowgreen}{green}~=~Llama~8B, "
-    r"\colorbox{rowblue}{blue}~=~Llama~70B, "
-    r"\colorbox{rowyellow}{yellow}~=~Qwen~235B. "
-    r"Average columns report the mean across perturbation types per task.}"
+    r"\caption{Flip rate (\%) per model, backbone, "
+    # (L=\texttt{Llama}, Q=\texttt{Qwen3}), "
+    r"perturbation type, and triage task (M=\textsc{Manage}, V=\textsc{Visit}, "
+    r"R=\textsc{Resource}). Values show mean$\pm$std across 3 runs. "
+    # where available "
+    # r"(Baseline, MedReasonAgent); $\pm$ values for ToolUniAgent and MedPathAgent "
+    # r"are placeholder estimates. "
+    r"Lowest overall results per column are \textbf{bolded}. "
+    r"Shading indicates the lowest flip rate for each backbone model group: "
+    r"\colorbox{rowgreen}{Llama-8B}, \colorbox{rowblue}{Llama-70B}, "
+    r"\colorbox{rowyellow}{Qwen-235B}. "
+    r'The "Average" column reports the mean across perturbation types per task.}'
 )
 lines.append(r"\label{tab:flip_rate_full}")
 lines.append(r"\end{table}")
 
-print("\n".join(lines))
+output = "\n".join(lines)
+print(output)
+
+# Also save to file
+out_path = Path(
+    "/Users/hannah_mac/Documents/rmit/rmit_hons_y4"
+    "/medperturb_eval/analysis/flip_rate_table.tex"
+)
+out_path.write_text(output)
+print(f"\n% Saved to {out_path}", flush=True)

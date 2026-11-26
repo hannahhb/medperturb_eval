@@ -25,9 +25,10 @@ from sklearn.metrics import mutual_info_score
 
 # ── paths ─────────────────────────────────────────────────────────────────────
 
-OUTPUT_BASE    = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/medperturb_eval/output")
-MEDPERTURB_CSV = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/medperturb_data.csv")
-OUT_DIR        = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/medperturb_eval/plots/robustness")
+OUTPUT_BASE        = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/medperturb_eval/output")
+MEDPERTURB_CSV     = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/medperturb_data.csv")
+MODEL_RESPONSES_CSV = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/data/model_responses.csv")
+OUT_DIR            = Path("/Users/hannah_mac/Documents/rmit/rmit_hons_y4/medperturb_eval/plots/robustness")
 
 DATASETS   = {"oncqa", "askdocs"}
 TASKS      = ["manage", "visit", "resource"]
@@ -35,13 +36,45 @@ PERTS      = ["summary", "gender_swap", "uncertain_tone"]
 PERT_LABELS = {"summary": "Sum.", "gender_swap": "GS", "uncertain_tone": "UT"}
 TASK_LABELS = {"manage": "Manage", "visit": "Visit", "resource": "Resource"}
 MIN_ROWS    = 600
+RUN_RE      = re.compile(r"^run_\d+$")
 
-# Baseline llama70b/qwen235b columns live in medperturb_data.csv
+# Baseline llama70b/qwen235b columns live in medperturb_data.csv (single run)
 MEDPERTURB_BASELINE_COLS = {"llama70b3_3": "llama", "qwen235b": "qwen"}
 
+# Baseline seed columns in model_responses.csv (3 runs via seeds)
+# Only llama70b3_3 — qwen235b baseline uses directory runs (different model)
+BASELINE_SEEDS = {
+    "llama70b3_3": ["llama_seed0", "llama_seed1", "llama_seed2"],
+}
+
+# Directory-level paths for auto-discovery of run_N subdirs
+METHOD_BACKBONE_DIRS = {
+    "Baseline": {
+        "llama70b3_3": None,  # from model_responses.csv seeds
+        "llama8b3_1":  OUTPUT_BASE / "baseline/llama8b3_1/oncqa_askdocs",
+        "qwen235b":    OUTPUT_BASE / "baseline/qwen235b/oncqa_askdocs",
+    },
+    "MedReason": {
+        "llama70b3_3": OUTPUT_BASE / "medreason/llama70b3_3/oncqa_askdocs",
+        "llama8b3_1":  OUTPUT_BASE / "medreason/llama8b3_1/oncqa_askdocs",
+        "qwen235b":    OUTPUT_BASE / "medreason/qwen235b/oncqa_askdocs",
+    },
+    "ToolUni": {
+        "llama70b3_3": OUTPUT_BASE / "tooluni/llama70b3_3/oncqa_askdocs",
+        "llama8b3_1":  OUTPUT_BASE / "tooluni/llama8b3_1/oncqa_askdocs",
+        "qwen235b":    OUTPUT_BASE / "tooluni/qwen235b/oncqa_askdocs",
+    },
+    "MedPathAgent": {
+        "llama70b3_3": OUTPUT_BASE / "medpathagent/llama70b3_3/oncqa_askdocs",
+        "llama8b3_1":  OUTPUT_BASE / "medpathagent/llama8b3_1/oncqa_askdocs",
+        "qwen235b":    OUTPUT_BASE / "medpathagent/qwen235b/oncqa_askdocs",
+    },
+}
+
+# run_0 paths kept for load_all() (used by agg/KG-split figures)
 METHOD_CSV_PATHS = {
     "Baseline": {
-        "llama70b3_3": None,   # from medperturb_data.csv
+        "llama70b3_3": None,   # from model_responses.csv seed0
         "llama8b3_1":  OUTPUT_BASE / "baseline/llama8b3_1/oncqa_askdocs/run_0/results.csv",
         "qwen235b":    OUTPUT_BASE / "baseline/qwen235b/oncqa_askdocs/run_0/results.csv",
     },
@@ -113,9 +146,12 @@ def _pred_col(df, task):
 
 def load_all() -> dict[str, tuple[pd.DataFrame, str]]:
     """
-    Returns {label: (df, pred_prefix)} for every method × backbone.
+    Returns {label: (df, pred_prefix)} for every method × backbone (run_0 / seed0).
+    Used by _build_agg_df and make_kg_split_figure — single run per label.
     label = "Method\nBackbone display name"
     """
+    mr = pd.read_csv(MODEL_RESPONSES_CSV)
+    mr = mr[mr["dataset"].isin(DATASETS)]
     mp = pd.read_csv(MEDPERTURB_CSV)
     mp = mp[mp["dataset"].isin(DATASETS)]
 
@@ -125,14 +161,18 @@ def load_all() -> dict[str, tuple[pd.DataFrame, str]]:
             display = NAME_MAP.get(backbone, backbone)
             label   = f"{method}\n{display}"
 
-            # Baseline llama70b/qwen from medperturb_data.csv
-            if path is None and method == "Baseline" and backbone in MEDPERTURB_BASELINE_COLS:
-                prefix = MEDPERTURB_BASELINE_COLS[backbone]
-                if f"{prefix}_manage" not in mp.columns:
-                    print(f"  MISSING col {prefix}_manage in medperturb_data.csv")
+            # Baseline llama70b: use seed0 from model_responses.csv
+            if path is None and method == "Baseline" and backbone in BASELINE_SEEDS:
+                seed0 = BASELINE_SEEDS[backbone][0]
+                if f"{seed0}_manage" in mr.columns:
+                    result[label] = (mr.copy(), seed0)
+                    print(f"  {label}: model_responses.csv  prefix={seed0}  rows={len(mr)}")
                     continue
-                result[label] = (mp.copy(), prefix)
-                print(f"  {label}: medperturb_data.csv  prefix={prefix}  rows={len(mp)}")
+                # Fallback to medperturb_data.csv
+                prefix = MEDPERTURB_BASELINE_COLS.get(backbone)
+                if prefix and f"{prefix}_manage" in mp.columns:
+                    result[label] = (mp.copy(), prefix)
+                    print(f"  {label}: medperturb_data.csv  prefix={prefix}  rows={len(mp)} (fallback)")
                 continue
 
             if path is None or not Path(path).exists():
@@ -152,6 +192,68 @@ def load_all() -> dict[str, tuple[pd.DataFrame, str]]:
             prefix = col.replace("_manage", "")
             print(f"  {label}: prefix={prefix}  rows={len(df)}")
             result[label] = (df, prefix)
+
+    return result
+
+
+def load_all_runs() -> dict[str, list[tuple[pd.DataFrame, str]]]:
+    """
+    Returns {label: [(df, prefix), ...]} — all available runs per method × backbone.
+
+    Uses all run_N subdirs when they exist (not just run_0).
+    For baseline llama70b/qwen, uses all seed columns from model_responses.csv.
+    Falls back to a single run for methods where only run_0 is available.
+    """
+    mr = pd.read_csv(MODEL_RESPONSES_CSV)
+    mr = mr[mr["dataset"].isin(DATASETS)]
+
+    result: dict[str, list[tuple[pd.DataFrame, str]]] = {}
+
+    for method, backbone_dirs in METHOD_BACKBONE_DIRS.items():
+        for backbone, base_dir in backbone_dirs.items():
+            display = NAME_MAP.get(backbone, backbone)
+            label   = f"{method}\n{display}"
+
+            # Baseline llama70b/qwen: seed columns from model_responses.csv
+            if method == "Baseline" and backbone in BASELINE_SEEDS:
+                runs = [
+                    (mr.copy(), seed)
+                    for seed in BASELINE_SEEDS[backbone]
+                    if f"{seed}_manage" in mr.columns
+                ]
+                if runs:
+                    print(f"  {label}: {len(runs)} seed run(s) from model_responses.csv")
+                    result[label] = runs
+                continue
+
+            if base_dir is None or not Path(base_dir).exists():
+                print(f"  MISSING dir: {label}: {base_dir}")
+                continue
+
+            runs = []
+            for run_dir in sorted(Path(base_dir).iterdir()):
+                if not run_dir.is_dir() or not RUN_RE.match(run_dir.name):
+                    continue
+                csv = run_dir / "results.csv"
+                if not csv.exists():
+                    continue
+                df = pd.read_csv(csv)
+                if "dataset" in df.columns:
+                    df = df[df["dataset"].isin(DATASETS)]
+                if len(df) < MIN_ROWS:
+                    print(f"  skip {label}/{run_dir.name} ({len(df)} rows)")
+                    continue
+                col = _pred_col(df, "manage")
+                if col is None:
+                    print(f"  WARNING: no pred col in {csv}")
+                    continue
+                runs.append((df, col.replace("_manage", "")))
+
+            if runs:
+                print(f"  {label}: {len(runs)} run(s)")
+                result[label] = runs
+            else:
+                print(f"  MISSING: {label}")
 
     return result
 
@@ -335,6 +437,7 @@ def make_figure(
     title: str,
     ylabel: str,
     fname: str,
+    err_data: dict | None = None,
     pct_fmt: bool = False,
     zero_line: bool = False,
     avg_backbones: bool = False,
@@ -369,6 +472,14 @@ def make_figure(
         vals = [v for v in vals if v is not None]
         return float(np.mean(vals)) if vals else None
 
+    def _err(label, task, groups):
+        """Mean std across groups for error bar; None if no err_data or all None."""
+        if err_data is None:
+            return None
+        vals = [err_data.get(label, {}).get((g, task)) for g in groups]
+        vals = [v for v in vals if v is not None]
+        return float(np.mean(vals)) if vals else None
+
     AGG_SUFFIX = "\nAll Backbones"
 
     if avg_backbones:
@@ -392,9 +503,11 @@ def make_figure(
                 agg_label = f"{method}{AGG_SUFFIX}"
 
                 bar_vals = []
+                bar_errs = []
                 for xi, grp in enumerate(x_groups):
                     pert_list = PERTS if avg_perts else [grp]
                     bar_vals.append(_val(agg_label, task, pert_list) or 0.0)
+                    bar_errs.append(_err(agg_label, task, pert_list))
                     if show_shapes:
                         for b in BACKBONE_ORDER:
                             bb_label = f"{method}\n{b}"
@@ -405,10 +518,14 @@ def make_figure(
                                 scatter_queue.append((xi + offset, bv,
                                                       BACKBONE_MARKERS.get(b, "o")))
 
+                yerr = [e if e is not None else 0.0 for e in bar_errs]
+                has_err = any(e is not None for e in bar_errs)
                 ax.bar(x + offset, bar_vals, width,
                        facecolor=color,
                        edgecolor="grey" if method == "Baseline" else "white",
-                       alpha=alpha, hatch=hatch, linewidth=1.2, zorder=3)
+                       alpha=alpha, hatch=hatch, linewidth=1.2, zorder=3,
+                       yerr=yerr if has_err else None,
+                       error_kw=dict(ecolor="black", elinewidth=1.2, capsize=3, zorder=5))
 
             if show_shapes:
                 for sx, sy, marker in scatter_queue:
@@ -489,9 +606,15 @@ def make_figure(
 
                 bar_vals = [_val(model, task, PERTS if avg_perts else [grp]) or 0.0
                             for grp in x_groups]
+                bar_errs = [_err(model, task, PERTS if avg_perts else [grp])
+                            for grp in x_groups]
+                yerr = [e if e is not None else 0.0 for e in bar_errs]
+                has_err = any(e is not None for e in bar_errs)
                 ax.bar(x + offset, bar_vals, width,
                        facecolor=facecolor, edgecolor=edgecol, alpha=alpha,
-                       hatch=hatch, linewidth=1.2)
+                       hatch=hatch, linewidth=1.2,
+                       yerr=yerr if has_err else None,
+                       error_kw=dict(ecolor="black", elinewidth=1.2, capsize=3, zorder=5))
 
             if zero_line:
                 ax.axhline(0, color="black", linewidth=0.8, zorder=0)
@@ -572,64 +695,101 @@ def _build_agg_df(method: str, models: dict) -> pd.DataFrame | None:
 
 # ── main ──────────────────────────────────────────────────────────────────────
 
+def _avg(vals: list) -> float | None:
+    """Mean of non-None values, or None if all missing."""
+    v = [x for x in vals if x is not None]
+    return float(np.mean(v)) if v else None
+
+
+def _std(vals: list) -> float | None:
+    """Std of non-None values; None when fewer than 2 values."""
+    v = [x for x in vals if x is not None]
+    return float(np.std(v, ddof=0)) if len(v) >= 2 else None
+
+
 def main():
-    print("Loading data...")
+    print("Loading data (run_0 / seed0 for agg/KG-split figures)...")
     models = load_all()
     print(f"  {len(models)} model entries loaded")
 
-    print("Loading clinician consensus labels...")
+    print("\nLoading all runs for metric averaging...")
+    models_runs = load_all_runs()
+    print(f"  {len(models_runs)} model entries with runs loaded")
+
+    print("\nLoading clinician consensus labels...")
     clin_lookup = _load_clinician_lookup()
     print(f"  {len(clin_lookup)} context_ids with clinician labels\n")
 
-    # Build data dicts for each metric
+    # Build data dicts for each metric — values averaged across all available runs
+    # Parallel *_err dicts hold the std for labels with ≥2 runs (used as error bars)
     flip_data, tsr_data, rcr_data, rcer_data, mi_data, acc_data = {}, {}, {}, {}, {}, {}
+    flip_err,  tsr_err,  rcr_err,  rcer_err,  mi_err,  acc_err  = {}, {}, {}, {}, {}, {}
 
-    # Per backbone×method
-    for label, (df, prefix) in models.items():
-        flip_data[label] = {}
-        tsr_data[label]  = {}
-        rcr_data[label]  = {}
-        rcer_data[label] = {}
-        mi_data[label]   = {}
-        acc_data[label]  = {}
+    for label, run_list in models_runs.items():
+        flip_data[label] = {}; flip_err[label] = {}
+        tsr_data[label]  = {}; tsr_err[label]  = {}
+        rcr_data[label]  = {}; rcr_err[label]  = {}
+        rcer_data[label] = {}; rcer_err[label] = {}
+        mi_data[label]   = {}; mi_err[label]   = {}
+        acc_data[label]  = {}; acc_err[label]  = {}
+        n = len(run_list)
         for p in PERTS:
             for t in TASKS:
-                flip_data[label][(p, t)] = flip_rate(df, prefix, t, p)
-                tsr_data[label][(p, t)]  = tsr(df, prefix, t, p)
-                rcr_data[label][(p, t)]  = rcr(df, prefix, t, p)
-                rcer_data[label][(p, t)] = rcer(df, prefix, t, p, clin_lookup)
-                mi_data[label][(p, t)]   = mutual_info(df, prefix, t, p)
-                acc_data[label][(p, t)]  = delta_accuracy(df, prefix, t, p)
+                fr_vals  = [flip_rate(df, pfx, t, p)          for df, pfx in run_list]
+                tsr_vals = [tsr(df, pfx, t, p)                for df, pfx in run_list]
+                rcr_vals = [rcr(df, pfx, t, p)                for df, pfx in run_list]
+                rcer_vals= [rcer(df, pfx, t, p, clin_lookup)  for df, pfx in run_list]
+                mi_vals  = [mutual_info(df, pfx, t, p)        for df, pfx in run_list]
+                acc_vals = [delta_accuracy(df, pfx, t, p)     for df, pfx in run_list]
 
-    # Aggregated across backbones (pool rows, then compute metric)
+                flip_data[label][(p, t)] = _avg(fr_vals);   flip_err[label][(p, t)]  = _std(fr_vals)
+                tsr_data[label][(p, t)]  = _avg(tsr_vals);  tsr_err[label][(p, t)]   = _std(tsr_vals)
+                rcr_data[label][(p, t)]  = _avg(rcr_vals);  rcr_err[label][(p, t)]   = _std(rcr_vals)
+                rcer_data[label][(p, t)] = _avg(rcer_vals); rcer_err[label][(p, t)]  = _std(rcer_vals)
+                mi_data[label][(p, t)]   = _avg(mi_vals);   mi_err[label][(p, t)]    = _std(mi_vals)
+                acc_data[label][(p, t)]  = _avg(acc_vals);  acc_err[label][(p, t)]   = _std(acc_vals)
+        if n > 1:
+            print(f"  {label}: averaged over {n} runs")
+
+    # Aggregated across backbones — mean of per-backbone run-averaged values.
+    # Each backbone is weighted equally regardless of row count, and each
+    # backbone value already reflects the mean across all available runs.
     AGG_LABEL_SUFFIX = "\nAll Backbones"
+    ALL_METRIC_PAIRS = [
+        (flip_data, flip_err),
+        (tsr_data,  tsr_err),
+        (rcr_data,  rcr_err),
+        (rcer_data, rcer_err),
+        (mi_data,   mi_err),
+        (acc_data,  acc_err),
+    ]
     for method in METHOD_ORDER:
-        agg_df = _build_agg_df(method, models)
-        if agg_df is None:
-            continue
         label = f"{method}{AGG_LABEL_SUFFIX}"
-        flip_data[label] = {}
-        tsr_data[label]  = {}
-        rcr_data[label]  = {}
-        rcer_data[label] = {}
-        mi_data[label]   = {}
-        acc_data[label]  = {}
+        # backbone display names that have computed per-backbone values
+        bb_labels = [
+            f"{method}\n{NAME_MAP[b]}"
+            for b in METHOD_BACKBONE_DIRS[method]
+            if f"{method}\n{NAME_MAP[b]}" in flip_data
+        ]
+        if not bb_labels:
+            continue
+        for data, err in ALL_METRIC_PAIRS:
+            data[label] = {}
+            err[label]  = {}
         for p in PERTS:
             for t in TASKS:
-                flip_data[label][(p, t)] = flip_rate(agg_df, AGG_PREFIX, t, p)
-                tsr_data[label][(p, t)]  = tsr(agg_df,  AGG_PREFIX, t, p)
-                rcr_data[label][(p, t)]  = rcr(agg_df,  AGG_PREFIX, t, p)
-                rcer_data[label][(p, t)] = rcer(agg_df, AGG_PREFIX, t, p, clin_lookup)
-                mi_data[label][(p, t)]   = mutual_info(agg_df, AGG_PREFIX, t, p)
-                acc_data[label][(p, t)]  = delta_accuracy(agg_df, AGG_PREFIX, t, p)
+                for data, err in ALL_METRIC_PAIRS:
+                    bb_vals = [data[lbl].get((p, t)) for lbl in bb_labels]
+                    data[label][(p, t)] = _avg(bb_vals)
+                    err[label][(p, t)]  = None  # std across backbones not meaningful here
 
     METRICS = [
-        dict(data=flip_data, title="Flip Rate",                               ylabel="Flip Rate (%)", slug="flip",     pct_fmt=True,  zero_line=False),
-        dict(data=tsr_data,  title="Treatment Shift Rate (TSR)",              ylabel="TSR (%)",       slug="tsr",      pct_fmt=True,  zero_line=True),
-        dict(data=rcr_data,  title="Reduced Care Rate (RCR)",                 ylabel="RCR (%)",       slug="rcr",      pct_fmt=True,  zero_line=False),
-        dict(data=rcer_data, title="Reduced Care Error Rate (RCER)",          ylabel="RCER (%)",      slug="rcer",     pct_fmt=True,  zero_line=False),
-        dict(data=mi_data,   title="Mutual Information (Prediction Stability)",ylabel="MI (bits)",    slug="mi",       pct_fmt=False, zero_line=False),
-        dict(data=acc_data,  title="Accuracy Drop (Δ Accuracy)",              ylabel="Δ Accuracy",   slug="acc_drop", pct_fmt=False, zero_line=True),
+        dict(data=flip_data, err=flip_err,  title="Flip Rate",                                ylabel="Flip Rate (%)", slug="flip",     pct_fmt=True,  zero_line=False),
+        dict(data=tsr_data,  err=tsr_err,   title="Treatment Shift Rate (TSR)",               ylabel="TSR (%)",       slug="tsr",      pct_fmt=True,  zero_line=True),
+        dict(data=rcr_data,  err=rcr_err,   title="Reduced Care Rate (RCR)",                  ylabel="RCR (%)",       slug="rcr",      pct_fmt=True,  zero_line=False),
+        dict(data=rcer_data, err=rcer_err,  title="Reduced Care Error Rate (RCER)",           ylabel="RCER (%)",      slug="rcer",     pct_fmt=True,  zero_line=False),
+        dict(data=mi_data,   err=mi_err,    title="Mutual Information (Prediction Stability)", ylabel="MI (bits)",    slug="mi",       pct_fmt=False, zero_line=False),
+        dict(data=acc_data,  err=acc_err,   title="Accuracy Drop (Δ Accuracy)",               ylabel="Δ Accuracy",   slug="acc_drop", pct_fmt=False, zero_line=True),
     ]
 
     # Four variants per metric:
@@ -649,6 +809,7 @@ def main():
             # Clean version (no shapes)
             make_figure(
                 data          = m["data"],
+                err_data      = m.get("err"),
                 title         = m["title"],
                 ylabel        = m["ylabel"],
                 fname         = f"{m['slug']}{v['suffix']}.png",
@@ -662,6 +823,7 @@ def main():
             if v["avg_backbones"]:
                 make_figure(
                     data          = m["data"],
+                    err_data      = m.get("err"),
                     title         = m["title"],
                     ylabel        = m["ylabel"],
                     fname         = f"{m['slug']}{v['suffix']}_shapes.png",
@@ -677,26 +839,28 @@ def main():
     # ── save all metric results to CSV ────────────────────────────────────────
     csv_rows = []
     all_data = {
-        "flip":     flip_data,
-        "tsr":      tsr_data,
-        "rcr":      rcr_data,
-        "rcer":     rcer_data,
-        "mi":       mi_data,
-        "acc_drop": acc_data,
+        "flip":     (flip_data,  flip_err),
+        "tsr":      (tsr_data,   tsr_err),
+        "rcr":      (rcr_data,   rcr_err),
+        "rcer":     (rcer_data,  rcer_err),
+        "mi":       (mi_data,    mi_err),
+        "acc_drop": (acc_data,   acc_err),
     }
-    for metric, data in all_data.items():
+    for metric, (data, err) in all_data.items():
         for label, pt_vals in data.items():
             method_backbone = label.split("\n")
-            method  = method_backbone[0]
+            method   = method_backbone[0]
             backbone = method_backbone[1] if len(method_backbone) > 1 else "All Backbones"
             for (pert, task), val in pt_vals.items():
+                std = err.get(label, {}).get((pert, task))
                 csv_rows.append({
-                    "metric":   metric,
-                    "method":   METHOD_SHORT.get(method, method),
-                    "backbone": backbone,
-                    "perturbation": pert,
-                    "task":     task,
-                    "value":    round(val, 4) if val is not None else None,
+                    "metric":        metric,
+                    "method":        METHOD_SHORT.get(method, method),
+                    "backbone":      backbone,
+                    "perturbation":  pert,
+                    "task":          task,
+                    "value":         round(val, 4) if val is not None else None,
+                    "std":           round(std, 4) if std is not None else None,
                 })
 
     csv_df = pd.DataFrame(csv_rows)
